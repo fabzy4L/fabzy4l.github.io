@@ -1,0 +1,51 @@
+# ── Claude & Anthropic ──────────────────────────────────────
+.claude/
+.claude_files/
+.claude_history
+.claude_cache/
+.anthropic/
+claude_settings.json
+.claudeignore
+*.claude
+*.anthropic
+
+# Claude Code session & state files
+.claude-code/
+claude-code-settings.json
+.claude-session
+.claude-state
+
+# ── Environment & Secrets ────────────────────────────────────
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+config.local.*
+
+# ── OS Junk ──────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ── Editor & IDE ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Logs & Temp ──────────────────────────────────────────────
+*.log
+*.tmp
+*.temp
+npm-debug.log*
+
+# ── Node (if ever added) ─────────────────────────────────────
+node_modules/
+package-lock.json
