@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LabOps.ai Investment Thesis — AI-native, robotics-assisted manufacturing infrastructure for biological therapeutics. The Ford of biomanufacturing.">
+  <title>LabOps.ai — Investment Thesis</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0a0d14; color: #e8e3d8; font-family: Georgia, 'Times New Roman', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { margin: 0; }
+    p { margin: 0 0 1rem; }
+    ul { margin: 0; padding-left: 1.25rem; }
+
+    .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(0,212,180,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,180,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.3s ease; padding: 0 2rem; }
+    nav.scrolled { background: rgba(10,13,20,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,212,180,0.15); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-badge { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #00d4b4, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #fff; font-family: monospace; flex-shrink: 0; }
+    .nav-name { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #00d4b4; font-family: monospace; }
+    .nav-sub { color: rgba(232,227,216,0.3); font-size: 12px; margin-left: 4px; }
+    .nav-links { display: flex; gap: 0.25rem; }
+    .nav-btn { background: none; border: none; cursor: pointer; padding: 6px 10px; border-radius: 4px; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(232,227,216,0.45); font-family: monospace; transition: color 0.2s; }
+    .nav-btn.active { color: #00d4b4; }
+    .nav-btn:hover { color: rgba(232,227,216,0.75); }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+    .hero { position: relative; z-index: 1; padding: 160px 2rem 100px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid rgba(0,212,180,0.1); }
+    .hero-inner { display: flex; align-items: flex-start; gap: 3rem; }
+    .hero-content { flex: 1; }
+    .eyebrow { font-family: monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #00d4b4; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .eyebrow-line { width: 24px; height: 1px; background: #00d4b4; flex-shrink: 0; }
+    h1 { font-size: clamp(36px,5vw,64px); font-weight: 400; line-height: 1.08; color: #f0ece0; margin: 0 0 1.5rem; letter-spacing: -0.02em; }
+    .grad { background: linear-gradient(90deg, #00d4b4, #0066ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 18px; line-height: 1.7; color: rgba(232,227,216,0.65); max-width: 560px; margin: 0 0 2rem; }
+    .tags { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .tag { padding: 6px 14px; border: 1px solid rgba(0,212,180,0.3); border-radius: 100px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #00d4b4; font-family: monospace; }
+    .hero-card { width: 260px; flex-shrink: 0; padding: 2rem; border: 1px solid rgba(0,212,180,0.15); border-radius: 12px; background: rgba(0,212,180,0.03); }
+    .filed-label { font-size: 11px; font-family: monospace; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,227,216,0.4); margin-bottom: 1.5rem; }
+    .filed-name { font-size: 15px; font-weight: 500; margin-bottom: 4px; color: #e8e3d8; }
+    .filed-bio { font-size: 12px; color: rgba(232,227,216,0.55); margin-bottom: 1.5rem; line-height: 1.5; }
+    .card-rule { height: 1px; background: rgba(0,212,180,0.1); margin-bottom: 1.5rem; }
+    .creds { font-size: 11px; font-family: monospace; color: rgba(232,227,216,0.35); line-height: 1.8; }
+
+    section { scroll-margin-top: 80px; }
+    .s-inner { padding: 80px 0 60px; }
+    .s-head { margin-bottom: 2.5rem; display: flex; align-items: flex-end; gap: 1.5rem; }
+    .s-num { font-family: monospace; font-size: 64px; font-weight: 300; line-height: 1; color: rgba(0,212,180,0.12); letter-spacing: -0.04em; user-select: none; }
+    .s-title h2 { font-size: 28px; font-weight: 400; margin: 0; letter-spacing: -0.01em; color: #f0ece0; font-family: Georgia, serif; }
+    .s-rule { width: 48px; height: 2px; background: linear-gradient(90deg, #00d4b4, transparent); margin-top: 8px; }
+
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,212,180,0.2), transparent); }
+
+    .body { font-size: 14px; line-height: 1.75; color: rgba(232,227,216,0.7); margin-top: 0; margin-bottom: 1rem; }
+    .h3 { font-size: 17px; font-weight: 500; color: #f0ece0; margin-bottom: 1rem; margin-top: 0; letter-spacing: -0.01em; font-family: Georgia, serif; }
+    .teal { color: #00d4b4; }
+
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+    .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 3rem; }
+    .g32 { display: grid; grid-template-columns: 3fr 2fr; gap: 3rem; }
+    .g3s { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 3rem; }
+    .mb3 { margin-bottom: 3rem; }
+
+    .dc { padding: 1.5rem; border: 1px solid rgba(0,212,180,0.15); border-radius: 8px; background: rgba(0,212,180,0.03); text-align: center; }
+    .dc-val { font-size: 28px; font-weight: 300; color: #00d4b4; font-family: monospace; margin-bottom: 4px; letter-spacing: -0.02em; }
+    .dc-lbl { font-size: 12px; font-weight: 600; margin-bottom: 2px; color: #e8e3d8; }
+    .dc-sub { font-size: 11px; color: rgba(232,227,216,0.4); font-family: monospace; }
+
+    .quote { margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px solid rgba(0,212,180,0.25); border-radius: 8px; background: rgba(0,212,180,0.04); font-family: monospace; font-size: 13px; color: #00d4b4; line-height: 1.7; }
+    .analyst { margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px solid rgba(0,102,255,0.3); border-radius: 8px; background: rgba(0,102,255,0.05); font-family: monospace; font-size: 12px; color: #7ab4ff; line-height: 1.7; }
+
+    .pharma-card { padding: 1.75rem; border-radius: 8px; }
+
+    .stat-box { padding: 1.75rem; border: 1px solid rgba(232,227,216,0.1); border-radius: 8px; }
+    .stat-box h4 { font-size: 12px; font-family: monospace; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,227,216,0.4); margin-bottom: 1.25rem; margin-top: 0; font-weight: 400; }
+    .stat-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(232,227,216,0.06); font-size: 13px; }
+    .stat-row:last-child { border-bottom: none; }
+    .sk { color: rgba(232,227,216,0.55); }
+    .sv { color: #00d4b4; font-family: monospace; }
+
+    .dyn { margin-bottom: 1.25rem; padding: 1.25rem; border: 1px solid rgba(232,227,216,0.08); border-radius: 8px; border-left: 3px solid #00d4b4; }
+    .dyn-title { font-weight: 600; font-size: 14px; margin-bottom: 0.4rem; color: #e8e3d8; }
+    .dyn-body { font-size: 13px; color: rgba(232,227,216,0.6); line-height: 1.6; margin: 0; }
+
+    .inv-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid rgba(232,227,216,0.06); font-size: 12px; gap: 1rem; }
+    .inv-row:last-child { border-bottom: none; }
+    .ik { color: rgba(232,227,216,0.55); min-width: 160px; }
+    .iv { color: #e8e3d8; text-align: right; }
+
+    .cogs-wrap { padding: 2rem; border: 1px solid rgba(0,212,180,0.15); border-radius: 12px; background: rgba(0,212,180,0.02); }
+    .cogs-label { font-family: monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,227,216,0.4); margin-top: 0; margin-bottom: 1.5rem; font-weight: 400; }
+    .cogs-bars { display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap; }
+    .cogs-item { text-align: center; flex: 1; min-width: 100px; }
+    .cogs-val { font-size: 11px; font-family: monospace; margin-bottom: 8px; }
+    .cogs-bar { border-radius: 4px 4px 0 0; margin-bottom: 8px; }
+    .cogs-yr { font-size: 13px; margin-bottom: 2px; }
+    .cogs-note { font-size: 10px; color: rgba(232,227,216,0.35); font-family: monospace; }
+
+    .bn { padding: 1.5rem; border: 1px solid rgba(232,227,216,0.08); border-radius: 8px; background: rgba(232,227,216,0.02); }
+    .bn-icon { font-size: 24px; margin-bottom: 12px; }
+    .bn-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #f0ece0; }
+    .bn-body { font-size: 12px; color: rgba(232,227,216,0.55); line-height: 1.65; margin: 0; }
+
+    .comp-list { display: grid; gap: 1rem; margin-bottom: 3rem; }
+    .comp-row { display: grid; grid-template-columns: 180px 1fr 1fr 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem; border: 1px solid rgba(232,227,216,0.07); border-radius: 8px; background: rgba(232,227,216,0.01); }
+    .comp-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; color: #e8e3d8; }
+    .comp-stage { font-size: 10px; font-family: monospace; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 100px; }
+    .comp-model { font-size: 11px; color: rgba(232,227,216,0.4); margin-top: 6px; font-family: monospace; }
+    .comp-col-lbl { font-size: 10px; font-family: monospace; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(232,227,216,0.35); margin-bottom: 6px; }
+    .comp-col-txt { font-size: 12px; line-height: 1.55; margin: 0; }
+
+    .region { margin-bottom: 1.25rem; }
+    .region-hd { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .region-name { font-weight: 600; font-size: 14px; color: #e8e3d8; }
+    .region-share { font-family: monospace; font-size: 12px; color: #00d4b4; }
+    .region-notes { font-size: 12px; color: rgba(232,227,216,0.55); line-height: 1.55; margin: 0; }
+    .region-rule { height: 1px; background: rgba(232,227,216,0.06); margin-top: 12px; }
+
+    .ws-card { padding: 2rem; border: 1px solid rgba(0,212,180,0.2); border-radius: 8px; background: rgba(0,212,180,0.04); }
+    .ws-status { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 10px; font-family: monospace; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .ws-label { font-size: 15px; font-weight: 600; margin-bottom: 0.75rem; color: #e8e3d8; }
+    .ws-desc { font-size: 13px; color: rgba(232,227,216,0.6); line-height: 1.6; margin: 0; }
+
+    .adv { margin-bottom: 1.25rem; }
+    .adv-title { font-weight: 600; font-size: 13px; color: #00d4b4; margin-bottom: 4px; }
+    .adv-desc { font-size: 12px; color: rgba(232,227,216,0.6); line-height: 1.6; margin: 0; }
+
+    .callout { padding: 3rem; border: 1px solid rgba(0,212,180,0.25); border-radius: 12px; background: linear-gradient(135deg, rgba(0,212,180,0.05), rgba(0,102,255,0.05)); margin-bottom: 3rem; }
+    .callout h3 { font-size: 22px; font-weight: 400; line-height: 1.4; margin: 0 0 1.5rem; color: #f0ece0; font-family: Georgia, serif; }
+    .callout p { font-size: 16px; line-height: 1.75; color: rgba(232,227,216,0.7); margin: 0; }
+
+    .phase { margin-bottom: 2rem; }
+    .phase-hd { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 8px; }
+    .phase-badge { font-family: monospace; font-size: 10px; letter-spacing: 0.15em; padding: 3px 10px; background: rgba(0,212,180,0.15); color: #00d4b4; border-radius: 100px; }
+    .phase-title { font-size: 14px; font-weight: 600; color: #e8e3d8; }
+    .phase li { font-size: 12px; color: rgba(232,227,216,0.6); line-height: 1.65; margin-bottom: 4px; }
+
+    .why { display: flex; gap: 1rem; margin-bottom: 1rem; padding: 1rem; border: 1px solid rgba(232,227,216,0.07); border-radius: 6px; }
+    .why-arrow { color: #00d4b4; font-family: monospace; font-size: 16px; flex-shrink: 0; margin-top: -2px; }
+    .why-text { font-size: 13px; color: rgba(232,227,216,0.65); line-height: 1.6; margin: 0; }
+
+    .civ { margin-top: 2rem; padding: 1.75rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,180,0.2); border-radius: 8px; }
+    .civ-lbl { font-size: 11px; font-family: monospace; letter-spacing: 0.15em; text-transform: uppercase; color: #00d4b4; margin-bottom: 0.75rem; }
+    .civ-txt { font-size: 13px; color: rgba(232,227,216,0.7); line-height: 1.7; margin: 0; }
+
+    .thesis-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0,212,180,0.15); display: flex; justify-content: space-between; align-items: center; }
+    .ft { font-family: monospace; font-size: 11px; color: rgba(232,227,216,0.3); }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- Nav -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-badge">L</div>
+      <span class="nav-name">LABOPS.AI</span>
+      <span class="nav-sub">/ Investment Thesis</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-id="exec">Executive Summary</button>
+      <button class="nav-btn" data-id="background">Background</button>
+      <button class="nav-btn" data-id="market">Market State</button>
+      <button class="nav-btn" data-id="financials">Financials</button>
+      <button class="nav-btn" data-id="infrastructure">Infrastructure</button>
+      <button class="nav-btn" data-id="global">Global Activity</button>
+      <button class="nav-btn" data-id="whitespace">White Space</button>
+      <button class="nav-btn" data-id="thesis">The Thesis</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        CONFIDENTIAL — MAY 2026
+      </div>
+      <h1>The Ford of<br><span class="grad">Biomanufacturing</span></h1>
+      <p class="hero-sub">An investment thesis for LabOps.ai — AI-native, robotics-assisted, 3D-printed manufacturing infrastructure for biological therapeutics, beginning with cell and gene therapy.</p>
+      <div class="tags">
+        <span class="tag">Series A Target</span>
+        <span class="tag">Cell &amp; Gene Therapy</span>
+        <span class="tag">Infrastructure Layer</span>
+        <span class="tag">AI-Native Operator</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="filed-label">Filed by</div>
+      <div class="filed-name">Fabian Alvarez Primo, PhD</div>
+      <div class="filed-bio">Founder, LabOps.ai<br>Operations Manager II, Amazon<br>Materials Science / Biomedical Engineering</div>
+      <div class="card-rule"></div>
+      <div class="creds">CLIA Lab Leadership ✓<br>iPSC / CRISPR / 3D Bioprint ✓<br>Large-Scale Ops (Amazon L5) ✓<br>AI/ML Pipeline Builder ✓</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 01 Executive Summary -->
+  <section id="exec">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">01</span>
+        <div class="s-title"><h2>Executive Summary</h2><div class="s-rule"></div></div>
+      </div>
+      <div class="g2">
+        <div>
+          <p class="body">Biological medicine is experiencing its most consequential decade. Cell and gene therapies have delivered functional cures for previously untreatable conditions — sickle cell disease, certain blood cancers, rare genetic disorders. Yet the fundamental limiting constraint is not science. It is <em>manufacturing.</em></p>
+          <p class="body">The global CGT manufacturing market is valued at $11.6 billion in 2024 and is growing at 26.6% CAGR toward $123 billion by 2034. The underlying therapy market — which manufacturing serves — will reach $146 billion by 2035. The gap between clinical promise and patient access is not a regulatory gap or a science gap. It is an operational gap.</p>
+          <p class="body">CAR-T cell therapy costs $120,000–$300,000 to manufacture per dose. Total cost of treatment, including hospital administration and logistics, can reach $2 million per patient. The therapies work. The factory doesn't.</p>
+        </div>
+        <div>
+          <p class="body">LabOps.ai's thesis is simple and historically grounded: what Ford did to the automobile — making it manufacturable at scale for ordinary people — must be done to biological medicine. Not incrementally, through bolt-on automation sold to existing CDMOs. But fundamentally, through an AI-native operating system for biomanufacturing that owns the intelligence, the process, and eventually the infrastructure.</p>
+          <p class="body">LabOps.ai is not a CDMO. It is not a software tool. It is not a bioreactor company. It is an <strong class="teal">intelligent infrastructure operator</strong> — building the manufacturing layer that the next hundred approved cell and gene therapies will need to actually reach patients, at prices patients can survive.</p>
+          <div class="quote">"The model is not SaaS. It is not services. It is Ford —<br>own the factory floor, own the cost curve,<br>own the access."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 02 Background -->
+  <section id="background">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">02</span>
+        <div class="s-title"><h2>Background: The Biological Medicine Imperative</h2><div class="s-rule"></div></div>
+      </div>
+      <p class="body" style="max-width:700px;margin-bottom:2.5rem;">To understand LabOps.ai's market position, you must first understand the nature of what is being manufactured — and why it is categorically different from every pharmaceutical that came before it.</p>
+
+      <div class="g3">
+        <div class="pharma-card" style="border:1px solid #6b728033;border-top:3px solid #6b7280;background:#6b728008;">
+          <div style="font-family:monospace;font-size:10px;letter-spacing:0.15em;color:#6b7280;margin-bottom:8px;">Pharma 1.0</div>
+          <div style="font-size:16px;font-weight:500;margin-bottom:0.75rem;color:#e8e3d8;">Small Molecule Drugs</div>
+          <p style="font-size:13px;color:rgba(232,227,216,0.6);line-height:1.65;margin:0;">Chemical synthesis. Repeatable. Scalable. Shelf-stable for years. One batch serves millions. COGS pennies per dose.</p>
+        </div>
+        <div class="pharma-card" style="border:1px solid #3b82f633;border-top:3px solid #3b82f6;background:#3b82f608;">
+          <div style="font-family:monospace;font-size:10px;letter-spacing:0.15em;color:#3b82f6;margin-bottom:8px;">Pharma 2.0</div>
+          <div style="font-size:16px;font-weight:500;margin-bottom:0.75rem;color:#e8e3d8;">Biologics / mAbs</div>
+          <p style="font-size:13px;color:rgba(232,227,216,0.6);line-height:1.65;margin:0;">Protein manufacturing via cell culture. More complex. Cold chain required. Months of production. COGS hundreds of dollars. Requires CDMOs.</p>
+        </div>
+        <div class="pharma-card" style="border:1px solid #00d4b433;border-top:3px solid #00d4b4;background:#00d4b408;">
+          <div style="font-family:monospace;font-size:10px;letter-spacing:0.15em;color:#00d4b4;margin-bottom:8px;">Pharma 3.0</div>
+          <div style="font-size:16px;font-weight:500;margin-bottom:0.75rem;color:#e8e3d8;">Cell &amp; Gene Therapies</div>
+          <p style="font-size:13px;color:rgba(232,227,216,0.6);line-height:1.65;margin:0;">Living drugs. Patient-specific. Manufactured in days to weeks per patient. Cannot be stockpiled. COGS $120K–$300K per dose. The factory IS the drug.</p>
+        </div>
+      </div>
+
+      <div class="g32">
+        <div>
+          <h3 class="h3">The Living Drug Problem</h3>
+          <p class="body">Cell and gene therapies are fundamentally different from every prior category of medicine. They are not manufactured from chemicals or proteins — they are manufactured from living cells. The manufacturing process is inseparable from the drug itself: the conditions under which T-cells are expanded, the timing of transduction, the quality of the viral vector, the temperature of every step — these are not quality checkpoints. They <em>are</em> the product.</p>
+          <p class="body">As of February 2025, the FDA has approved seven CAR-T cell therapies. There are over 6,000 active interventional cell therapy trials globally, with more than 2,154 involving genetically modified cells. Over 300 cell therapies are currently in clinical development. The approval pipeline is accelerating — nine new CGT products received approval in 2024 alone.</p>
+          <p class="body">The science has outrun the factory. This is the founding condition of LabOps.ai's market.</p>
+        </div>
+        <div class="stat-box">
+          <h4>The Pipeline Reality</h4>
+          <div class="stat-row"><span class="sk">Active global CGT trials</span><span class="sv">6,000+</span></div>
+          <div class="stat-row"><span class="sk">Genetically modified cell trials</span><span class="sv">2,154+</span></div>
+          <div class="stat-row"><span class="sk">Cell therapies in clinical dev.</span><span class="sv">300+</span></div>
+          <div class="stat-row"><span class="sk">FDA-approved CGT products</span><span class="sv">41 (Dec 2024)</span></div>
+          <div class="stat-row"><span class="sk">New approvals in 2024 alone</span><span class="sv">9</span></div>
+          <div class="stat-row"><span class="sk">Clinical studies since 2019</span><span class="sv">1,930+</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 03 Market State -->
+  <section id="market">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">03</span>
+        <div class="s-title"><h2>State of the Market</h2><div class="s-rule"></div></div>
+      </div>
+
+      <div class="g4">
+        <div class="dc"><div class="dc-val">$26.4B</div><div class="dc-lbl">CGT Market 2025</div><div class="dc-sub">Global therapy market</div></div>
+        <div class="dc"><div class="dc-val">$146B</div><div class="dc-lbl">CGT Market 2035</div><div class="dc-sub">18.7% CAGR</div></div>
+        <div class="dc"><div class="dc-val">$11.6B</div><div class="dc-lbl">Mfg. Market 2024</div><div class="dc-sub">Manufacturing only</div></div>
+        <div class="dc"><div class="dc-val">$123B</div><div class="dc-lbl">Mfg. Market 2034</div><div class="dc-sub">26.6% CAGR</div></div>
+        <div class="dc"><div class="dc-val">6,000+</div><div class="dc-lbl">Active Trials</div><div class="dc-sub">Global interventional</div></div>
+        <div class="dc"><div class="dc-val">41</div><div class="dc-lbl">FDA Approvals</div><div class="dc-sub">As of Dec 2024</div></div>
+        <div class="dc"><div class="dc-val">$2M</div><div class="dc-lbl">Per-Patient Cost</div><div class="dc-sub">CAR-T total w/ hospital</div></div>
+        <div class="dc"><div class="dc-val">68%</div><div class="dc-lbl">Outsourced Mfg.</div><div class="dc-sub">Via CDMOs</div></div>
+      </div>
+
+      <div class="g2">
+        <div>
+          <h3 class="h3">Market Segmentation</h3>
+          <p class="body">The CGT market is not one market — it is a stack. The therapy developers sit at the top. Below them is the manufacturing layer: CDMOs, in-house facilities, and emerging IDMOs. Below that is the tooling and reagents layer: bioreactors, vectors, media, quality systems. LabOps.ai targets the <strong class="teal">manufacturing and infrastructure layer</strong> — the highest-value, least-solved, most capital-intensive segment in the stack.</p>
+          <p class="body">The CGT manufacturing market specifically — the segment LabOps.ai competes in — was $11.6 billion in 2024 and projects to $123 billion by 2034 at 26.6% CAGR. The CDMO segment within that is $8.2 billion in 2025, growing at 27.9% CAGR to $75 billion by 2034. North America currently holds 48% of manufacturing market share. Asia-Pacific is the fastest-growing region.</p>
+          <p class="body">68% of current manufacturing is contract-based — meaning most therapy developers do not own their manufacturing. This creates enormous leverage for the entity that controls the intelligent manufacturing layer.</p>
+        </div>
+        <div>
+          <h3 class="h3">Critical Market Dynamics</h3>
+          <div class="dyn">
+            <div class="dyn-title">Allogeneic Is Rising</div>
+            <p class="dyn-body">Autologous (patient-specific) therapies dominate at 59% market share today, but allogeneic (off-the-shelf) approaches are growing fastest. Allogeneic manufacturing is fundamentally more scalable — one batch serves many patients. This structural shift favors intelligent large-scale operators.</p>
+          </div>
+          <div class="dyn">
+            <div class="dyn-title">Decentralization Is Inevitable</div>
+            <p class="dyn-body">Point-of-care manufacturing — where therapy is produced at or near the clinical site — is emerging as the dominant future model. The UK's MHRA implemented PoC manufacturing licenses in January 2025. FDA issued multisite CAR-T guidance in 2025. The regulatory framework is catching up to the technology.</p>
+          </div>
+          <div class="dyn">
+            <div class="dyn-title">AI Is the Differentiator</div>
+            <p class="dyn-body">Real-time process control, predictive quality assurance, and AI-enabled analytics are becoming table stakes for competitive manufacturing. OmniaBio targets 50% cost reduction via AI/robotics. The companies that own proprietary process intelligence — not just hardware — will dominate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 04 Financials -->
+  <section id="financials">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">04</span>
+        <div class="s-title"><h2>The Financial Reality</h2><div class="s-rule"></div></div>
+      </div>
+      <div class="g2 mb3">
+        <div>
+          <h3 class="h3">Unit Economics: The Core Problem</h3>
+          <p class="body">The economics of cell therapy manufacturing are broken at first principles. A single autologous CAR-T treatment costs $120,000–$300,000 to manufacture. By the time hospital fees, quality management, transportation, and administration are included, total cost of care can reach $2 million per patient.</p>
+          <p class="body">This is not a pricing anomaly. It reflects the true cost of bespoke, manual, expert-dependent biological manufacturing. Gilead has publicly stated its goal of achieving ~80% gross margins (biologics-like) for its CAR-T business by 2030 — which requires reducing Breyanzi's manufacturing COGS from an estimated $200K–$360K per dose in 2023 to approximately $80K by 2030.</p>
+          <p class="body">That trajectory — cutting COGS by 75–80% over seven years through manufacturing improvement — is the market LabOps.ai is designed to accelerate and capture.</p>
+        </div>
+        <div>
+          <h3 class="h3">Investment Flow</h3>
+          <p class="body">Capital is moving into this space at scale. AI for biopharma attracted over $1.6 billion in the first half of 2025 alone. Investment in AI for biopharmaceuticals increased by nearly $2 billion year-over-year from 2021. Corporate AI investment across all sectors hit $252 billion in 2024, with private investment rising 44.5%.</p>
+          <p class="body">Specific signals in manufacturing automation:</p>
+          <div class="inv-row"><span class="ik">ArsenalBio Series C</span><span class="iv">$325M for AI-enabled T-cell therapy</span></div>
+          <div class="inv-row"><span class="ik">ARPA-H → Cellino NEBULA</span><span class="iv">$25M for autonomous iPSC biomanufacturing</span></div>
+          <div class="inv-row"><span class="ik">Cellares / BMS Supply Deal</span><span class="iv">$380M capacity reservation</span></div>
+          <div class="inv-row"><span class="ik">Samsung Biologics Expansion</span><span class="iv">$4.8B new CGT bio-campus (Dec 2025)</span></div>
+          <div class="inv-row"><span class="ik">Fujifilm NC Facility</span><span class="iv">$3.2B commercial-scale biomanufacturing site</span></div>
+          <div class="inv-row"><span class="ik">OmniaBio Facility</span><span class="iv">$580M Hamilton, Ontario CGT CDMO build</span></div>
+        </div>
+      </div>
+
+      <div class="cogs-wrap">
+        <h4 class="cogs-label">CAR-T COGS Trajectory — The Burning Platform</h4>
+        <div class="cogs-bars">
+          <div class="cogs-item">
+            <div class="cogs-val" style="color:rgba(232,227,216,0.5);">$200K–$360K</div>
+            <div class="cogs-bar" style="height:180px;background:rgba(0,212,180,0.2);border:1px solid rgba(0,212,180,0.15);"></div>
+            <div class="cogs-yr" style="color:#e8e3d8;">2023</div>
+            <div class="cogs-note">Breyanzi baseline</div>
+          </div>
+          <div class="cogs-item">
+            <div class="cogs-val" style="color:rgba(232,227,216,0.5);">$120K–$300K</div>
+            <div class="cogs-bar" style="height:150px;background:rgba(0,212,180,0.18);border:1px solid rgba(0,212,180,0.15);"></div>
+            <div class="cogs-yr" style="color:#e8e3d8;">2025</div>
+            <div class="cogs-note">Current industry avg</div>
+          </div>
+          <div class="cogs-item">
+            <div class="cogs-val" style="color:rgba(232,227,216,0.5);">&lt;$100K</div>
+            <div class="cogs-bar" style="height:100px;background:rgba(0,212,180,0.15);border:1px solid rgba(0,212,180,0.15);"></div>
+            <div class="cogs-yr" style="color:#e8e3d8;">2027</div>
+            <div class="cogs-note">Leerink target</div>
+          </div>
+          <div class="cogs-item">
+            <div class="cogs-val" style="color:rgba(232,227,216,0.5);">~$80K</div>
+            <div class="cogs-bar" style="height:75px;background:rgba(0,212,180,0.12);border:1px solid rgba(0,212,180,0.15);"></div>
+            <div class="cogs-yr" style="color:#e8e3d8;">2030</div>
+            <div class="cogs-note">Gilead target</div>
+          </div>
+          <div class="cogs-item">
+            <div class="cogs-val" style="color:#00d4b4;">&lt;$30K</div>
+            <div class="cogs-bar" style="height:30px;background:linear-gradient(180deg,#00d4b4,#0066ff);border:1px solid #00d4b4;"></div>
+            <div class="cogs-yr" style="color:#00d4b4;font-weight:600;">LabOps.ai Target</div>
+            <div class="cogs-note">AI-native ops</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 05 Infrastructure -->
+  <section id="infrastructure">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">05</span>
+        <div class="s-title"><h2>Current Infrastructure State</h2><div class="s-rule"></div></div>
+      </div>
+      <p class="body" style="max-width:700px;margin-bottom:3rem;">Understanding the infrastructure gap is understanding LabOps.ai's opportunity. The manufacturing landscape is fragmented, manual, and structurally incapable of meeting the volume demands of an approved pipeline that is doubling every two years.</p>
+
+      <div class="g3s">
+        <div class="bn"><div class="bn-icon">⚗️</div><div class="bn-title">COGS Crisis</div><p class="bn-body">CAR-T manufacturing runs $120K–$300K per dose today. Total treatment cost reaches $2M/patient when hospital fees and logistics are included. Even with projected improvements, sub-$100K COGS by 2030 is an aspiration, not a guarantee.</p></div>
+        <div class="bn"><div class="bn-icon">🧑‍🔬</div><div class="bn-title">Talent Scarcity</div><p class="bn-body">Cell and gene therapy manufacturing is artisanal — dependent on a small pool of highly trained scientists. Manual processes introduce contamination risk and batch variability. The workforce cannot scale at the rate the pipeline demands.</p></div>
+        <div class="bn"><div class="bn-icon">🏭</div><div class="bn-title">Infrastructure Deficit</div><p class="bn-body">Most manufacturers use disconnected, semi-automated, single-step solutions. Fully integrated closed systems are just beginning to emerge. Modular GMP suites are expensive and slow to deploy. 74% of current manufacturing is still pre-commercial R&amp;D scale.</p></div>
+        <div class="bn"><div class="bn-icon">🚚</div><div class="bn-title">Vein-to-Vein Latency</div><p class="bn-body">Autologous therapies require patient cells to be harvested, shipped to a centralized facility, manufactured, QC'd, and shipped back. This vein-to-vein timeline stretches weeks to months — clinically dangerous for aggressive cancers.</p></div>
+        <div class="bn"><div class="bn-icon">🌍</div><div class="bn-title">Access Asymmetry</div><p class="bn-body">Manufacturing is concentrated in North America and Europe. Patients in Asia-Pacific, Latin America, and Africa — representing billions of people — have almost no access to approved therapies that cost millions per dose.</p></div>
+        <div class="bn"><div class="bn-icon">📋</div><div class="bn-title">Regulatory Complexity</div><p class="bn-body">Each facility requires site-specific validation of sterility, potency, identity, and stability. Decentralized manufacturing at scale requires novel regulatory frameworks that are only beginning to emerge globally (UK MHRA PoC license, FDA multisite CAR-T guidance 2025).</p></div>
+      </div>
+
+      <div class="g2">
+        <div>
+          <h3 class="h3">The CDMO Paradox</h3>
+          <p class="body">CDMOs are the current answer to the manufacturing gap. 68% of all CGT manufacturing is outsourced. The CGT CDMO market is growing at 27.9% CAGR. Samsung Biologics announced a $4.8 billion investment for a new CGT bio-campus in December 2025.</p>
+          <p class="body">But CDMOs are structurally limited. They are <em>service businesses</em> — they manufacture someone else's drug using someone else's process. Their incentive is billable hours and capacity utilization, not process innovation. Their margins are compressed by client competition and capital intensity.</p>
+          <p class="body">Most critically: CDMOs optimize for <em>existing</em> processes. LabOps.ai is building for the process that doesn't exist yet — one where intelligence drives the manufacturing decisions, not protocol binders.</p>
+        </div>
+        <div>
+          <h3 class="h3">The Automation Gap</h3>
+          <p class="body">As of 2024, most CGT manufacturers are still operating disconnected single-step or semi-automated solutions. 74% of manufacturing is still pre-commercial R&amp;D scale. The industry is just beginning to migrate to fully automated, closed-system platforms.</p>
+          <p class="body">The transition from manual to automated is well underway at the hardware layer — Ori Biotech's IRO platform, Cellares' Cell Shuttle, Cellino's Nebula system are all solving pieces of this. But none of them address the <em>intelligence layer</em>: the continuous learning system that monitors, predicts, adapts, and improves across every run, every product, every facility.</p>
+          <p class="body">This is the LabOps.ai layer. Not the bioreactor. The brain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 06 Global Activity -->
+  <section id="global">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">06</span>
+        <div class="s-title"><h2>Global Work Being Conducted</h2><div class="s-rule"></div></div>
+      </div>
+      <p class="body" style="max-width:700px;margin-bottom:3rem;">The competitive landscape reveals a market solving the same problem from many angles — but consistently leaving the intelligence and operating layers unaddressed.</p>
+
+      <div class="comp-list">
+        <div class="comp-row" style="border-left:3px solid #38bdf8;">
+          <div><div class="comp-name">Cellares</div><span class="comp-stage" style="background:#38bdf822;color:#38bdf8;">Commercial</span><div class="comp-model">IDMO</div></div>
+          <div><div class="comp-col-lbl">Approach</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.65);">Fully automated Cell Shuttle platform; high-throughput centralized manufacturing</p></div>
+          <div><div class="comp-col-lbl">Signal</div><p class="comp-col-txt" style="color:#38bdf8cc;">$380M supply deal with BMS; $380M Kite agreement</p></div>
+          <div><div class="comp-col-lbl">Gap / Limit</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.55);">Centralized only — no distributed or PoC model</p></div>
+        </div>
+        <div class="comp-row" style="border-left:3px solid #a78bfa;">
+          <div><div class="comp-name">Cellino</div><span class="comp-stage" style="background:#a78bfa22;color:#a78bfa;">Series A</span><div class="comp-model">Platform</div></div>
+          <div><div class="comp-col-lbl">Approach</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.65);">AI + laser editing of iPSCs; autonomous biomanufacturing; cassette-based modular system</p></div>
+          <div><div class="comp-col-lbl">Signal</div><p class="comp-col-txt" style="color:#a78bfacc;">$125M raised; $25M ARPA-H; targeting iPSC foundry by 2025</p></div>
+          <div><div class="comp-col-lbl">Gap / Limit</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.55);">iPSC-focused; no broader ops intelligence layer</p></div>
+        </div>
+        <div class="comp-row" style="border-left:3px solid #34d399;">
+          <div><div class="comp-name">Ori Biotech</div><span class="comp-stage" style="background:#34d39922;color:#34d399;">Commercial</span><div class="comp-model">Equipment OEM</div></div>
+          <div><div class="comp-col-lbl">Approach</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.65);">IRO platform — automates activation, transduction, expansion, harvest of multiple cell types</p></div>
+          <div><div class="comp-col-lbl">Signal</div><p class="comp-col-txt" style="color:#34d399cc;">500+ runs with 10 partners; launched 2024</p></div>
+          <div><div class="comp-col-lbl">Gap / Limit</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.55);">Sells hardware to others — not an operator or infrastructure layer</p></div>
+        </div>
+        <div class="comp-row" style="border-left:3px solid #fb923c;">
+          <div><div class="comp-name">Multiply Labs</div><span class="comp-stage" style="background:#fb923c22;color:#fb923c;">Growth</span><div class="comp-model">Robotics CDMO</div></div>
+          <div><div class="comp-col-lbl">Approach</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.65);">Robotics-driven clean room manufacturing using NVIDIA Isaac Sim imitation learning</p></div>
+          <div><div class="comp-col-lbl">Signal</div><p class="comp-col-txt" style="color:#fb923ccc;">70% cost reduction vs legacy; NVIDIA partnership</p></div>
+          <div><div class="comp-col-lbl">Gap / Limit</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.55);">Robotics integrator, not an end-to-end intelligent operator</p></div>
+        </div>
+        <div class="comp-row" style="border-left:3px solid #f472b6;">
+          <div><div class="comp-name">OmniaBio</div><span class="comp-stage" style="background:#f472b622;color:#f472b6;">Commercial</span><div class="comp-model">AI-CDMO</div></div>
+          <div><div class="comp-col-lbl">Approach</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.65);">First CGT CDMO with advanced AI; biosensors + ML for process control</p></div>
+          <div><div class="comp-col-lbl">Signal</div><p class="comp-col-txt" style="color:#f472b6cc;">$580M facility in Ontario; targeting ~50% COGS reduction</p></div>
+          <div><div class="comp-col-lbl">Gap / Limit</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.55);">CDMO model — still builds for others, not native operator</p></div>
+        </div>
+        <div class="comp-row" style="border-left:3px solid #facc15;">
+          <div><div class="comp-name">Astraveus</div><span class="comp-stage" style="background:#facc1522;color:#facc15;">Seed</span><div class="comp-model">Equipment</div></div>
+          <div><div class="comp-col-lbl">Approach</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.65);">Lakhesys Benchtop Cell Factory for adherent/non-adherent/iPSC manufacturing</p></div>
+          <div><div class="comp-col-lbl">Signal</div><p class="comp-col-txt" style="color:#facc15cc;">€16.5M seed + €10.4M French gov grant</p></div>
+          <div><div class="comp-col-lbl">Gap / Limit</div><p class="comp-col-txt" style="color:rgba(232,227,216,0.55);">Benchtop device; geography-limited; no intelligence layer</p></div>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div>
+          <h3 class="h3">Regional Dynamics</h3>
+          <div class="region">
+            <div class="region-hd"><span class="region-name">North America</span><span class="region-share">48%</span></div>
+            <p class="region-notes">Dominant. Strong FDA pipeline, RMAT designation, ARPA-H investment. US CGT manufacturing market: $4.18B (2024) → $45B (2034). 'America-first' protectionism accelerating domestic build-out.</p>
+            <div class="region-rule"></div>
+          </div>
+          <div class="region">
+            <div class="region-hd"><span class="region-name">Europe</span><span class="region-share">~22%</span></div>
+            <p class="region-notes">25 EMA-approved ATMPs. EU AI Act and European Health Data Space shaping governance. UK pioneering PoC manufacturing licenses (Jan 2025 MHRA implementation).</p>
+            <div class="region-rule"></div>
+          </div>
+          <div class="region">
+            <div class="region-hd"><span class="region-name">Asia-Pacific</span><span class="region-share">Fastest growth</span></div>
+            <p class="region-notes">India launched NexCAR19 (first domestic CAR-T) in 2024. China, Japan, South Korea all building out. Australia MOU for onshore ATMP production. Samsung Biologics $4.8B expansion.</p>
+            <div class="region-rule"></div>
+          </div>
+          <div class="region">
+            <div class="region-hd"><span class="region-name">LatAm / MEA</span><span class="region-share">Emerging</span></div>
+            <p class="region-notes">Combined $20B+ projected by 2034. Nearly zero manufacturing infrastructure today. Represents the largest patient access gap — and LabOps.ai's long-term decentralized manufacturing opportunity.</p>
+            <div class="region-rule"></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="h3">What Nobody Is Building</h3>
+          <p class="body">Survey the entire competitive landscape and a consistent pattern emerges: every major player is attacking the hardware problem, the chemistry problem, or the CDMO capacity problem. Nobody is building the <strong class="teal">intelligent operating system</strong> — the layer that learns from every manufacturing run, predicts failures before they happen, optimizes process parameters in real time, and continuously drives the cost curve down across every product and facility in its network.</p>
+          <p class="body">Cellino uses AI for laser editing of iPSCs — narrow, product-specific. Cellares automates a fixed workflow — high-throughput, but not adaptive. OmniaBio uses ML for process monitoring — a step forward, but still a CDMO selling time, not intelligence.</p>
+          <p class="body">LabOps.ai's architecture is different: it is built as an intelligence-first operator from day one — where the AI is not a feature of the hardware, but the <em>core product</em>, and the hardware (including 3D bioprinting and robotics) is its expression.</p>
+          <div class="analyst">Recommendation from analyst note (Helal, 2025):<br><em>"Finance companies building compact, automated biomanufacturing tech — companies focused on improving efficiency as domestic labor costs rise and offering significant potential for growth."</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 07 White Space -->
+  <section id="whitespace">
+    <div class="s-inner">
+      <div class="s-head">
+        <span class="s-num">07</span>
+        <div class="s-title"><h2>The White Space: Where LabOps.ai Lives</h2><div class="s-rule"></div></div>
+      </div>
+
+      <div class="g3" style="gap:1rem;">
+        <div class="ws-card">
+          <div class="ws-status" style="background:#f8717122;color:#f87171;">Not built</div>
+          <div class="ws-label">The Intelligence Layer</div>
+          <p class="ws-desc">A continuously learning process optimization system that owns proprietary knowledge from every manufacturing run — across cell types, protocols, and facilities.</p>
+        </div>
+        <div class="ws-card">
+          <div class="ws-status" style="background:#f8717122;color:#f87171;">Not built</div>
+          <div class="ws-label">The Distributed Operator</div>
+          <p class="ws-desc">An AI-native biomanufacturing operator that owns facilities, optimizes them at network-level, and delivers manufacturing-as-a-service at dramatically lower COGS than CDMOs.</p>
+        </div>
+        <div class="ws-card">
+          <div class="ws-status" style="background:#fbbf2422;color:#fbbf24;">Nascent</div>
+          <div class="ws-label">The Accessible Infrastructure</div>
+          <p class="ws-desc">Modular, deployable, point-of-care capable manufacturing infrastructure — bringing CGT production to emerging markets and regional hospitals at a fraction of current cost.</p>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div>
+          <h3 class="h3">The Ford Analogy — Unpacked</h3>
+          <p class="body">Before Ford, automobiles were hand-built by craftsmen. Each car was bespoke. The cost was prohibitive. Ownership was for the wealthy. The factory was organized around skill, not systems.</p>
+          <p class="body">Ford's insight was not technical — it was operational. He systemized the production process, standardized components, created continuous flow, and eliminated the craftsman as a variable. The Model T was not a better car than what came before it. It was a more manufacturable one. And because it was manufacturable, it was accessible.</p>
+          <p class="body">Cell and gene therapy today is pre-Ford. It is artisanal. Expert-dependent. Bespoke. LabOps.ai is the Ford moment — but instead of flow lines, the system is AI-orchestrated bioprocessing, robotic handling, and modular infrastructure that can be standardized, replicated, and continuously improved at network scale.</p>
+        </div>
+        <div>
+          <h3 class="h3">LabOps.ai's Structural Advantages</h3>
+          <div class="adv">
+            <div class="adv-title">↳ Cross-Domain Founder Stack</div>
+            <p class="adv-desc">PhD in Materials Science / Biomedical Engineering + CLIA lab leadership + Amazon ops at scale + AI/ML engineering. This combination does not exist elsewhere in this market.</p>
+          </div>
+          <div class="adv">
+            <div class="adv-title">↳ Operations-First Architecture</div>
+            <p class="adv-desc">LabOps.ai is designed by an ops leader who has managed hundreds of people, millions of units of throughput, and complex logistics systems. The manufacturing intelligence is built with operational reality, not just biology.</p>
+          </div>
+          <div class="adv">
+            <div class="adv-title">↳ AI as the Core, Not the Feature</div>
+            <p class="adv-desc">LabOps.ai's AI (pipeline: RSS monitoring → literature extraction → Claude API summarization → structured DB → dashboard) is infrastructure for continuous learning. This is the seed of a bioprocessing intelligence system.</p>
+          </div>
+          <div class="adv">
+            <div class="adv-title">↳ 3D Bioprinting as Vertical Integration</div>
+            <p class="adv-desc">The combination of AI process control + robotics + 3D bioprinting is unique in this market. It creates a path toward printed-on-demand tissue constructs and eventually organ-scale manufacturing — a defensible, long-horizon moat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 08 The Thesis -->
+  <section id="thesis">
+    <div class="s-inner" style="padding-bottom:120px;">
+      <div class="s-head">
+        <span class="s-num">08</span>
+        <div class="s-title"><h2>The LabOps.ai Thesis</h2><div class="s-rule"></div></div>
+      </div>
+
+      <div class="callout">
+        <h3>The global cell and gene therapy market is on the cusp of a manufacturing revolution — driven not by new science, but by the operational infrastructure required to convert that science into accessible medicine.</h3>
+        <p>LabOps.ai is building the intelligent manufacturing infrastructure layer that this revolution demands. Not as a contract manufacturer. Not as a software vendor. As the Ford of biomanufacturing — an AI-native, robotics-assisted, modular operator that continuously drives cost, variability, and access barriers out of the production of biological therapeutics.</p>
+      </div>
+
+      <div class="g2">
+        <div>
+          <h3 class="h3">The Three-Phase Build</h3>
+          <div class="phase">
+            <div class="phase-hd"><span class="phase-badge">Phase 1</span><span class="phase-title">Intelligence Pipeline (Now → 18 months)</span></div>
+            <ul class="phase">
+              <li>LabOps.ai MVP: literature monitoring → structured extraction → process knowledge base</li>
+              <li>Dashboard v1: bioprocess parameter tracking and insight surface</li>
+              <li>GitHub portfolio: proof-of-work for technical credibility</li>
+              <li>Target: first pilot partnership with a Series A–C CGT company</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="phase-hd"><span class="phase-badge">Phase 2</span><span class="phase-title">Manufacturing Intelligence (18 → 36 months)</span></div>
+            <ul class="phase">
+              <li>Integrate with bioreactor sensors and QC systems via API</li>
+              <li>Build real-time process monitoring and predictive failure models</li>
+              <li>Deploy in a CLIA-adjacent GMP environment</li>
+              <li>Target: signed manufacturing intelligence SLA with 2–3 biotech clients</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="phase-hd"><span class="phase-badge">Phase 3</span><span class="phase-title">Operator Infrastructure (36+ months)</span></div>
+            <ul class="phase">
+              <li>Own or co-own modular manufacturing suites</li>
+              <li>Deploy LabOps.ai OS across distributed facilities</li>
+              <li>3D bioprinting integration for tissue-scale manufacturing</li>
+              <li>Target: IDMO model with intelligence as the core differentiator</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="h3">Why Now</h3>
+          <div class="why"><div class="why-arrow">→</div><p class="why-text">41 FDA-approved CGT products as of December 2024 — each one needing commercial-scale manufacturing.</p></div>
+          <div class="why"><div class="why-arrow">→</div><p class="why-text">9 new approvals in 2024 alone. The pipeline is accelerating faster than the factory floor.</p></div>
+          <div class="why"><div class="why-arrow">→</div><p class="why-text">Regulatory frameworks for decentralized and PoC manufacturing are just being established globally — creating a land-grab window for early movers.</p></div>
+          <div class="why"><div class="why-arrow">→</div><p class="why-text">AI capabilities (real-time sensor fusion, predictive QA, process optimization at scale) have crossed the threshold of practical deployment in GMP environments.</p></div>
+          <div class="why"><div class="why-arrow">→</div><p class="why-text">The 'America-first' manufacturing resurgence post-tariff era is creating policy and capital tailwinds for domestic intelligent biomanufacturing.</p></div>
+          <div class="why"><div class="why-arrow">→</div><p class="why-text">$1.6B+ into AI-for-biopharma in the first half of 2025. The investor community is actively seeking the company that synthesizes AI + manufacturing ops — not just one side.</p></div>
+
+          <div class="civ">
+            <div class="civ-lbl">The Civilizational Case</div>
+            <p class="civ-txt">Millions of people globally have diseases that cell and gene therapy can cure. Sickle cell disease affects 7.74 million people. Parkinson's disease affects 8.5 million. The therapies exist or are in development. The factory does not exist at the required scale or price. LabOps.ai's mission is not to build a better CDMO. It is to make biological medicine manufacturable, accessible, and eventually ordinary — the way Ford made the automobile ordinary. This is not a biotech thesis. It is an infrastructure thesis with biotech as the first market.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="thesis-footer">
+        <span class="ft">LabOps.ai — Investment Thesis v1.0 — May 2026</span>
+        <span class="ft">Confidential — Fabian Alvarez Primo, PhD</span>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const sections = document.querySelectorAll('section[id]');
+  const btns = document.querySelectorAll('.nav-btn');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    sections.forEach(s => {
+      if (s.getBoundingClientRect().top <= 120) {
+        btns.forEach(b => b.classList.remove('active'));
+        const active = document.querySelector(`.nav-btn[data-id="${s.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { passive: true });
+
+  btns.forEach(b => b.addEventListener('click', () => {
+    document.getElementById(b.dataset.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+</script>
+</body>
+</html>
