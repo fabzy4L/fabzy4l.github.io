@@ -3,211 +3,581 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LabOps.AI — AI-native intelligence platform for cell & gene therapy manufacturing. Built by Fabian Alvarez-Primo.">
-  <title>LabOps.AI — Vision</title>
+  <title>LabOps.AI — Investment Thesis</title>
+  <meta name="description" content="LabOps.AI turns cell and gene therapy process knowledge into software that QA teams can review, audit, and trust. Human-in-the-loop decision support for GMP manufacturing.">
+  <link rel="canonical" href="https://fabzy4l.github.io/labops-ai-thesis.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LabOps.AI — The operating system for biological manufacturing">
+  <meta property="og:description" content="Human-in-the-loop intelligence for cell and gene therapy manufacturing. Built by BLK PHX LABS.">
+  <meta property="og:url" content="https://fabzy4l.github.io/labops-ai-thesis.html">
+  <meta property="og:image" content="https://fabzy4l.github.io/assets/og-labops.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BLK PHX LABS 8-bit phoenix mark with the LabOps.AI headline">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LabOps.AI — The operating system for biological manufacturing">
+  <meta name="twitter:description" content="Human-in-the-loop intelligence for cell and gene therapy manufacturing. Built by BLK PHX LABS.">
+  <meta name="twitter:image" content="https://fabzy4l.github.io/assets/og-labops.png">
+  <meta name="theme-color" content="#0a0a09">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/silkscreen-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <script>
+    // Hide animated elements only when motion will actually run; the main script undoes this if the libraries fail to load.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-motion');
+  </script>
+
   <style>
+    @font-face { font-family: 'Silkscreen'; src: url('assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Press Start 2P'; src: url('assets/press-start-2p-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+
+    :root {
+      --bg: #0a0a09;
+      --ink: #f0ede8;
+      --text: #c8c4bc;
+      --text-soft: #aeaaa2;   /* 8.6:1 on --bg */
+      --text-muted: #948f87;  /* 6.2:1 on --bg */
+      --accent: #e8520a;      /* 5.3:1 on --bg */
+      --accent-dim: #8a3106;
+      --accent-line: rgba(232,82,10,0.15);
+      --accent-wash: rgba(232,82,10,0.04);
+      --hair: rgba(200,196,188,0.1);
+      --pixel: 'Silkscreen', ui-monospace, monospace;
+      --pixel-big: 'Press Start 2P', ui-monospace, monospace;
+      --serif: Georgia, 'Times New Roman', serif;
+    }
+
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; background: #0a0a09; color: #c8c4bc; font-family: Georgia, 'Times New Roman', serif; -webkit-font-smoothing: antialiased; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { max-width: 100%; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
     .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(232,82,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,10,0.03) 1px, transparent 1px); background-size: 60px 60px; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; transition: all 0.3s ease; }
-    nav.scrolled { background: rgba(10,10,9,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(232,82,10,0.15); }
-    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
-    .nav-badge { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #e8520a, #8a3106); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: #fff; font-family: monospace; flex-shrink: 0; }
-    .nav-name { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #e8520a; font-family: monospace; }
+    /* ── Nav ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; transition: background 0.3s ease, border-color 0.3s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(10,10,9,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: var(--accent-line); }
+    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; min-width: 0; }
+    .nav-badge { width: 32px; height: 32px; flex-shrink: 0; }
+    .nav-name { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+    .nav-by { font-family: var(--pixel); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { display: block; padding: 6px 8px; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    @media (max-width: 780px) { .nav-by { display: none; } }
+    @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links { display: none; } }
 
+    /* ── Hero ── */
+    .hero { position: relative; z-index: 1; border-bottom: 1px solid rgba(232,82,10,0.1); overflow: hidden; }
+    .hero-fx { position: absolute; inset: 0; z-index: 0; opacity: 0.5; pointer-events: none; }
+    .hero-fx::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,9,0.92) 0%, rgba(10,10,9,0.55) 55%, rgba(10,10,9,0.2) 100%); }
+    .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 140px 2rem 96px; }
+    .hero-mark { display: block; width: 120px; height: 120px; margin-bottom: 2rem; }
+    .eyebrow { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .eyebrow-line { width: 24px; height: 1px; background: var(--accent); flex-shrink: 0; }
+    h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 400; line-height: 1.1; color: var(--ink); margin: 0 0 1.5rem; letter-spacing: -0.02em; }
+    .grad { background: linear-gradient(90deg, #e8520a, #b8430a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 18px; line-height: 1.75; color: var(--text); max-width: 620px; margin: 0 0 2rem; }
+    .tags { display: flex; gap: 0.6rem; flex-wrap: wrap; list-style: none; margin: 0 0 2.25rem; padding: 0; }
+    .tag { padding: 6px 12px; border: 1px solid rgba(232,82,10,0.35); border-radius: 100px; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+    .ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 12px 20px; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--accent); transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .btn-primary { background: var(--accent); color: #0a0a09; }
+    .btn-primary:hover { background: #ff6a1f; }
+    .btn-ghost { color: var(--accent); background: transparent; }
+    .btn-ghost:hover { background: rgba(232,82,10,0.1); }
+    @media (max-width: 640px) { .hero-inner { padding: 112px 16px 72px; } .hero-mark { width: 96px; height: 96px; } .hero-sub { font-size: 16px; } }
+
+    /* ── Sections ── */
     .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-
-    .hero { padding: 160px 2rem 100px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid rgba(232,82,10,0.1); position: relative; z-index: 1; }
-    .eyebrow { font-family: monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #e8520a; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-    .eyebrow-line { width: 24px; height: 1px; background: #e8520a; flex-shrink: 0; }
-    h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 400; line-height: 1.1; color: #f0ede8; margin: 0 0 1.5rem; letter-spacing: -0.02em; }
-    .grad { background: linear-gradient(90deg, #e8520a, #8a3106); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 18px; line-height: 1.75; color: rgba(200,196,188,0.75); max-width: 600px; margin: 0 0 2.5rem; }
-    .tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .tag { padding: 6px 14px; border: 1px solid rgba(232,82,10,0.3); border-radius: 100px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #e8520a; font-family: monospace; }
-
-    section { scroll-margin-top: 80px; position: relative; z-index: 1; }
+    @media (max-width: 640px) { .wrap { padding: 0 16px; } }
+    section { scroll-margin-top: 72px; position: relative; z-index: 1; }
     .s-inner { padding: 80px 0 60px; }
-    .s-head { margin-bottom: 2.5rem; display: flex; align-items: flex-end; gap: 1.5rem; }
-    .s-num { font-family: monospace; font-size: 64px; font-weight: 300; line-height: 1; color: rgba(232,82,10,0.12); letter-spacing: -0.04em; user-select: none; }
-    .s-title h2 { font-size: 28px; font-weight: 400; margin: 0; letter-spacing: -0.01em; color: #f0ede8; }
-    .s-rule { width: 48px; height: 2px; background: linear-gradient(90deg, #e8520a, transparent); margin-top: 8px; }
-    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(232,82,10,0.2), transparent); }
+    .s-head { margin-bottom: 2.5rem; display: flex; align-items: flex-end; gap: 1.25rem; }
+    .s-num { font-family: var(--pixel-big); font-size: 40px; line-height: 1; color: #aa3e0a; user-select: none; } /* 3.2:1 on --bg, large-text AA */
+    .s-title h2 { font-size: 28px; font-weight: 400; margin: 0; letter-spacing: -0.01em; color: var(--ink); }
+    .s-rule { width: 48px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin-top: 8px; }
+    @media (max-width: 640px) { .s-num { font-size: 28px; } .s-title h2 { font-size: 24px; } .s-inner { padding: 64px 0 48px; } }
+    .divider { height: 2px; background: repeating-linear-gradient(90deg, rgba(232,82,10,0.25) 0 4px, transparent 4px 12px); }
 
-    .body { font-size: 15px; line-height: 1.8; color: rgba(200,196,188,0.8); margin: 0 0 1.25rem; }
-    .h3 { font-size: 17px; font-weight: 500; color: #f0ede8; margin: 0 0 0.75rem; letter-spacing: -0.01em; }
+    .body { font-size: 16px; line-height: 1.8; color: var(--text); margin: 0 0 1.25rem; max-width: 680px; }
+    sup { line-height: 0; font-size: 0.7em; }
+    sup a { color: var(--accent); text-decoration: none; padding: 0 1px; font-family: var(--pixel); font-size: 10px; }
+    sup a:hover { text-decoration: underline; }
 
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
     @media (max-width: 640px) { .g2 { grid-template-columns: 1fr; } }
 
-    .card { padding: 1.75rem; border: 1px solid rgba(232,82,10,0.15); border-radius: 10px; background: rgba(232,82,10,0.04); }
-    .card-label { font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,82,10,0.7); margin-bottom: 0.75rem; }
-    .card-title { font-size: 15px; font-weight: 600; color: #f0ede8; margin-bottom: 0.5rem; }
-    .card-body { font-size: 13px; line-height: 1.7; color: rgba(200,196,188,0.65); margin: 0; }
+    .group-label { display: flex; align-items: center; gap: 0.6rem; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin: 2.5rem 0 1.25rem; }
+    .group-label .sq { width: 8px; height: 8px; flex-shrink: 0; }
+    .sq-solid { background: var(--accent); }
+    .sq-hollow { border: 1.5px solid var(--accent); }
+    .group-note { font-size: 14px; color: var(--text-soft); margin: -0.5rem 0 1.25rem; max-width: 640px; line-height: 1.6; }
 
-    .dyn { margin-bottom: 1.25rem; padding: 1.25rem 1.5rem; border: 1px solid rgba(200,196,188,0.08); border-radius: 8px; border-left: 3px solid #e8520a; }
-    .dyn-title { font-weight: 600; font-size: 14px; margin-bottom: 0.4rem; color: #f0ede8; }
-    .dyn-body { font-size: 13px; color: rgba(200,196,188,0.7); line-height: 1.65; margin: 0; }
+    .card { padding: 1.75rem; border: 1px solid var(--accent-line); border-radius: 10px; background: var(--accent-wash); transition: border-color 0.25s, transform 0.25s; }
+    .card.roadmap { background: transparent; border-style: dashed; border-color: rgba(232,82,10,0.3); }
+    .card-label { display: flex; align-items: center; gap: 0.5rem; font-family: var(--pixel); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .card-title, .founder-name { font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 0.5rem; }
+    .card-body { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0; }
+    .card-link { display: inline-block; margin-top: 0.85rem; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+    .card-link:hover { text-decoration: underline; }
 
-    .founder-card { padding: 2rem; border: 1px solid rgba(232,82,10,0.2); border-radius: 12px; background: rgba(232,82,10,0.04); max-width: 560px; }
-    .founder-name { font-size: 20px; font-weight: 400; color: #f0ede8; margin-bottom: 4px; }
-    .founder-title { font-family: monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,82,10,0.8); margin-bottom: 1.25rem; }
-    .founder-rule { height: 1px; background: rgba(232,82,10,0.1); margin-bottom: 1.25rem; }
-    .creds { font-family: monospace; font-size: 12px; color: rgba(200,196,188,0.5); line-height: 2; }
+    .dyn { margin: 0; padding: 1.25rem 1.5rem; border: 1px solid var(--hair); border-radius: 8px; border-left: 3px solid var(--accent); transition: border-color 0.25s, transform 0.25s; }
+    .dyn-title { font-weight: 600; font-size: 15px; margin: 0 0 0.4rem; color: var(--ink); }
+    .dyn-body { font-size: 14px; color: var(--text-soft); line-height: 1.65; margin: 0; }
 
+    @media (hover: hover) {
+      .card:hover, .dyn:hover { border-color: rgba(232,82,10,0.55); transform: translateY(-2px); }
+      .dyn:hover { border-left-color: var(--accent); }
+    }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2.5rem 0; list-style: none; padding: 0; }
+    .stat { padding: 1.5rem 1.25rem; border-top: 2px solid var(--accent); background: var(--accent-wash); }
+    .stat-num { font-family: var(--pixel-big); font-size: clamp(20px, 3vw, 28px); color: var(--ink); line-height: 1.2; margin-bottom: 0.75rem; white-space: nowrap; }
+    .stat-cap { font-size: 14px; line-height: 1.55; color: var(--text-soft); margin: 0; }
+    @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+    /* Vein-to-vein strip */
+    .v2v { margin: 2.5rem 0; padding: 1.5rem 1.25rem 1.25rem; border: 1px solid var(--hair); border-radius: 10px; }
+    .v2v svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .v2v .v2v-tall { display: none; max-width: 360px; margin: 0 auto; }
+    @media (max-width: 640px) { .v2v .v2v-wide { display: none; } .v2v .v2v-tall { display: block; } }
+    .v2v text { font-family: var(--pixel); fill: var(--text); font-size: 13px; }
+    .v2v .t-note { fill: var(--accent); font-size: 12px; }
+    .v2v .t-muted { fill: var(--text-muted); font-size: 12px; }
+    .v2v figcaption { margin-top: 1rem; font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+    .v2v figcaption strong { color: var(--accent); font-weight: 400; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* Landscape */
+    .land { border-top: 1px solid var(--accent-line); margin: 2rem 0 1rem; }
+    .land-row { display: grid; grid-template-columns: 1fr 1.1fr 1.6fr; gap: 1.25rem; padding: 1.1rem 0; border-bottom: 1px solid var(--accent-line); font-size: 14px; line-height: 1.6; color: var(--text-soft); }
+    .land-head { font-family: var(--pixel); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding: 0.85rem 0; }
+    .land-row .cat { color: var(--ink); font-weight: 600; }
+    @media (max-width: 640px) {
+      .land-head { display: none; }
+      .land-row { grid-template-columns: 1fr; gap: 0.35rem; }
+      .land-row > div::before { content: attr(data-label); display: block; font-family: var(--pixel); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+      .land-row > .cat::before { display: none; }
+    }
+
+    /* Founder */
+    .founder-wrap { display: flex; gap: 2.5rem; align-items: center; }
+    .founder-card { flex: 1; padding: 2rem; border: 1px solid rgba(232,82,10,0.2); border-radius: 12px; background: var(--accent-wash); max-width: 580px; }
+    .founder-name { font-size: 20px; font-weight: 400; margin-bottom: 4px; }
+    .founder-title { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+    .founder-rule { height: 1px; background: rgba(232,82,10,0.15); margin-bottom: 1.25rem; }
+    .creds { list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--text-soft); line-height: 1.6; }
+    .creds li { padding: 0.3rem 0 0.3rem 1rem; position: relative; }
+    .creds li::before { content: ''; position: absolute; left: 0; top: 0.85em; width: 5px; height: 5px; background: var(--accent); }
+    .founder-links { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .founder-links a { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+    .founder-links a:hover { text-decoration: underline; }
+    .founder-lockup { width: 140px; height: auto; flex-shrink: 0; }
+    @media (max-width: 640px) { .founder-wrap { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; } .founder-lockup { width: 110px; } .founder-card { padding: 1.5rem; } }
+
+    /* Contact */
+    .contact-line { font-size: 20px; line-height: 1.6; color: var(--ink); max-width: 620px; margin: 0 0 1.75rem; }
+    .contact-sub { font-size: 14px; color: var(--text-soft); margin: 1.25rem 0 0; }
+
+    /* Sources */
+    .sources { padding: 48px 0 56px; }
+    .sources h2 { font-family: var(--pixel); font-size: 12px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem; }
+    .sources ol { margin: 0; padding-left: 1.5rem; font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+    .sources li { margin-bottom: 0.6rem; scroll-margin-top: 80px; }
+    .sources li:target { color: var(--ink); }
+    .sources a { color: var(--text-soft); word-break: break-word; }
+    .sources em { color: var(--text-muted); }
+
+    /* Visible placeholder for facts still pending from the founder */
+    .todo { outline: 1px dashed var(--accent); outline-offset: 2px; color: var(--accent); }
+
+    /* Footer */
     footer { position: relative; z-index: 1; padding: 3rem 2rem; border-top: 1px solid rgba(232,82,10,0.1); text-align: center; }
-    .footer-inner { max-width: 900px; margin: 0 auto; }
-    .footer-logo { font-family: monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,82,10,0.6); margin-bottom: 0.5rem; }
-    .footer-sub { font-size: 12px; color: rgba(200,196,188,0.3); font-family: monospace; }
+    .footer-lockup { width: 72px; height: auto; opacity: 0.7; margin: 0 auto 1rem; display: block; }
+    .footer-logo { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .footer-sub { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); }
+    .footer-sub a { color: var(--text-soft); }
+
+    /* Initial states for motion; removed entirely under reduced motion or if the libraries fail. */
+    .js-motion .hero-mark { clip-path: inset(100% 0 0 0); }
+    .js-motion [data-hero], .js-motion [data-reveal] { opacity: 0; }
+    .js-motion .v2v .stage { opacity: 0; }
   </style>
 </head>
 <body>
 
-<div class="grid-bg"></div>
+<div class="grid-bg" aria-hidden="true"></div>
 
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="nav-badge">L</div>
+    <a class="nav-logo" href="#top" aria-label="LabOps.AI, back to top">
+      <img class="nav-badge" src="assets/blkphx-mark-8bit.png" width="32" height="32" alt="">
       <span class="nav-name">LabOps.AI</span>
-    </div>
+      <span class="nav-by">by BLK PHX LABS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#why-now">Why Now</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#founder">Founder</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
-<div class="hero">
-  <div class="eyebrow"><span class="eyebrow-line"></span>Vision</div>
-  <h1>The operating system<br>for <span class="grad">biological manufacturing.</span></h1>
-  <p class="hero-sub">Cell and gene therapy manufacturing is still run on spreadsheets, tribal knowledge, and paper batch records. LabOps.AI is building the intelligence layer that changes that.</p>
-  <div class="tags">
-    <span class="tag">Cell &amp; Gene Therapy</span>
-    <span class="tag">AI-Native</span>
-    <span class="tag">GMP Manufacturing</span>
-    <span class="tag">Robotics &amp; Automation</span>
+<header class="hero" id="top">
+  <div class="hero-fx" id="hero-fx" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <img class="hero-mark" id="hero-mark" src="assets/blkphx-mark-8bit.png" width="350" height="350" alt="BLK PHX LABS phoenix mark">
+    <div class="eyebrow" data-hero><span class="eyebrow-line"></span>Investment Thesis</div>
+    <h1 data-hero>The operating system<br>for <span class="grad">biological manufacturing.</span></h1>
+    <p class="hero-sub" data-hero>Cell and gene therapy is manufactured one patient at a time, on paper batch records and the memory of a few experienced operators. LabOps.AI turns that process knowledge into software that QA teams can review, audit, and trust.</p>
+    <ul class="tags" data-hero aria-label="Focus areas">
+      <li class="tag">Cell &amp; Gene Therapy</li>
+      <li class="tag">AI-Native</li>
+      <li class="tag">GMP Manufacturing</li>
+      <li class="tag">Human-in-the-Loop QA</li>
+    </ul>
+    <div class="ctas" data-hero>
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#product">See what's built</a>
+    </div>
   </div>
-</div>
+</header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section id="problem">
+  <section id="problem" aria-labelledby="h-problem">
     <div class="s-inner">
       <div class="s-head">
-        <div class="s-num">01</div>
+        <div class="s-num" data-num="1" aria-hidden="true">01</div>
         <div class="s-title">
-          <h2>The Problem</h2>
+          <h2 id="h-problem">The Problem</h2>
           <div class="s-rule"></div>
         </div>
       </div>
 
-      <p class="body">Biological therapeutics — CAR-T cells, viral vectors, iPSC-derived therapies — are among the most complex products humans have ever manufactured. A single patient dose can take weeks, require hundreds of process steps, and fail catastrophically from a deviation that no one caught in time.</p>
-      <p class="body">The manufacturing intelligence needed to run these processes safely and at scale does not exist as software. It lives in the heads of scientists and operators who are retiring, burning out, or moving on.</p>
+      <p class="body" data-reveal>CAR-T and other autologous therapies are made one batch per patient. A single batch takes over 200 labor hours across manufacturing, QA, QC, and logistics, and labor is roughly 71% of batch production cost.<sup><a href="#src-1" aria-label="Source 1">1</a></sup> Manufacturing and release alone frequently take two to four weeks, with QC testing and release typically two to three.<sup><a href="#src-2" aria-label="Source 2">2</a></sup> Between 4% and 7% of patients never receive their CAR-T product because manufacturing failed.<sup><a href="#src-3" aria-label="Source 3">3</a></sup></p>
+
+      <ul class="stats" aria-label="Key figures">
+        <li class="stat" data-reveal>
+          <div class="stat-num"><span data-count="200">200</span>+ hrs</div>
+          <p class="stat-cap">Labor per CAR-T batch, across manufacturing, QA, QC, and logistics<sup><a href="#src-1" aria-label="Source 1">1</a></sup></p>
+        </li>
+        <li class="stat" data-reveal>
+          <div class="stat-num">~<span data-count="71">71</span>%</div>
+          <p class="stat-cap">Share of batch production cost that is labor<sup><a href="#src-1" aria-label="Source 1">1</a></sup></p>
+        </li>
+        <li class="stat" data-reveal>
+          <div class="stat-num"><span data-count="4">4</span>–<span data-count="7">7</span>%</div>
+          <p class="stat-cap">Patients who never receive their CAR-T product due to manufacturing failure<sup><a href="#src-3" aria-label="Source 3">3</a></sup></p>
+        </li>
+      </ul>
+
+      <figure class="v2v" id="v2v">
+        <!-- Desktop: horizontal track -->
+        <svg class="v2v-wide" viewBox="0 0 900 210" role="img" aria-labelledby="v2v-title v2v-desc">
+          <title id="v2v-title">Autologous CAR-T vein-to-vein journey</title>
+          <desc id="v2v-desc">Seven stages: apheresis, shipping, activation and transduction, expansion, QC release, shipping, and infusion. Manufacturing and release often take two to four weeks, and QC release typically two to three. LabOps.AI works across expansion and QC release: deviations, batch record review, and release readiness.</desc>
+          <rect x="426" y="62" width="198" height="56" rx="4" fill="rgba(232,82,10,0.12)" stroke="rgba(232,82,10,0.45)" stroke-dasharray="4 4"/>
+          <text x="525" y="52" text-anchor="middle" class="t-note">Where LabOps.AI works</text>
+          <path d="M320 24 V30 H580 V24" fill="none" stroke="rgba(200,196,188,0.4)" stroke-width="1"/>
+          <text x="450" y="16" text-anchor="middle" class="t-muted">Manufacturing + release: often 2–4 wks</text>
+          <path class="v2v-path" d="M60 90 H840" fill="none" stroke="#e8520a" stroke-width="2"/>
+          <g class="stage"><rect x="56" y="86" width="8" height="8" fill="#e8520a"/><text x="60" y="140" text-anchor="middle">Apheresis</text></g>
+          <g class="stage"><rect x="186" y="86" width="8" height="8" fill="#e8520a"/><text x="190" y="140" text-anchor="middle">Ship</text></g>
+          <g class="stage"><rect x="316" y="86" width="8" height="8" fill="#e8520a"/><text x="320" y="140" text-anchor="middle">Activation /</text><text x="320" y="158" text-anchor="middle">Transduction</text></g>
+          <g class="stage"><rect x="446" y="86" width="8" height="8" fill="#e8520a"/><text x="450" y="140" text-anchor="middle">Expansion</text></g>
+          <g class="stage"><rect x="576" y="86" width="8" height="8" fill="#e8520a"/><text x="580" y="140" text-anchor="middle">QC release</text><text x="580" y="158" text-anchor="middle" class="t-note">typically 2–3 wks</text></g>
+          <g class="stage"><rect x="706" y="86" width="8" height="8" fill="#e8520a"/><text x="710" y="140" text-anchor="middle">Ship</text></g>
+          <g class="stage"><rect x="836" y="86" width="8" height="8" fill="#e8520a"/><text x="840" y="140" text-anchor="middle">Infusion</text></g>
+        </svg>
+        <!-- Mobile: vertical track -->
+        <svg class="v2v-tall" viewBox="0 0 340 640" role="img" aria-labelledby="v2v-title-m v2v-desc-m">
+          <title id="v2v-title-m">Autologous CAR-T vein-to-vein journey</title>
+          <desc id="v2v-desc-m">Seven stages from apheresis to infusion. Manufacturing and release often take two to four weeks, and QC release typically two to three. LabOps.AI works across expansion and QC release.</desc>
+          <rect x="20" y="304" width="300" height="134" rx="4" fill="rgba(232,82,10,0.12)" stroke="rgba(232,82,10,0.45)" stroke-dasharray="4 4"/>
+          <text x="310" y="296" text-anchor="end" class="t-note">Where LabOps.AI works</text>
+          <path class="v2v-path" d="M40 30 V610" fill="none" stroke="#e8520a" stroke-width="2"/>
+          <g class="stage"><rect x="36" y="26" width="8" height="8" fill="#e8520a"/><text x="64" y="35">Apheresis</text></g>
+          <g class="stage"><rect x="36" y="122" width="8" height="8" fill="#e8520a"/><text x="64" y="131">Ship</text></g>
+          <g class="stage"><rect x="36" y="218" width="8" height="8" fill="#e8520a"/><text x="64" y="227">Activation / Transduction</text><text x="64" y="247" class="t-muted">Mfg + release: often 2–4 wks</text></g>
+          <g class="stage"><rect x="36" y="330" width="8" height="8" fill="#e8520a"/><text x="64" y="339">Expansion</text></g>
+          <g class="stage"><rect x="36" y="402" width="8" height="8" fill="#e8520a"/><text x="64" y="411">QC release</text><text x="64" y="429" class="t-note">typically 2–3 wks</text></g>
+          <g class="stage"><rect x="36" y="508" width="8" height="8" fill="#e8520a"/><text x="64" y="517">Ship</text></g>
+          <g class="stage"><rect x="36" y="602" width="8" height="8" fill="#e8520a"/><text x="64" y="611">Infusion</text></g>
+        </svg>
+        <figcaption><strong>Where LabOps.AI works:</strong> deviations, batch record review, release readiness. Illustrative; durations vary by product.<sup><a href="#src-2" aria-label="Source 2">2</a></sup></figcaption>
+      </figure>
+
+      <p class="body" data-reveal>The manufacturing intelligence needed to run these processes safely and at scale does not exist as software. It lives in the heads of scientists and operators who are retiring, burning out, or moving on.</p>
 
       <div class="g2">
-        <div class="dyn">
-          <div class="dyn-title">No institutional memory</div>
-          <div class="dyn-body">Critical process knowledge is undocumented or siloed in individuals. When operators leave, the knowledge leaves with them.</div>
-        </div>
-        <div class="dyn">
-          <div class="dyn-title">Deviation blindness</div>
-          <div class="dyn-body">Process deviations are identified days or weeks after they occur — too late to intervene, triggering costly investigations and batch failures.</div>
-        </div>
-        <div class="dyn">
-          <div class="dyn-title">Regulatory drag</div>
-          <div class="dyn-body">GMP compliance documentation is manual, error-prone, and consumes disproportionate operator time that should go to process improvement.</div>
-        </div>
-        <div class="dyn">
-          <div class="dyn-title">Scale barrier</div>
-          <div class="dyn-body">Processes validated at small scale break at commercial scale because no system captures what actually drives product quality.</div>
-        </div>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">No institutional memory</h3>
+          <p class="dyn-body">Critical process knowledge is undocumented or siloed in individuals. When operators leave, the knowledge leaves with them.</p>
+        </article>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">Deviation blindness</h3>
+          <p class="dyn-body">Deviations are investigated days or weeks after the fact, often surfacing only at batch record review or release testing, when the patient's dose is already committed.</p>
+        </article>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">Regulatory drag</h3>
+          <p class="dyn-body">GMP documentation is manual, error-prone, and consumes operator time that should go to process improvement. Review-by-exception is the goal; paper makes it impossible.</p>
+        </article>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">Scale barrier</h3>
+          <p class="dyn-body">Processes validated at small scale break at commercial scale because no system captures what actually drives product quality.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider" aria-hidden="true"></div>
 
-  <section id="vision">
+  <section id="why-now" aria-labelledby="h-why">
     <div class="s-inner">
       <div class="s-head">
-        <div class="s-num">02</div>
+        <div class="s-num" data-num="2" aria-hidden="true">02</div>
         <div class="s-title">
-          <h2>What We're Building</h2>
+          <h2 id="h-why">Why Now</h2>
           <div class="s-rule"></div>
         </div>
       </div>
-
-      <p class="body">LabOps.AI is an AI-native intelligence platform that captures, structures, and activates the process knowledge inside a biomanufacturing facility — connecting batch records, equipment data, deviations, and regulatory history into a unified operational brain.</p>
 
       <div class="g2">
-        <div class="card">
-          <div class="card-label">CQA / CPP Extraction</div>
-          <div class="card-title">Process Intelligence Engine</div>
-          <div class="card-body">Automatically identifies Critical Quality Attributes and Critical Process Parameters from unstructured batch records, SOPs, and deviation reports.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Real-Time Monitoring</div>
-          <div class="card-title">Deviation Detection</div>
-          <div class="card-body">Surfaces process anomalies before they become failures — giving operators and QA the window to intervene rather than investigate.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Knowledge Architecture</div>
-          <div class="card-title">Institutional Memory</div>
-          <div class="card-body">Structures tacit operator knowledge into retrievable, auditable records that survive personnel turnover and scale across sites.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">GMP Compliance</div>
-          <div class="card-title">Regulatory Readiness</div>
-          <div class="card-body">Documentation workflows designed for FDA/EMA audit environments — reducing compliance overhead and accelerating batch release.</div>
-        </div>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">Paper is finally leaving the floor.</h3>
+          <p class="dyn-body">CGT CDMOs are moving to purpose-built MES platforms.<sup><a href="#src-4" aria-label="Source 4">4</a></sup> That creates structured process data for the first time, which an intelligence layer needs.</p>
+        </article>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">FDA is writing the AI rulebook.</h3>
+          <p class="dyn-body">FDA's January 2025 draft guidance set out a risk-based credibility framework for AI used to support regulatory decisions on drugs and biologics,<sup><a href="#src-5" aria-label="Source 5">5</a></sup> and CDER's 2026 guidance agenda includes AI/ML in pharmaceutical manufacturing.<sup><a href="#src-6" aria-label="Source 6">6</a></sup></p>
+        </article>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">Unvalidated AI is now an enforcement issue.</h3>
+          <p class="dyn-body">In April 2026 FDA issued a warning letter to a drug manufacturer that had used AI agents to write its specifications, procedures, and production records, citing failures of Quality Unit oversight.<sup><a href="#src-7" aria-label="Source 7">7</a></sup><sup><a href="#src-8" aria-label="Source 8">8</a></sup> The market needs AI that is validated, auditable, and keeps humans in the loop. That is the design premise of LabOps.AI.</p>
+        </article>
+        <article class="dyn" data-reveal>
+          <h3 class="dyn-title">The workforce can't scale fast enough.</h3>
+          <p class="dyn-body">Experienced CGT manufacturing talent is scarce, so the knowledge needs to be captured in systems rather than individuals.</p>
+          <!-- TODO(Primo): optionally add one strong primary source on the CGT workforce gap (not a recruiter blog). -->
+        </article>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider" aria-hidden="true"></div>
 
-  <section id="founder">
+  <section id="product" aria-labelledby="h-product">
     <div class="s-inner">
       <div class="s-head">
-        <div class="s-num">03</div>
+        <div class="s-num" data-num="3" aria-hidden="true">03</div>
         <div class="s-title">
-          <h2>Founder</h2>
+          <h2 id="h-product">What We're Building</h2>
           <div class="s-rule"></div>
         </div>
       </div>
 
-      <p class="body" style="max-width:600px;">LabOps.AI is built by someone who has run labs, managed operations at scale, and spent years at the intersection of science and systems.</p>
+      <p class="body" data-reveal>LabOps.AI is an AI-native intelligence platform that captures, structures, and activates the process knowledge inside a biomanufacturing facility, connecting batch records, equipment data, deviations, and regulatory history into a unified operational brain. Every output is decision support: QA reviews and approves.</p>
 
-      <div class="founder-card">
-        <div class="founder-name">Fabian Alvarez-Primo, PhD</div>
-        <div class="founder-title">Founder — LabOps.AI</div>
-        <div class="founder-rule"></div>
-        <div class="creds">
-          PhD · Materials Science &amp; Biomedical Engineering, UTEP<br>
-          Former CLIA/COLA Clinical Laboratory Director<br>
-          Operations Manager II (L5), Amazon<br>
-          Research background in neuropsychiatry &amp; iPSC biology
+      <h3 class="group-label"><span class="sq sq-solid" aria-hidden="true"></span>Built today</h3>
+      <div class="g2">
+        <article class="card" data-reveal>
+          <div class="card-label"><span class="sq sq-solid" aria-hidden="true"></span>Status · Built</div>
+          <h4 class="card-title">Literature intelligence pipeline</h4>
+          <p class="card-body">RAG pipeline over CGT manufacturing and regulatory literature, with automated daily and weekly briefings.</p>
+          <a class="card-link" href="briefing.html">Watch today's briefing →</a>
+        </article>
+        <article class="card" data-reveal>
+          <div class="card-label"><span class="sq sq-solid" aria-hidden="true"></span>Status · Built</div>
+          <h4 class="card-title">Operations dashboard</h4>
+          <p class="card-body">FastAPI and React dashboard for batch parameter tracking, a deviation feed, and instrument-export ingestion.</p>
+        </article>
+        <article class="card" data-reveal>
+          <div class="card-label"><span class="sq sq-solid" aria-hidden="true"></span>Status · Built</div>
+          <h4 class="card-title">Audit trail</h4>
+          <p class="card-body">User authentication and audit logging designed against 21 CFR Part 11 requirements. Compliance itself belongs to a validated system at the customer site.</p>
+        </article>
+        <article class="card" data-reveal>
+          <div class="card-label"><span class="sq sq-solid" aria-hidden="true"></span>Status · Built</div>
+          <h4 class="card-title">Automated test suite</h4>
+          <p class="card-body">Automated tests cover the API, authentication, audit coverage, data ingestion, and instrument adapters.</p>
+          <!-- TODO(Primo): add the current passing test count. LabOps.AI/tests defines 294 test functions as of 2026-10-19 (README still says 81); run the suite and confirm the passing number before stating it. -->
+        </article>
+        <!-- TODO(Primo): "Reference workflow: end-to-end vein-to-vein CAR-T operations model" is in the brief but wasn't found in the LabOps.AI code. Confirm it exists before adding a Built card. -->
+        <!-- TODO(Primo): link a demo, screenshots, or a public repo if any are shareable. If none, leave this out. -->
+      </div>
+
+      <h3 class="group-label"><span class="sq sq-hollow" aria-hidden="true"></span>Roadmap</h3>
+      <p class="group-note">Planned capabilities. Not shipped.</p>
+      <div class="g2">
+        <article class="card roadmap" data-reveal>
+          <div class="card-label"><span class="sq sq-hollow" aria-hidden="true"></span>Roadmap · CQA / CPP Extraction</div>
+          <h4 class="card-title">Process Intelligence Engine</h4>
+          <p class="card-body">Identifies Critical Quality Attributes and Critical Process Parameters from unstructured batch records, SOPs, and deviation reports.</p>
+        </article>
+        <article class="card roadmap" data-reveal>
+          <div class="card-label"><span class="sq sq-hollow" aria-hidden="true"></span>Roadmap · Early Deviation Signals</div>
+          <h4 class="card-title">Deviation Detection</h4>
+          <p class="card-body">Flags process anomalies early enough for operators and QA to intervene, with every flag reviewed and dispositioned by a human.</p>
+        </article>
+        <article class="card roadmap" data-reveal>
+          <div class="card-label"><span class="sq sq-hollow" aria-hidden="true"></span>Roadmap · Knowledge Architecture</div>
+          <h4 class="card-title">Institutional Memory</h4>
+          <p class="card-body">Structures tacit operator knowledge into retrievable, auditable records that survive personnel turnover and scale across sites.</p>
+        </article>
+        <article class="card roadmap" data-reveal>
+          <div class="card-label"><span class="sq sq-hollow" aria-hidden="true"></span>Roadmap · GMP Documentation</div>
+          <h4 class="card-title">Regulatory Readiness</h4>
+          <p class="card-body">Structured, audit-ready documentation workflows that shorten batch record review. QA reviews and approves every record.</p>
+        </article>
+        <!-- TODO(Primo): optional fifth Roadmap card, "Second use case: oncolytic virus manufacturing" (potency assay, release testing, cold chain, lot documentation), dogfooded on the MV-H retargeting program. Confirm it's OK to name the program publicly before adding. -->
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <section id="landscape" aria-labelledby="h-land">
+    <div class="s-inner">
+      <div class="s-head">
+        <div class="s-num" data-num="4" aria-hidden="true">04</div>
+        <div class="s-title">
+          <h2 id="h-land">Landscape</h2>
+          <div class="s-rule"></div>
+        </div>
+      </div>
+
+      <p class="body" data-reveal>LabOps.AI sits beside the systems that run a GMP floor, not in place of them. Execution systems and automated hardware generate the data; LabOps.AI reasons over it so QA and operations can act sooner.</p>
+      <!-- TODO(Primo): confirm the competitor set before publishing. Only Apprentice.io and BioCurie were verified for the brief. -->
+
+      <div class="land" role="table" aria-label="Landscape positioning">
+        <div class="land-row land-head" role="row">
+          <div role="columnheader">Category</div>
+          <div role="columnheader">Examples</div>
+          <div role="columnheader">LabOps.AI difference</div>
+        </div>
+        <div class="land-row" role="row" data-reveal>
+          <div class="cat" role="cell">Pharma MES / eBR</div>
+          <div role="cell" data-label="Examples">Apprentice.io Tempo, in use at Minaris for CGT<sup><a href="#src-4" aria-label="Source 4">4</a></sup><!-- TODO(Primo): add other MES / eBR examples --></div>
+          <div role="cell" data-label="LabOps.AI difference">MES executes the batch. LabOps.AI reasons over the data the batch produces. Complementary, not a replacement.</div>
+        </div>
+        <div class="land-row" role="row" data-reveal>
+          <div class="cat" role="cell">AI process modeling</div>
+          <div role="cell" data-label="Examples">BioCurie: mechanistic + ML process modeling for CGT and RNA manufacturing<sup><a href="#src-9" aria-label="Source 9">9</a></sup></div>
+          <div role="cell" data-label="LabOps.AI difference">Upstream process development, vs. LabOps.AI's GMP operations and QA layer.</div>
+        </div>
+        <div class="land-row" role="row" data-reveal>
+          <div class="cat" role="cell">Automation hardware</div>
+          <div role="cell" data-label="Examples"><span class="todo">TODO(Primo): closed automated manufacturing platforms</span><!-- TODO(Primo): name examples of closed automated manufacturing platforms --></div>
+          <div role="cell" data-label="LabOps.AI difference">Hardware vendors capture their own data. LabOps.AI is vendor-neutral across sites and equipment.</div>
         </div>
       </div>
     </div>
   </section>
 
-</div>
+  <div class="divider" aria-hidden="true"></div>
+
+  <section id="founder" aria-labelledby="h-founder">
+    <div class="s-inner">
+      <div class="s-head">
+        <div class="s-num" data-num="5" aria-hidden="true">05</div>
+        <div class="s-title">
+          <h2 id="h-founder">Founder</h2>
+          <div class="s-rule"></div>
+        </div>
+      </div>
+
+      <p class="body" data-reveal>Built by a scientist-operator: a former clinical lab director with cGMP biobanking experience, who now runs high-volume operations inside one of the most automated logistics networks in the world.</p>
+
+      <div class="founder-wrap">
+        <div class="founder-card" data-reveal>
+          <h3 class="founder-name">Fabian Alvarez-Primo, PhD</h3>
+          <div class="founder-title">Founder · LabOps.AI</div>
+          <div class="founder-rule"></div>
+          <ul class="creds">
+            <li>PhD, Biomedical Materials Science &amp; Engineering, UTEP</li>
+            <li>Former CLIA/COLA Clinical Laboratory Director (LC-MS, NGS)</li>
+            <li>Postdoctoral research, TTUHSC / Southwest Brain Bank: iPSC reprogramming, neuropsychiatric transcriptomics, cGMP biobanking</li>
+            <li><span class="todo">TODO(Primo): public-facing Amazon title</span>, Amazon<!-- TODO(Primo): confirm the public-facing title (Operations Manager II vs. Container Management Area Manager, L5) and whether to name the employer at all. --></li>
+            <li>8 peer-reviewed publications<!-- TODO(Primo): optionally add the current citation count from Google Scholar. --></li>
+          </ul>
+          <div class="founder-links">
+            <a href="https://www.linkedin.com/in/fpalvarez23/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/fabzy4L" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://scholar.google.com/citations?user=R_O9xkkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+          </div>
+        </div>
+        <img class="founder-lockup" src="assets/blkphx-labs-lockup-8bit.png" width="493" height="431" alt="BLK PHX LABS" loading="lazy" data-reveal>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <section id="contact" aria-labelledby="h-contact">
+    <div class="s-inner">
+      <div class="s-head">
+        <div class="s-num" data-num="6" aria-hidden="true">06</div>
+        <div class="s-title">
+          <h2 id="h-contact">Get in Touch</h2>
+          <div class="s-rule"></div>
+        </div>
+      </div>
+
+      <p class="contact-line" data-reveal>Building in CGT manufacturing, QA, or process development? I'd like to hear what breaks on your floor.</p>
+      <!-- TODO(Primo): switch to a company-domain address once one exists. -->
+      <a class="btn btn-primary" href="mailto:fpalvarez23@gmail.com?subject=LabOps.AI" data-reveal>Email Fabian</a>
+      <p class="contact-sub" data-reveal>Investors and design partners: same address.</p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <section class="sources" id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">Sources</h2>
+    <ol>
+      <li id="src-1">“CAR-T cell manufacturing landscape: Lessons from the past decade and considerations for early clinical development.” <em>Molecular Therapy: Methods &amp; Clinical Development</em> 32(2), 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11088187/" target="_blank" rel="noopener">PMC11088187</a> · doi:10.1016/j.omtm.2024.101250</li>
+      <li id="src-2">“Promises and challenges of a decentralized CAR T-cell manufacturing model.” <em>Frontiers in Transplantation</em>, 2023. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11235344/" target="_blank" rel="noopener">PMC11235344</a> · doi:10.3389/frtra.2023.1238535</li>
+      <li id="src-3">“CAR-T cell manufacturing: Major process parameters and next-generation strategies.” <em>Journal of Experimental Medicine</em>, 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10791545/" target="_blank" rel="noopener">PMC10791545</a> · doi:10.1084/jem.20230903</li>
+      <li id="src-4">Outsourced Pharma, “Minaris Regenerative Medicine Selects Apprentice.io's Tempo Manufacturing Execution System To Scale Commercial Production,” Sept 2023. <a href="https://www.outsourcedpharma.com/doc/minaris-regenerative-medicine-selects-apprentice-io-s-tempo-manufacturing-execution-system-to-scale-commercial-production-0001" target="_blank" rel="noopener">outsourcedpharma.com</a></li>
+      <li id="src-5">U.S. FDA, “Considerations for the Use of Artificial Intelligence To Support Regulatory Decision-Making for Drug and Biological Products,” draft guidance, January 2025. <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and-biological" target="_blank" rel="noopener">fda.gov</a></li>
+      <li id="src-6">IntuitionLabs, “FDA AI Guidance 2026: Drug Manufacturing &amp; Digital Health.” <a href="https://intuitionlabs.ai/articles/fda-ai-guidance-2026-drug-manufacturing-digital-health" target="_blank" rel="noopener">intuitionlabs.ai</a> <em>(secondary summary of the CDER 2026 guidance agenda)</em></li>
+      <li id="src-7">U.S. FDA, Warning Letter to Purolea Cosmetics Lab, MARCS-CMS 722591, April 2, 2026. <a href="https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/purolea-cosmetics-lab-722591-04022026" target="_blank" rel="noopener">fda.gov</a></li>
+      <li id="src-8">DLA Piper, “FDA warning letter highlights risks of using AI in drug manufacturing,” April 21, 2026. <a href="https://www.dlapiper.com/en/insights/publications/2026/04/fda-warning-letter-highlights-risks-of-using-ai-in-drug-manufacturing" target="_blank" rel="noopener">dlapiper.com</a></li>
+      <li id="src-9">Cure, “BioCurie leads AI-powered biomanufacturing revolution.” <a href="https://wewillcure.com/insights/cell-and-gene-therapeutics/biocurie-leads-ai-powered-biomanufacturing-revolution" target="_blank" rel="noopener">wewillcure.com</a></li>
+    </ol>
+  </section>
+
+</main>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">LabOps.AI</div>
-    <div class="footer-sub">BLK PHX LABS · Early Stage</div>
-  </div>
+  <img class="footer-lockup" src="assets/blkphx-labs-lockup-8bit.png" width="493" height="431" alt="" loading="lazy" data-reveal>
+  <div class="footer-logo">LabOps.AI</div>
+  <div class="footer-sub">BLK PHX LABS · Early Stage · © 2026 · <a href="#contact">Contact</a></div>
 </footer>
 
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-</script>
+<!--
+  Motion libraries, pinned 2026-10-19 (latest stable at least two weeks old):
+    gsap + ScrollTrigger 3.15.0 (cdnjs)   lenis 1.3.26 (jsdelivr; 1.3.27 was only 4 days old)
+  Desktop only, injected at runtime: three.js r134 (cdnjs) + vanta 0.5.24 (jsdelivr).
+  Vanta's `pixelated` option landed in master after 0.5.24 and isn't in any published build, so it isn't used.
+-->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script defer src="assets/site.js"></script>
 
 </body>
 </html>
