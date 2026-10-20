@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LabMind Daily Briefing</title>
   <meta name="description" content="The latest LabMind daily briefing on cell and gene therapy manufacturing, from BLK PHX LABS.">
-  <link rel="canonical" href="https://fabzy4l.github.io/briefing.html">
+  <!-- The briefing player moved to blkphxlabs.com/briefing/. GitHub Pages can't redirect, so this stub keeps old links working. -->
+  <link rel="canonical" href="https://blkphxlabs.com/briefing/">
+  <meta http-equiv="refresh" content="0; url=https://blkphxlabs.com/briefing/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="LabMind Daily Briefing">
   <meta property="og:description" content="The latest LabMind daily briefing on cell and gene therapy manufacturing, from BLK PHX LABS.">
-  <meta property="og:url" content="https://fabzy4l.github.io/briefing.html">
+  <meta property="og:url" content="https://blkphxlabs.com/briefing/">
   <meta property="og:image" content="https://fabzy4l.github.io/assets/og-labops.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -22,107 +24,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
+  <script>
+    location.replace('https://blkphxlabs.com/briefing/' + location.search + location.hash);
+  </script>
   <style>
-    @font-face { font-family: 'Silkscreen'; src: url('assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-
-    :root {
-      --bg: #0a0a09;
-      --ink: #f0ede8;
-      --text: #c8c4bc;
-      --text-soft: #aeaaa2;
-      --text-muted: #948f87;
-      --accent: #e8520a;
-      --pixel: 'Silkscreen', ui-monospace, monospace;
-      --serif: Georgia, 'Times New Roman', serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-    .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(232,82,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,10,0.03) 1px, transparent 1px); background-size: 60px 60px; }
-
-    nav { position: relative; z-index: 1; padding: 0 2rem; border-bottom: 1px solid rgba(232,82,10,0.15); }
-    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
-    .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .nav-badge { width: 32px; height: 32px; }
-    .nav-name { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-    .back { font-family: var(--pixel); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
-    .back:hover { color: var(--ink); }
-
-    main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 56px 2rem 72px; text-align: center; }
-    .eyebrow { font-family: var(--pixel); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.75rem; }
-    .eyebrow-line { width: 24px; height: 1px; background: var(--accent); }
-    h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 400; color: var(--ink); margin: 0 0 2rem; letter-spacing: -0.01em; }
-
-    .player { max-width: 420px; margin: 0 auto; }
-    video { display: block; width: 100%; aspect-ratio: 9 / 16; background: #000; border: 1px solid rgba(232,82,10,0.25); border-radius: 10px; object-fit: contain; }
-    .controls { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
-    .btn { display: inline-flex; align-items: center; padding: 11px 18px; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; transition: background 0.2s; }
-    .btn:hover { background: rgba(232,82,10,0.1); }
-    audio { width: 100%; margin-top: 1rem; }
-    .full { display: inline-block; margin-top: 1.75rem; font-size: 15px; color: var(--text-soft); }
-    .full:hover { color: var(--ink); }
-
-    footer { position: relative; z-index: 1; padding: 2rem; border-top: 1px solid rgba(232,82,10,0.1); text-align: center; font-family: var(--pixel); font-size: 12px; letter-spacing: 0.06em; color: var(--text-muted); }
-
-    @media (max-width: 640px) { nav { padding: 0 16px; } main { padding: 40px 16px 56px; } }
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0a0a09; color: #c8c4bc; font-family: Georgia, 'Times New Roman', serif; }
+    a { color: #e8520a; }
   </style>
 </head>
 <body>
-<div class="grid-bg" aria-hidden="true"></div>
-
-<nav aria-label="Primary">
-  <div class="nav-inner">
-    <a class="nav-logo" href="labops-ai-thesis.html">
-      <img class="nav-badge" src="assets/blkphx-mark-8bit.png" width="32" height="32" alt="">
-      <span class="nav-name">LabOps.AI</span>
-    </a>
-    <a class="back" href="labops-ai-thesis.html">← Back to thesis</a>
-  </div>
-</nav>
-
-<main>
-  <div class="eyebrow"><span class="eyebrow-line"></span>LabMind Daily Briefing<span class="eyebrow-line"></span></div>
-  <h1>Latest briefing</h1>
-
-  <div class="player">
-    <!-- Media stays in the pipeline's public bucket; nothing is committed here. JS sets the source with an hourly cache-bust. -->
-    <video id="briefing-video" controls playsinline preload="metadata" poster="assets/og-labops.png"
-           data-src="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp4">
-      Your browser can't play this video. <a href="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp4">Download it instead.</a>
-    </video>
-    <noscript><p><a class="full" href="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp4">Watch the latest briefing →</a></p></noscript>
-    <div class="controls">
-      <button class="btn" id="audio-toggle" type="button" aria-expanded="false" aria-controls="briefing-audio">Audio only</button>
-    </div>
-    <audio id="briefing-audio" controls preload="none" hidden
-           data-src="https://storage.googleapis.com/labmind-briefing-ops/latest_briefing.mp3"></audio>
-  </div>
-
-  <a class="full" href="https://storage.googleapis.com/labmind-briefing-ops/index.html" target="_blank" rel="noopener">Open full briefing (transcript + sources) →</a>
-</main>
-
-<footer>BLK PHX LABS · © 2026</footer>
-
-<script>
-  (() => {
-    // Object names are fixed, so an hourly query string picks up each new render without re-downloading on every view.
-    const hour = Math.floor(Date.now() / 3.6e6);
-    const video = document.getElementById('briefing-video');
-    const audio = document.getElementById('briefing-audio');
-    video.src = video.dataset.src + '?t=' + hour;
-    audio.src = audio.dataset.src + '?t=' + hour;
-
-    const toggle = document.getElementById('audio-toggle');
-    toggle.addEventListener('click', () => {
-      const show = audio.hidden;
-      audio.hidden = !show;
-      toggle.setAttribute('aria-expanded', String(show));
-      toggle.textContent = show ? 'Hide audio' : 'Audio only';
-      if (show) { video.pause(); audio.play().catch(() => {}); } else { audio.pause(); }
-    });
-  })();
-</script>
+  <p>Moved to <a href="https://blkphxlabs.com/briefing/">blkphxlabs.com/briefing</a>.</p>
 </body>
 </html>
