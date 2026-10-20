@@ -3,211 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LabOps.AI — AI-native intelligence platform for cell & gene therapy manufacturing. Built by Fabian Alvarez-Primo.">
-  <title>LabOps.AI — Vision</title>
+  <title>LabOps.AI — Investment Thesis</title>
+  <meta name="description" content="LabOps.AI turns cell and gene therapy process knowledge into software that QA teams can review, audit, and trust. Human-in-the-loop decision support for GMP manufacturing.">
+  <!-- The thesis moved to blkphxlabs.com. GitHub Pages can't redirect, so this stub keeps old links (and their link previews) working. -->
+  <link rel="canonical" href="https://blkphxlabs.com/">
+  <meta http-equiv="refresh" content="0; url=https://blkphxlabs.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LabOps.AI — The operating system for biological manufacturing">
+  <meta property="og:description" content="Human-in-the-loop intelligence for cell and gene therapy manufacturing. Built by BLK PHX LABS.">
+  <meta property="og:url" content="https://blkphxlabs.com/">
+  <meta property="og:image" content="https://fabzy4l.github.io/assets/og-labops.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BLK PHX LABS 8-bit phoenix mark with the LabOps.AI headline">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LabOps.AI — The operating system for biological manufacturing">
+  <meta name="twitter:description" content="Human-in-the-loop intelligence for cell and gene therapy manufacturing. Built by BLK PHX LABS.">
+  <meta name="twitter:image" content="https://fabzy4l.github.io/assets/og-labops.png">
+  <meta name="theme-color" content="#0a0a09">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <script>
+    // Carries the query string and hash over (e.g. ?utm_source=ig, #founder).
+    location.replace('https://blkphxlabs.com/' + location.search + location.hash);
+  </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: #0a0a09; color: #c8c4bc; font-family: Georgia, 'Times New Roman', serif; -webkit-font-smoothing: antialiased; }
-
-    .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(232,82,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,10,0.03) 1px, transparent 1px); background-size: 60px 60px; }
-
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; transition: all 0.3s ease; }
-    nav.scrolled { background: rgba(10,10,9,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(232,82,10,0.15); }
-    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
-    .nav-badge { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #e8520a, #8a3106); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: #fff; font-family: monospace; flex-shrink: 0; }
-    .nav-name { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #e8520a; font-family: monospace; }
-
-    .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-
-    .hero { padding: 160px 2rem 100px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid rgba(232,82,10,0.1); position: relative; z-index: 1; }
-    .eyebrow { font-family: monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #e8520a; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-    .eyebrow-line { width: 24px; height: 1px; background: #e8520a; flex-shrink: 0; }
-    h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 400; line-height: 1.1; color: #f0ede8; margin: 0 0 1.5rem; letter-spacing: -0.02em; }
-    .grad { background: linear-gradient(90deg, #e8520a, #8a3106); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 18px; line-height: 1.75; color: rgba(200,196,188,0.75); max-width: 600px; margin: 0 0 2.5rem; }
-    .tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .tag { padding: 6px 14px; border: 1px solid rgba(232,82,10,0.3); border-radius: 100px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #e8520a; font-family: monospace; }
-
-    section { scroll-margin-top: 80px; position: relative; z-index: 1; }
-    .s-inner { padding: 80px 0 60px; }
-    .s-head { margin-bottom: 2.5rem; display: flex; align-items: flex-end; gap: 1.5rem; }
-    .s-num { font-family: monospace; font-size: 64px; font-weight: 300; line-height: 1; color: rgba(232,82,10,0.12); letter-spacing: -0.04em; user-select: none; }
-    .s-title h2 { font-size: 28px; font-weight: 400; margin: 0; letter-spacing: -0.01em; color: #f0ede8; }
-    .s-rule { width: 48px; height: 2px; background: linear-gradient(90deg, #e8520a, transparent); margin-top: 8px; }
-    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(232,82,10,0.2), transparent); }
-
-    .body { font-size: 15px; line-height: 1.8; color: rgba(200,196,188,0.8); margin: 0 0 1.25rem; }
-    .h3 { font-size: 17px; font-weight: 500; color: #f0ede8; margin: 0 0 0.75rem; letter-spacing: -0.01em; }
-
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-    @media (max-width: 640px) { .g2 { grid-template-columns: 1fr; } }
-
-    .card { padding: 1.75rem; border: 1px solid rgba(232,82,10,0.15); border-radius: 10px; background: rgba(232,82,10,0.04); }
-    .card-label { font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,82,10,0.7); margin-bottom: 0.75rem; }
-    .card-title { font-size: 15px; font-weight: 600; color: #f0ede8; margin-bottom: 0.5rem; }
-    .card-body { font-size: 13px; line-height: 1.7; color: rgba(200,196,188,0.65); margin: 0; }
-
-    .dyn { margin-bottom: 1.25rem; padding: 1.25rem 1.5rem; border: 1px solid rgba(200,196,188,0.08); border-radius: 8px; border-left: 3px solid #e8520a; }
-    .dyn-title { font-weight: 600; font-size: 14px; margin-bottom: 0.4rem; color: #f0ede8; }
-    .dyn-body { font-size: 13px; color: rgba(200,196,188,0.7); line-height: 1.65; margin: 0; }
-
-    .founder-card { padding: 2rem; border: 1px solid rgba(232,82,10,0.2); border-radius: 12px; background: rgba(232,82,10,0.04); max-width: 560px; }
-    .founder-name { font-size: 20px; font-weight: 400; color: #f0ede8; margin-bottom: 4px; }
-    .founder-title { font-family: monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,82,10,0.8); margin-bottom: 1.25rem; }
-    .founder-rule { height: 1px; background: rgba(232,82,10,0.1); margin-bottom: 1.25rem; }
-    .creds { font-family: monospace; font-size: 12px; color: rgba(200,196,188,0.5); line-height: 2; }
-
-    footer { position: relative; z-index: 1; padding: 3rem 2rem; border-top: 1px solid rgba(232,82,10,0.1); text-align: center; }
-    .footer-inner { max-width: 900px; margin: 0 auto; }
-    .footer-logo { font-family: monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,82,10,0.6); margin-bottom: 0.5rem; }
-    .footer-sub { font-size: 12px; color: rgba(200,196,188,0.3); font-family: monospace; }
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0a0a09; color: #c8c4bc; font-family: Georgia, 'Times New Roman', serif; }
+    a { color: #e8520a; }
   </style>
 </head>
 <body>
-
-<div class="grid-bg"></div>
-
-<nav id="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="nav-badge">L</div>
-      <span class="nav-name">LabOps.AI</span>
-    </div>
-  </div>
-</nav>
-
-<div class="hero">
-  <div class="eyebrow"><span class="eyebrow-line"></span>Vision</div>
-  <h1>The operating system<br>for <span class="grad">biological manufacturing.</span></h1>
-  <p class="hero-sub">Cell and gene therapy manufacturing is still run on spreadsheets, tribal knowledge, and paper batch records. LabOps.AI is building the intelligence layer that changes that.</p>
-  <div class="tags">
-    <span class="tag">Cell &amp; Gene Therapy</span>
-    <span class="tag">AI-Native</span>
-    <span class="tag">GMP Manufacturing</span>
-    <span class="tag">Robotics &amp; Automation</span>
-  </div>
-</div>
-
-<div class="wrap">
-
-  <section id="problem">
-    <div class="s-inner">
-      <div class="s-head">
-        <div class="s-num">01</div>
-        <div class="s-title">
-          <h2>The Problem</h2>
-          <div class="s-rule"></div>
-        </div>
-      </div>
-
-      <p class="body">Biological therapeutics — CAR-T cells, viral vectors, iPSC-derived therapies — are among the most complex products humans have ever manufactured. A single patient dose can take weeks, require hundreds of process steps, and fail catastrophically from a deviation that no one caught in time.</p>
-      <p class="body">The manufacturing intelligence needed to run these processes safely and at scale does not exist as software. It lives in the heads of scientists and operators who are retiring, burning out, or moving on.</p>
-
-      <div class="g2">
-        <div class="dyn">
-          <div class="dyn-title">No institutional memory</div>
-          <div class="dyn-body">Critical process knowledge is undocumented or siloed in individuals. When operators leave, the knowledge leaves with them.</div>
-        </div>
-        <div class="dyn">
-          <div class="dyn-title">Deviation blindness</div>
-          <div class="dyn-body">Process deviations are identified days or weeks after they occur — too late to intervene, triggering costly investigations and batch failures.</div>
-        </div>
-        <div class="dyn">
-          <div class="dyn-title">Regulatory drag</div>
-          <div class="dyn-body">GMP compliance documentation is manual, error-prone, and consumes disproportionate operator time that should go to process improvement.</div>
-        </div>
-        <div class="dyn">
-          <div class="dyn-title">Scale barrier</div>
-          <div class="dyn-body">Processes validated at small scale break at commercial scale because no system captures what actually drives product quality.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="vision">
-    <div class="s-inner">
-      <div class="s-head">
-        <div class="s-num">02</div>
-        <div class="s-title">
-          <h2>What We're Building</h2>
-          <div class="s-rule"></div>
-        </div>
-      </div>
-
-      <p class="body">LabOps.AI is an AI-native intelligence platform that captures, structures, and activates the process knowledge inside a biomanufacturing facility — connecting batch records, equipment data, deviations, and regulatory history into a unified operational brain.</p>
-
-      <div class="g2">
-        <div class="card">
-          <div class="card-label">CQA / CPP Extraction</div>
-          <div class="card-title">Process Intelligence Engine</div>
-          <div class="card-body">Automatically identifies Critical Quality Attributes and Critical Process Parameters from unstructured batch records, SOPs, and deviation reports.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Real-Time Monitoring</div>
-          <div class="card-title">Deviation Detection</div>
-          <div class="card-body">Surfaces process anomalies before they become failures — giving operators and QA the window to intervene rather than investigate.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Knowledge Architecture</div>
-          <div class="card-title">Institutional Memory</div>
-          <div class="card-body">Structures tacit operator knowledge into retrievable, auditable records that survive personnel turnover and scale across sites.</div>
-        </div>
-        <div class="card">
-          <div class="card-label">GMP Compliance</div>
-          <div class="card-title">Regulatory Readiness</div>
-          <div class="card-body">Documentation workflows designed for FDA/EMA audit environments — reducing compliance overhead and accelerating batch release.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="founder">
-    <div class="s-inner">
-      <div class="s-head">
-        <div class="s-num">03</div>
-        <div class="s-title">
-          <h2>Founder</h2>
-          <div class="s-rule"></div>
-        </div>
-      </div>
-
-      <p class="body" style="max-width:600px;">LabOps.AI is built by someone who has run labs, managed operations at scale, and spent years at the intersection of science and systems.</p>
-
-      <div class="founder-card">
-        <div class="founder-name">Fabian Alvarez-Primo, PhD</div>
-        <div class="founder-title">Founder — LabOps.AI</div>
-        <div class="founder-rule"></div>
-        <div class="creds">
-          PhD · Materials Science &amp; Biomedical Engineering, UTEP<br>
-          Former CLIA/COLA Clinical Laboratory Director<br>
-          Operations Manager II (L5), Amazon<br>
-          Research background in neuropsychiatry &amp; iPSC biology
-        </div>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">LabOps.AI</div>
-    <div class="footer-sub">BLK PHX LABS · Early Stage</div>
-  </div>
-</footer>
-
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-</script>
-
+  <p>Moved to <a href="https://blkphxlabs.com/">blkphxlabs.com</a>.</p>
 </body>
 </html>
