@@ -1,0 +1,356 @@
+{
+ "EPX040": [
+  {
+   "protein": "CNTF",
+   "transformation": "raw",
+   "w": 0.7715,
+   "p_value": 2.5298753362285974e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "CNTF",
+   "transformation": "log",
+   "w": 0.9447,
+   "p_value": 0.022620753393958762,
+   "is_normal": false
+  },
+  {
+   "protein": "CNTF",
+   "transformation": "log10",
+   "w": 0.9447,
+   "p_value": 0.02262075339395829,
+   "is_normal": false
+  },
+  {
+   "protein": "CNTF",
+   "transformation": "zscore",
+   "w": 0.7715,
+   "p_value": 2.5298753362285974e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "CNTF",
+   "transformation": "minmax",
+   "w": 0.7715,
+   "p_value": 2.5298753362285974e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "GFAP",
+   "transformation": "raw",
+   "w": 0.9877,
+   "p_value": 0.7249858745552894,
+   "is_normal": true
+  },
+  {
+   "protein": "GFAP",
+   "transformation": "log",
+   "w": 0.9689,
+   "p_value": 0.07911599297538137,
+   "is_normal": true
+  },
+  {
+   "protein": "GFAP",
+   "transformation": "log10",
+   "w": 0.9689,
+   "p_value": 0.07911599297537439,
+   "is_normal": true
+  },
+  {
+   "protein": "GFAP",
+   "transformation": "zscore",
+   "w": 0.9877,
+   "p_value": 0.7249858745552752,
+   "is_normal": true
+  },
+  {
+   "protein": "GFAP",
+   "transformation": "minmax",
+   "w": 0.9877,
+   "p_value": 0.7249858745553172,
+   "is_normal": true
+  },
+  {
+   "protein": "NF_H",
+   "transformation": "raw",
+   "w": 0.9629,
+   "p_value": 0.06896385596922543,
+   "is_normal": true
+  },
+  {
+   "protein": "NF_H",
+   "transformation": "log",
+   "w": 0.9723,
+   "p_value": 0.19710427735616698,
+   "is_normal": true
+  },
+  {
+   "protein": "NF_H",
+   "transformation": "log10",
+   "w": 0.9723,
+   "p_value": 0.19710427735616726,
+   "is_normal": true
+  },
+  {
+   "protein": "NF_H",
+   "transformation": "zscore",
+   "w": 0.9629,
+   "p_value": 0.06896385596922543,
+   "is_normal": true
+  },
+  {
+   "protein": "NF_H",
+   "transformation": "minmax",
+   "w": 0.9629,
+   "p_value": 0.06896385596922543,
+   "is_normal": true
+  },
+  {
+   "protein": "UCHL1",
+   "transformation": "raw",
+   "w": 0.5589,
+   "p_value": 6.976743208101651e-13,
+   "is_normal": false
+  },
+  {
+   "protein": "UCHL1",
+   "transformation": "log",
+   "w": 0.9726,
+   "p_value": 0.14599206544204413,
+   "is_normal": true
+  },
+  {
+   "protein": "UCHL1",
+   "transformation": "log10",
+   "w": 0.9726,
+   "p_value": 0.1459920654420529,
+   "is_normal": true
+  },
+  {
+   "protein": "UCHL1",
+   "transformation": "zscore",
+   "w": 0.5589,
+   "p_value": 6.976743208101726e-13,
+   "is_normal": false
+  },
+  {
+   "protein": "UCHL1",
+   "transformation": "minmax",
+   "w": 0.5589,
+   "p_value": 6.976743208101726e-13,
+   "is_normal": false
+  }
+ ],
+ "EPX110": [
+  {
+   "protein": "EGF",
+   "transformation": "raw",
+   "w": 0.5662,
+   "p_value": 4.831581441701216e-11,
+   "is_normal": false
+  },
+  {
+   "protein": "EGF",
+   "transformation": "log",
+   "w": 0.7774,
+   "p_value": 2.2425414842572283e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "EGF",
+   "transformation": "log10",
+   "w": 0.7774,
+   "p_value": 2.2425414842572283e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "EGF",
+   "transformation": "zscore",
+   "w": 0.5662,
+   "p_value": 4.831581441701216e-11,
+   "is_normal": false
+  },
+  {
+   "protein": "EGF",
+   "transformation": "minmax",
+   "w": 0.5662,
+   "p_value": 4.831581441701216e-11,
+   "is_normal": false
+  },
+  {
+   "protein": "FGF_2",
+   "transformation": "raw",
+   "w": 0.8933,
+   "p_value": 2.1211389331733747e-05,
+   "is_normal": false
+  },
+  {
+   "protein": "FGF_2",
+   "transformation": "log",
+   "w": 0.9849,
+   "p_value": 0.5633879971829088,
+   "is_normal": true
+  },
+  {
+   "protein": "FGF_2",
+   "transformation": "log10",
+   "w": 0.9849,
+   "p_value": 0.5633879971828942,
+   "is_normal": true
+  },
+  {
+   "protein": "FGF_2",
+   "transformation": "zscore",
+   "w": 0.8933,
+   "p_value": 2.1211389331733747e-05,
+   "is_normal": false
+  },
+  {
+   "protein": "FGF_2",
+   "transformation": "minmax",
+   "w": 0.8933,
+   "p_value": 2.1211389331734225e-05,
+   "is_normal": false
+  },
+  {
+   "protein": "HGF",
+   "transformation": "raw",
+   "w": 0.7304,
+   "p_value": 5.031437105758071e-10,
+   "is_normal": false
+  },
+  {
+   "protein": "HGF",
+   "transformation": "log",
+   "w": 0.8917,
+   "p_value": 1.8524183104970216e-05,
+   "is_normal": false
+  },
+  {
+   "protein": "HGF",
+   "transformation": "log10",
+   "w": 0.8917,
+   "p_value": 1.852418310497122e-05,
+   "is_normal": false
+  },
+  {
+   "protein": "HGF",
+   "transformation": "zscore",
+   "w": 0.7304,
+   "p_value": 5.031437105758127e-10,
+   "is_normal": false
+  },
+  {
+   "protein": "HGF",
+   "transformation": "minmax",
+   "w": 0.7304,
+   "p_value": 5.031437105758127e-10,
+   "is_normal": false
+  },
+  {
+   "protein": "NGFbeta",
+   "transformation": "raw",
+   "w": 0.7805,
+   "p_value": 6.644229156029153e-08,
+   "is_normal": false
+  },
+  {
+   "protein": "NGFbeta",
+   "transformation": "log",
+   "w": 0.9179,
+   "p_value": 0.000792623389329431,
+   "is_normal": false
+  },
+  {
+   "protein": "NGFbeta",
+   "transformation": "log10",
+   "w": 0.9179,
+   "p_value": 0.0007926233893294876,
+   "is_normal": false
+  },
+  {
+   "protein": "NGFbeta",
+   "transformation": "zscore",
+   "w": 0.7805,
+   "p_value": 6.644229156029287e-08,
+   "is_normal": false
+  },
+  {
+   "protein": "NGFbeta",
+   "transformation": "minmax",
+   "w": 0.7805,
+   "p_value": 6.644229156029153e-08,
+   "is_normal": false
+  },
+  {
+   "protein": "SCF",
+   "transformation": "raw",
+   "w": 0.9292,
+   "p_value": 0.0007513737934036085,
+   "is_normal": false
+  },
+  {
+   "protein": "SCF",
+   "transformation": "log",
+   "w": 0.7751,
+   "p_value": 6.549312564696996e-09,
+   "is_normal": false
+  },
+  {
+   "protein": "SCF",
+   "transformation": "log10",
+   "w": 0.7751,
+   "p_value": 6.549312564696925e-09,
+   "is_normal": false
+  },
+  {
+   "protein": "SCF",
+   "transformation": "zscore",
+   "w": 0.9292,
+   "p_value": 0.0007513737934035875,
+   "is_normal": false
+  },
+  {
+   "protein": "SCF",
+   "transformation": "minmax",
+   "w": 0.9292,
+   "p_value": 0.0007513737934036256,
+   "is_normal": false
+  },
+  {
+   "protein": "VEGF_A",
+   "transformation": "raw",
+   "w": 0.8278,
+   "p_value": 1.4149817217726632e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "VEGF_A",
+   "transformation": "log",
+   "w": 0.9737,
+   "p_value": 0.14715181657610643,
+   "is_normal": true
+  },
+  {
+   "protein": "VEGF_A",
+   "transformation": "log10",
+   "w": 0.9737,
+   "p_value": 0.14715181657610066,
+   "is_normal": true
+  },
+  {
+   "protein": "VEGF_A",
+   "transformation": "zscore",
+   "w": 0.8278,
+   "p_value": 1.4149817217727023e-07,
+   "is_normal": false
+  },
+  {
+   "protein": "VEGF_A",
+   "transformation": "minmax",
+   "w": 0.8278,
+   "p_value": 1.4149817217726632e-07,
+   "is_normal": false
+  }
+ ]
+}

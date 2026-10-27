@@ -1,0 +1,14 @@
+[
+ {
+  "plate": "EPX040",
+  "panel": "ProcartaPlex Human Brain Injury Panel",
+  "analytes": 8,
+  "kept": 4
+ },
+ {
+  "plate": "EPX110",
+  "panel": "ProcartaPlex Human Growth Factor Panel",
+  "analytes": 11,
+  "kept": 6
+ }
+]
