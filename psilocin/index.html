@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Psilocin · 5-HT2A</title>
+<meta name="description" content="Comparative docking of psilocin, psilocybin and related tryptamines against 5-HT2A, and the result that does not fit the pharmacology. Fabian Alvarez-Primo, PhD." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23e8520a' stroke-width='3'/%3E%3C/svg%3E" />
+<style>
+  @font-face { font-family: 'Silkscreen'; src: url('../assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+  :root {
+    --bg: #0a0a09; --ink: #f0ede8; --text: #c8c4bc; --text-soft: #aeaaa2;
+    --text-muted: #948f87; --accent: #e8520a; --hair: rgba(200,196,188,0.1);
+    --pixel: 'Silkscreen', ui-monospace, monospace; --serif: Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--serif); -webkit-font-smoothing: antialiased; margin: 0; line-height: 1.7; overflow-x: hidden; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 3rem 16px 5rem; }
+  .back { display: inline-flex; gap: 0.7rem; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); text-decoration: none; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--ink); margin: 0 0 0.6rem; line-height: 1.2; font-weight: normal; }
+  .sub { font-family: var(--pixel); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
+  .lede { font-size: 1.1rem; color: var(--text-soft); margin-bottom: 3rem; }
+  section { margin-bottom: 3.5rem; }
+  .s-head { display: flex; align-items: baseline; gap: 0.9rem; border-bottom: 1px solid var(--hair); padding-bottom: 0.7rem; margin-bottom: 1.4rem; }
+  .s-num { font-family: var(--pixel); font-size: 12px; color: var(--accent); }
+  h2 { font-size: 1.15rem; color: var(--ink); margin: 0; font-weight: normal; }
+  p { margin: 0 0 1.1rem; }
+  strong { color: var(--ink); font-weight: normal; border-bottom: 1px solid rgba(232,82,10,0.4); }
+  .scroller { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .plot { width: 100%; min-width: 620px; height: auto; display: block; margin: 1.5rem 0 0.5rem; }
+  .plot text { font-family: var(--pixel); fill: var(--text-muted); }
+  .plot .ax  { font-size: 13px; }
+  .plot .lig { font-size: 13px; fill: var(--text-soft); letter-spacing: 0.08em; }
+  .plot .lig.focus { fill: var(--ink); }
+  .plot .val { font-size: 13px; font-family: var(--serif); }
+  .plot .gap { font-size: 13px; fill: var(--accent); font-family: var(--serif); }
+  .cap { font-family: var(--pixel); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); line-height: 1.9; }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; margin: 1.2rem 0 0.6rem; font-size: 0.95rem; }
+  th { font-family: var(--pixel); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-align: right; font-weight: normal; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--hair); }
+  th:first-child, td:first-child { text-align: left; }
+  td { padding: 0.65rem 0.8rem; text-align: right; border-bottom: 1px solid rgba(200,196,188,0.05); color: var(--text-soft); }
+  td.hi { color: var(--accent); }
+  .note { border-left: 2px solid var(--accent); padding: 0.1rem 0 0.1rem 1.1rem; margin: 1.6rem 0; color: var(--text-soft); }
+  footer { border-top: 1px solid var(--hair); padding-top: 1.5rem; font-family: var(--pixel); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 2.2; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../work/">&larr; Work</a>
+
+  <h1>The docking ranks the wrong molecule first</h1>
+  <div class="sub">Psilocin · 5-HT2A · AutoDock Vina · PDB 6WGT</div>
+
+  <p class="lede">
+    Psilocybin is a prodrug. The body strips its phosphate group to give psilocin, and psilocin is
+    what reaches the receptor. Dock both against 5-HT2A and the screen puts psilocybin a clear
+    0.9 kcal/mol ahead — the wrong way round, reproducibly, in a protocol that passes its own
+    validation gate.
+  </p>
+
+  <section>
+    <div class="s-head"><span class="s-num">01</span><h2>Validate the protocol before trusting it</h2></div>
+    <p>
+      Before any comparison is worth reading, the setup has to reproduce something already known.
+      6WGT is a 5-HT2A structure with LSD bound. Pull that ligand out, dock it back into the
+      prepared receptor, and see whether the pose comes back.
+    </p>
+    <p>
+      It does: <strong>RMSD 0.780 Å</strong> against a 2.0 Å pass threshold, and the redocked
+      affinity lands at −10.073 kcal/mol against the −10.1 the same ligand scores in the blind
+      screen. Box, receptor preparation and scoring are doing what they should.
+    </p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">02</span><h2>The gate said FAIL first</h2></div>
+    <p>
+      The first run of that check reported <strong>RMSD 5.107 Å — a failure</strong>. It wasn't.
+      The RMSD routine was reading the last pose out of the results file instead of the first, so
+      it compared the crystal structure against pose 10, the worst of the ten, rather than pose 1.
+    </p>
+    <p>
+      Fixing the parser turned 5.107 Å into 0.780 Å with <strong>no re-docking at all</strong> —
+      the correct pose had been in the file the whole time. The same bug was quietly failing the
+      gate in the SERT project, which passes at 1.515 Å once the fix is carried across.
+    </p>
+    <div class="note">
+      A validation gate is only as trustworthy as the code that reads its output. This one was
+      rejecting good results for two projects, and nothing about the number 5.107 looked wrong
+      enough to question on its own.
+    </div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">03</span><h2>Six ligands, two receptor models, five seeds</h2></div>
+    <p>
+      Psilocin, psilocybin, serotonin, DMT, 5-MeO-DMT and LSD, each docked five times in a rigid
+      receptor and again with flexible binding-site side chains. Points are means, bars are the
+      seed-to-seed spread.
+    </p>
+    <div class="scroller"><svg viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" class="plot" role="img" aria-label="Predicted binding affinity of six ligands against 5-HT2A, rigid and flexible receptor models, five seeds each">
+<line x1="169.6" y1="40" x2="169.6" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="169.6" y="428" text-anchor="middle" class="ax">-10.0</text>
+<line x1="244.7" y1="40" x2="244.7" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="244.7" y="428" text-anchor="middle" class="ax">-9.5</text>
+<line x1="319.8" y1="40" x2="319.8" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="319.8" y="428" text-anchor="middle" class="ax">-9.0</text>
+<line x1="394.9" y1="40" x2="394.9" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="394.9" y="428" text-anchor="middle" class="ax">-8.5</text>
+<line x1="470.1" y1="40" x2="470.1" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="470.1" y="428" text-anchor="middle" class="ax">-8.0</text>
+<line x1="545.2" y1="40" x2="545.2" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="545.2" y="428" text-anchor="middle" class="ax">-7.5</text>
+<line x1="620.3" y1="40" x2="620.3" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="620.3" y="428" text-anchor="middle" class="ax">-7.0</text>
+<line x1="695.5" y1="40" x2="695.5" y2="408" stroke="rgba(200,196,188,0.07)"/>
+<text x="695.5" y="428" text-anchor="middle" class="ax">-6.5</text>
+<text x="425" y="450" text-anchor="middle" class="ax">PREDICTED AFFINITY (kcal/mol) · MORE NEGATIVE = STRONGER</text>
+<circle cx="132" cy="22" r="4.5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.2"/>
+<text x="144" y="26" class="ax">RIGID</text>
+<circle cx="218" cy="22" r="4.5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.2"/>
+<text x="230" y="26" class="ax">FLEXIBLE SIDE CHAINS</text>
+<text x="118" y="76" text-anchor="end" class="lig">LSD</text>
+<line x1="159.6" y1="62" x2="166.0" y2="62" stroke="#c8c4bc" stroke-width="1" opacity="0.55"/>
+<circle cx="162.8" cy="62" r="5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.3"><title>LSD — -10.045 ± 0.021 kcal/mol, 5 seeds</title></circle>
+<text x="175.8" y="66" class="val" fill="#c8c4bc">-10.05</text>
+<line x1="153.1" y1="80" x2="165.0" y2="80" stroke="#e8520a" stroke-width="1" opacity="0.55"/>
+<circle cx="159.0" cy="80" r="5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.3"><title>LSD — -10.070 ± 0.039 kcal/mol, 5 seeds</title></circle>
+<text x="172.0" y="84" class="val" fill="#e8520a">-10.07</text>
+<text x="118" y="134" text-anchor="end" class="lig focus">PSILOCYBIN</text>
+<line x1="489.7" y1="120" x2="499.6" y2="120" stroke="#c8c4bc" stroke-width="1" opacity="0.55"/>
+<circle cx="494.6" cy="120" r="5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.3"><title>psilocybin — -7.837 ± 0.033 kcal/mol, 5 seeds</title></circle>
+<text x="507.6" y="124" class="val" fill="#c8c4bc">-7.84</text>
+<line x1="496.0" y1="138" x2="532.3" y2="138" stroke="#e8520a" stroke-width="1" opacity="0.55"/>
+<circle cx="514.2" cy="138" r="5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.3"><title>psilocybin — -7.706 ± 0.121 kcal/mol, 5 seeds</title></circle>
+<text x="527.2" y="142" class="val" fill="#e8520a">-7.71</text>
+<text x="118" y="192" text-anchor="end" class="lig">SEROTONIN</text>
+<line x1="605.1" y1="178" x2="610.8" y2="178" stroke="#c8c4bc" stroke-width="1" opacity="0.55"/>
+<circle cx="607.9" cy="178" r="5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.3"><title>serotonin — -7.083 ± 0.019 kcal/mol, 5 seeds</title></circle>
+<text x="620.9" y="182" class="val" fill="#c8c4bc">-7.08</text>
+<line x1="600.4" y1="196" x2="618.8" y2="196" stroke="#e8520a" stroke-width="1" opacity="0.55"/>
+<circle cx="609.6" cy="196" r="5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.3"><title>serotonin — -7.072 ± 0.061 kcal/mol, 5 seeds</title></circle>
+<text x="622.6" y="200" class="val" fill="#e8520a">-7.07</text>
+<text x="118" y="250" text-anchor="end" class="lig">5-MEO-DMT</text>
+<line x1="620.3" y1="236" x2="625.7" y2="236" stroke="#c8c4bc" stroke-width="1" opacity="0.55"/>
+<circle cx="623.0" cy="236" r="5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.3"><title>5-MeO-DMT — -6.982 ± 0.018 kcal/mol, 5 seeds</title></circle>
+<text x="636.0" y="240" class="val" fill="#c8c4bc">-6.98</text>
+<line x1="653.5" y1="254" x2="680.9" y2="254" stroke="#e8520a" stroke-width="1" opacity="0.55"/>
+<circle cx="667.2" cy="254" r="5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.3"><title>5-MeO-DMT — -6.688 ± 0.091 kcal/mol, 5 seeds</title></circle>
+<text x="680.2" y="258" class="val" fill="#e8520a">-6.69</text>
+<text x="118" y="308" text-anchor="end" class="lig focus">PSILOCIN</text>
+<line x1="626.6" y1="294" x2="633.0" y2="294" stroke="#c8c4bc" stroke-width="1" opacity="0.55"/>
+<circle cx="629.8" cy="294" r="5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.3"><title>psilocin — -6.937 ± 0.021 kcal/mol, 5 seeds</title></circle>
+<text x="642.8" y="298" class="val" fill="#c8c4bc">-6.94</text>
+<line x1="627.8" y1="312" x2="665.6" y2="312" stroke="#e8520a" stroke-width="1" opacity="0.55"/>
+<circle cx="646.7" cy="312" r="5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.3"><title>psilocin — -6.825 ± 0.126 kcal/mol, 5 seeds</title></circle>
+<text x="659.7" y="316" class="val" fill="#e8520a">-6.82</text>
+<text x="118" y="366" text-anchor="end" class="lig">DMT</text>
+<line x1="631.4" y1="352" x2="647.6" y2="352" stroke="#c8c4bc" stroke-width="1" opacity="0.55"/>
+<circle cx="639.5" cy="352" r="5" fill="#c8c4bc" fill-opacity="0.25" stroke="#c8c4bc" stroke-width="1.3"><title>DMT — -6.872 ± 0.054 kcal/mol, 5 seeds</title></circle>
+<text x="652.5" y="356" class="val" fill="#c8c4bc">-6.87</text>
+<line x1="643.2" y1="370" x2="700.6" y2="370" stroke="#e8520a" stroke-width="1" opacity="0.55"/>
+<circle cx="671.9" cy="370" r="5" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.3"><title>DMT — -6.657 ± 0.191 kcal/mol, 5 seeds</title></circle>
+<text x="684.9" y="374" class="val" fill="#e8520a">-6.66</text>
+<line x1="494.6" y1="107" x2="494.6" y2="329" stroke="#e8520a" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/>
+<line x1="629.8" y1="281" x2="629.8" y2="329" stroke="#e8520a" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/>
+<line x1="494.6" y1="329" x2="629.8" y2="329" stroke="#e8520a" stroke-width="1" opacity="0.7"/>
+<text x="562.2" y="347" text-anchor="middle" class="gap">0.899 kcal/mol apart</text>
+</svg></div>
+    <p class="cap">Seeds 42 · 123 · 456 · 789 · 1001 · exhaustiveness 16 · hover a point for its value</p>
+    <p>
+      LSD sits more than two kcal/mol clear of everything else, which is what a high-affinity
+      ergoline should do and another sign the setup behaves. Serotonin, the native agonist, lands
+      mid-pack, below psilocybin and above psilocin.
+    </p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">04</span><h2>The result that does not fit the pharmacology</h2></div>
+    <p>
+      Psilocybin outscores psilocin by <strong>0.900 kcal/mol</strong> in the rigid model and
+      0.881 in the flexible one, against a combined seed-to-seed spread of about 0.175. That is
+      roughly five times the noise, in both models, so it is not a sampling artifact.
+    </p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Ligand</th><th>Rigid</th><th>Flexible</th></tr></thead>
+        <tbody>
+          <tr><td>LSD</td><td>−10.045 ± 0.021</td><td>−10.070 ± 0.039</td></tr>
+          <tr><td>Psilocybin</td><td class="hi">−7.837 ± 0.033</td><td class="hi">−7.706 ± 0.121</td></tr>
+          <tr><td>Serotonin</td><td>−7.083 ± 0.019</td><td>−7.072 ± 0.061</td></tr>
+          <tr><td>5-MeO-DMT</td><td>−6.982 ± 0.018</td><td>−6.688 ± 0.091</td></tr>
+          <tr><td>Psilocin</td><td class="hi">−6.937 ± 0.021</td><td class="hi">−6.825 ± 0.126</td></tr>
+          <tr><td>DMT</td><td>−6.872 ± 0.054</td><td>−6.657 ± 0.191</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap">kcal/mol, mean ± SD across five seeds</p>
+    <p>
+      Running it with flexible side chains was meant to test one explanation — that a rigid
+      receptor was being overly generous to psilocybin's bulky phosphate group. Flexibility did
+      not close the gap, which rules that explanation out.
+    </p>
+    <p>
+      The candidate left standing is desolvation. A charged phosphate picks up scoring credit for
+      contacts it makes, while the energetic cost of stripping its water shell is not something a
+      docking score models well. Testing that needs molecular dynamics in explicit water, not more
+      docking variants.
+    </p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">05</span><h2>What is not being claimed</h2></div>
+    <p>
+      Psilocin and 5-MeO-DMT swap places between the two models. The gap is 0.137 kcal/mol,
+      comfortably inside the spread, so <strong>that ordering is not a finding</strong> and is not
+      reported as one.
+    </p>
+    <p>
+      Nothing here measures binding. These are predicted affinities for a static pose from one
+      scoring function, in a protocol validated against exactly one known structure. The useful
+      output is a specific, falsifiable question for the next phase: does explicit solvent reverse
+      the psilocybin–psilocin ordering?
+    </p>
+  </section>
+
+  <footer>
+    Code and raw output: <a href="https://github.com/fabzy4L/psilocin-5ht2a" target="_blank" rel="noopener">github.com/fabzy4L/psilocin-5ht2a</a><br />
+    Values read from docking/results/multiseed_summary.json, flex_multiseed_summary.json and gate_status.json<br />
+    All results predicted. No binding was measured here. Not medical advice.<br />
+    Fabian Alvarez-Primo, PhD
+  </footer>
+
+</div>
+</body>
+</html>
