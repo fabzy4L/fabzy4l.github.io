@@ -1,0 +1,104 @@
+{
+ "cutoff_pct": 30.0,
+ "plates": {
+  "EPX040": [
+   {
+    "protein": "BDNF",
+    "pct_missing": 70.0,
+    "excluded": true
+   },
+   {
+    "protein": "CNTF",
+    "pct_missing": 30.0,
+    "excluded": false
+   },
+   {
+    "protein": "GDNF",
+    "pct_missing": 100.0,
+    "excluded": true
+   },
+   {
+    "protein": "NGFbeta",
+    "pct_missing": 94.3,
+    "excluded": true
+   },
+   {
+    "protein": "GFAP",
+    "pct_missing": 0.0,
+    "excluded": false
+   },
+   {
+    "protein": "NF_H",
+    "pct_missing": 15.7,
+    "excluded": false
+   },
+   {
+    "protein": "S100B",
+    "pct_missing": 95.7,
+    "excluded": true
+   },
+   {
+    "protein": "UCHL1",
+    "pct_missing": 4.3,
+    "excluded": false
+   }
+  ],
+  "EPX110": [
+   {
+    "protein": "BDNF",
+    "pct_missing": 91.4,
+    "excluded": true
+   },
+   {
+    "protein": "EGF",
+    "pct_missing": 27.1,
+    "excluded": false
+   },
+   {
+    "protein": "FGF_2",
+    "pct_missing": 0.0,
+    "excluded": false
+   },
+   {
+    "protein": "HGF",
+    "pct_missing": 0.0,
+    "excluded": false
+   },
+   {
+    "protein": "LIF",
+    "pct_missing": 92.9,
+    "excluded": true
+   },
+   {
+    "protein": "NGFbeta",
+    "pct_missing": 17.1,
+    "excluded": false
+   },
+   {
+    "protein": "PDGF_BB",
+    "pct_missing": 100.0,
+    "excluded": true
+   },
+   {
+    "protein": "PlGF_1",
+    "pct_missing": 97.1,
+    "excluded": true
+   },
+   {
+    "protein": "SCF",
+    "pct_missing": 1.4,
+    "excluded": false
+   },
+   {
+    "protein": "VEGF_A",
+    "pct_missing": 0.0,
+    "excluded": false
+   },
+   {
+    "protein": "VEGF_D",
+    "pct_missing": 84.3,
+    "excluded": true
+   }
+  ]
+ }
+}
