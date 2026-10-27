@@ -1,0 +1,139 @@
+{
+ "EPX040": [
+  {
+   "protein": "BDNF",
+   "lloq": 1.95,
+   "uloq": 1805.0,
+   "fold": 925.6,
+   "pct_samples_in_range": 8.6
+  },
+  {
+   "protein": "CNTF",
+   "lloq": 1.75,
+   "uloq": 7108.86,
+   "fold": 4062.2,
+   "pct_samples_in_range": 50.0
+  },
+  {
+   "protein": "GDNF",
+   "lloq": 85.53,
+   "uloq": 15498.61,
+   "fold": 181.2,
+   "pct_samples_in_range": 0.0
+  },
+  {
+   "protein": "NGFbeta",
+   "lloq": 5.47,
+   "uloq": 5619.8,
+   "fold": 1027.4,
+   "pct_samples_in_range": 0.0
+  },
+  {
+   "protein": "GFAP",
+   "lloq": 69.61,
+   "uloq": 39494.86,
+   "fold": 567.4,
+   "pct_samples_in_range": 100.0
+  },
+  {
+   "protein": "NF_H",
+   "lloq": 36.47,
+   "uloq": 1984.04,
+   "fold": 54.4,
+   "pct_samples_in_range": 2.9
+  },
+  {
+   "protein": "S100B",
+   "lloq": 1.03,
+   "uloq": 15541.66,
+   "fold": 15089.0,
+   "pct_samples_in_range": 4.3
+  },
+  {
+   "protein": "UCHL1",
+   "lloq": 786.54,
+   "uloq": 49282.25,
+   "fold": 62.7,
+   "pct_samples_in_range": 74.3
+  }
+ ],
+ "EPX110": [
+  {
+   "protein": "BDNF",
+   "lloq": 1.93,
+   "uloq": 1937.56,
+   "fold": 1003.9,
+   "pct_samples_in_range": 1.4
+  },
+  {
+   "protein": "EGF",
+   "lloq": 2.58,
+   "uloq": 3203.32,
+   "fold": 1241.6,
+   "pct_samples_in_range": 5.7
+  },
+  {
+   "protein": "FGF_2",
+   "lloq": 3.12,
+   "uloq": 3878.93,
+   "fold": 1243.2,
+   "pct_samples_in_range": 82.9
+  },
+  {
+   "protein": "HGF",
+   "lloq": 6.0,
+   "uloq": 7066.29,
+   "fold": 1177.7,
+   "pct_samples_in_range": 100.0
+  },
+  {
+   "protein": "LIF",
+   "lloq": 4.17,
+   "uloq": 3747.92,
+   "fold": 898.8,
+   "pct_samples_in_range": 2.9
+  },
+  {
+   "protein": "NGFbeta",
+   "lloq": 6.35,
+   "uloq": 24393.36,
+   "fold": 3841.5,
+   "pct_samples_in_range": 0.0
+  },
+  {
+   "protein": "PDGF_BB",
+   "lloq": 4.27,
+   "uloq": 17840.34,
+   "fold": 4178.1,
+   "pct_samples_in_range": 0.0
+  },
+  {
+   "protein": "PlGF_1",
+   "lloq": 1.48,
+   "uloq": 1873.22,
+   "fold": 1265.7,
+   "pct_samples_in_range": 0.0
+  },
+  {
+   "protein": "SCF",
+   "lloq": 1.04,
+   "uloq": 4220.76,
+   "fold": 4058.4,
+   "pct_samples_in_range": 82.9
+  },
+  {
+   "protein": "VEGF_A",
+   "lloq": 4.72,
+   "uloq": 19193.5,
+   "fold": 4066.4,
+   "pct_samples_in_range": 71.4
+  },
+  {
+   "protein": "VEGF_D",
+   "lloq": 2.01,
+   "uloq": 8500.37,
+   "fold": 4229.0,
+   "pct_samples_in_range": 2.9
+  }
+ ]
+}

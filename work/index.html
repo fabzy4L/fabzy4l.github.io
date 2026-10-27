@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work · Fabian Alvarez-Primo</title>
+  <meta name="description" content="Publications, research analytics and the systems behind BLK PHX LABS. Fabian Alvarez-Primo, PhD." />
+  <meta property="og:title" content="Work · Fabian Alvarez-Primo" />
+  <meta property="og:description" content="From biomaterials and neuropsychiatric lab science to the analytics and AI systems behind BLK PHX LABS." />
+  <meta property="og:image" content="https://fabzy4l.github.io/assets/og-labops.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+  <style>
+    @font-face { font-family: 'Silkscreen'; src: url('../assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+
+    :root {
+      --bg: #0a0a09;
+      --ink: #f0ede8;
+      --text: #c8c4bc;
+      --text-soft: #aeaaa2;
+      --text-muted: #948f87;
+      --accent: #e8520a;
+      --accent-line: rgba(232,82,10,0.15);
+      --accent-wash: rgba(232,82,10,0.04);
+      --hair: rgba(200,196,188,0.1);
+      --pixel: 'Silkscreen', ui-monospace, monospace;
+      --serif: Georgia, 'Times New Roman', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--serif); -webkit-font-smoothing: antialiased; min-height: 100vh; overflow-x: hidden; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(232,82,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,10,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    @media (max-width: 640px) { .container { padding: 0 16px; } }
+
+    /* ── Header ── */
+    header { padding-top: 56px; }
+    .back { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--pixel); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); text-decoration: none; margin-bottom: 2rem; }
+    .back img { width: 28px; height: 28px; image-rendering: pixelated; }
+    h1 { font-size: clamp(36px, 9vw, 52px); font-weight: 400; line-height: 1.08; color: var(--ink); letter-spacing: -0.02em; }
+    .lede { font-size: 17px; line-height: 1.8; color: var(--text-soft); margin-top: 1.25rem; max-width: 620px; }
+    .lede strong { color: var(--ink); font-weight: 400; }
+
+    .divider { height: 2px; margin: 2.5rem 0; background: repeating-linear-gradient(90deg, rgba(232,82,10,0.25) 0 4px, transparent 4px 12px); }
+
+    /* ── Sections ── */
+    section { margin-bottom: 3.5rem; }
+    .s-head { display: flex; align-items: baseline; gap: 0.9rem; margin-bottom: 0.6rem; }
+    .s-num { font-family: var(--pixel); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; }
+    h2 { font-size: 26px; font-weight: 400; color: var(--ink); }
+    .s-intro { font-size: 15px; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.4rem; }
+
+    /* ── Publications ── */
+    .pubs { list-style: none; display: flex; flex-direction: column; }
+    .pub { display: grid; grid-template-columns: 116px 1fr; gap: 0.4rem 1.2rem; padding: 1.1rem 0; border-top: 1px solid var(--hair); }
+    .pub:last-child { border-bottom: 1px solid var(--hair); }
+    .pub-tag { font-family: var(--pixel); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); padding-top: 4px; }
+    .pub-title { font-size: 16px; line-height: 1.5; color: var(--ink); }
+    .pub-title a { text-decoration: none; background-image: linear-gradient(var(--accent-line), var(--accent-line)); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.2s; }
+    .pub-title a:hover { background-image: linear-gradient(var(--accent), var(--accent)); }
+    .pub-meta { grid-column: 2; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .pub-meta em { color: var(--text-soft); }
+    .role-first { color: var(--accent); }
+    @media (max-width: 560px) { .pub { grid-template-columns: 1fr; } .pub-meta { grid-column: 1; } }
+    .more { font-size: 14px; color: var(--text-muted); margin-top: 1rem; }
+    .more a { color: var(--accent); }
+
+    /* ── Cards ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+    @media (max-width: 400px) { .cards { grid-template-columns: 1fr; } }
+    .card { display: flex; flex-direction: column; gap: 0.6rem; padding: 18px 20px; border: 1px solid var(--accent-line); border-radius: 10px; background: var(--accent-wash); text-decoration: none; color: var(--text); transition: border-color 0.2s, background 0.2s, transform 0.2s; }
+    a.card:hover { border-color: rgba(232,82,10,0.5); background: rgba(232,82,10,0.08); transform: translateY(-2px); }
+    .card.wide { grid-column: 1 / -1; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+    .card-name { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+    .status { font-family: var(--pixel); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 7px; border-radius: 4px; border: 1px solid; white-space: nowrap; }
+    .status.live { color: #6fdc8c; border-color: rgba(111,220,140,0.35); }
+    .status.published { color: var(--accent); border-color: rgba(232,82,10,0.45); }
+    .status.repo { color: var(--text-soft); border-color: var(--hair); }
+    .card-body { font-size: 14.5px; line-height: 1.7; color: var(--text-soft); }
+    .card-body strong { color: var(--ink); font-weight: 400; }
+    .card-skills { font-family: var(--pixel); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 1.9; }
+
+    footer { border-top: 1px solid var(--hair); padding: 24px 0 48px; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-brand { font-family: var(--pixel); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
+    .footer-tagline { font-size: 12px; font-style: italic; color: var(--text-muted); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { animation: fadeUp 0.6s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 0.07s); }
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+
+<div class="container">
+
+  <header>
+    <a class="back reveal" href="../"><img src="../assets/blkphx-mark-8bit.png" alt="" width="28" height="28" />Fabian Alvarez-Primo</a>
+    <h1 class="reveal" style="--i:1">Work</h1>
+    <p class="lede reveal" style="--i:2">
+      A scientist-operator's record: <strong>biomaterials research</strong> at UTEP,
+      <strong>neuropsychiatric lab science</strong> at TTUHSC, the <strong>analytics</strong> that
+      came out of both, and the <strong>AI systems</strong> now running at BLK PHX LABS.
+    </p>
+  </header>
+
+  <div class="divider"></div>
+
+  <section aria-labelledby="h-pubs">
+    <div class="s-head"><span class="s-num">01</span><h2 id="h-pubs">Selected publications</h2></div>
+    <p class="s-intro">Tissue engineering across bone, heart and skin, the bioprinting and materials behind it, and postmortem brain biology.</p>
+    <ol class="pubs">
+      <li class="pub">
+        <span class="pub-tag">Bone</span>
+        <span class="pub-title"><a href="https://doi.org/10.1016/j.cobme.2020.100248" target="_blank" rel="noopener">Bone tissue engineering techniques, advances, and scaffolds for treatment of bone defects</a></span>
+        <span class="pub-meta"><em>Current Opinion in Biomedical Engineering</em>, 2021 · second author · UTEP, IMSTEL</span>
+      </li>
+      <li class="pub">
+        <span class="pub-tag">Heart</span>
+        <span class="pub-title"><a href="https://doi.org/10.1007/s40204-020-00137-0" target="_blank" rel="noopener">Hydrogel scaffolds with elasticity-mimicking embryonic substrates promote cardiac cellular network formation</a></span>
+        <span class="pub-meta"><em>Progress in Biomaterials</em>, 2020 · co-author · UTEP, IMSTEL</span>
+      </li>
+      <li class="pub">
+        <span class="pub-tag">Skin</span>
+        <span class="pub-title"><a href="https://doi.org/10.2147/IJN.S255937" target="_blank" rel="noopener">Alginate hydrogels with embedded ZnO nanoparticles for wound healing therapy</a></span>
+        <span class="pub-meta"><em>International Journal of Nanomedicine</em>, 2020 · second author · UTEP</span>
+      </li>
+      <li class="pub">
+        <span class="pub-tag">Bioprinting</span>
+        <span class="pub-title"><a href="https://doi.org/10.1016/j.matlet.2020.127382" target="_blank" rel="noopener">A comparative study in the printability of a bioink and 3D models across two bioprinting platforms</a></span>
+        <span class="pub-meta"><em>Materials Letters</em>, 2020 · co-author · UTEP, IMSTEL</span>
+      </li>
+      <li class="pub">
+        <span class="pub-tag">Nanomaterials</span>
+        <span class="pub-title"><a href="https://doi.org/10.3390/ijms20194802" target="_blank" rel="noopener">Fabrication of surfactant-dispersed HiPco single-walled carbon nanotube-based alginate hydrogel composites as cellular products</a></span>
+        <span class="pub-meta"><em>International Journal of Molecular Sciences</em>, 2019 · <span class="role-first">first author</span> · UTEP, IMSTEL</span>
+      </li>
+      <li class="pub">
+        <span class="pub-tag">Brain</span>
+        <span class="pub-title"><a href="https://doi.org/10.3389/fpsyt.2023.1104563" target="_blank" rel="noopener">Sex and diet-dependent gene alterations in human and rat brains with a history of nicotine exposure</a></span>
+        <span class="pub-meta"><em>Frontiers in Psychiatry</em>, 2023 · co-author · TTUHSC El Paso, Southwest Brain Bank</span>
+      </li>
+    </ol>
+    <p class="more">Full list on <a href="https://scholar.google.com/citations?user=R_O9xkkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar ↗</a></p>
+  </section>
+
+  <section aria-labelledby="h-analytics">
+    <div class="s-head"><span class="s-num">02</span><h2 id="h-analytics">Research analytics</h2></div>
+    <p class="s-intro">The analysis behind the bench work: assay modelling, expression data and structure-based pharmacology, built as tools other people can use.</p>
+    <div class="cards">
+      <a class="card wide" href="../luminex/">
+        <div class="card-top"><span class="card-name">Luminex analysis dashboard</span><span class="status live">Live</span></div>
+        <p class="card-body">A multiplex biomarker screen in postmortem brain (TTUHSC). The original straight-line fit never matched the plate software; a <strong>weighted 4PL curve plus the software's hidden 2× sample dilution</strong> now reproduces its concentrations within ±20% for 90–100% of samples on most analytes. Methods only; the study is unpublished.</p>
+        <p class="card-skills">4PL / 5PL fitting · assay QC · normality testing · R · FastAPI · React</p>
+      </a>
+      <a class="card" href="https://github.com/fabzy4L/qpcr-react-dashboard" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">qPCR expression atlas</span><span class="status published">Published</span></div>
+        <p class="card-body">Interactive companion to the 2023 <em>Frontiers in Psychiatry</em> paper: fold-change heatmaps, distributions and QC for nicotine-related gene changes in human and rat brain.</p>
+        <p class="card-skills">qPCR · ΔΔCt · React</p>
+      </a>
+      <a class="card" href="https://github.com/fabzy4L/psilocin-5ht2a" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Psilocin · 5-HT2A</span><span class="status repo">Public repo</span></div>
+        <p class="card-body">Docking psilocin, serotonin and related tryptamines against the 5-HT2A receptor, then GPU molecular dynamics on the top pose, scoped to a single consumer GPU.</p>
+        <p class="card-skills">AutoDock Vina · GROMACS · MD</p>
+      </a>
+      <a class="card" href="https://github.com/fabzy4L/sert-s438t-escitalopram" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">SERT S438T · escitalopram</span><span class="status repo">Public repo</span></div>
+        <p class="card-body">How a serotonin-transporter variant changes antidepressant binding. Multi-seed docking gets the experimental direction right and the size wrong, which points to the binding pathway, not the bound pose; molecular dynamics is next.</p>
+        <p class="card-skills">AutoDock Vina · ensemble docking · GROMACS</p>
+      </a>
+      <a class="card" href="https://github.com/fabzy4L/multi-epitope-vaccine-design" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Multi-epitope vaccine design</span><span class="status repo">Public repo</span></div>
+        <p class="card-body">An immunoinformatics pipeline that designs a multi-epitope SARS-CoV-2 vaccine construct, from epitope prediction to a structural model.</p>
+        <p class="card-skills">Immunoinformatics · Python · AlphaFold2</p>
+      </a>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-platforms">
+    <div class="s-head"><span class="s-num">03</span><h2 id="h-platforms">Platforms</h2></div>
+    <p class="s-intro">Where the research and analytics go next.</p>
+    <div class="cards">
+      <a class="card wide" href="https://blkphxlabs.com/" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">LabOps.AI · BLK PHX LABS</span><span class="status live">Live</span></div>
+        <p class="card-body">Human-in-the-loop intelligence for cell and gene therapy manufacturing. The <strong>LabMind briefing</strong> it runs on publishes daily: literature and regulatory signals turned into a sourced video briefing.</p>
+        <p class="card-skills">RAG · GCP serverless · FastAPI · React · 21 CFR Part 11 audit trail</p>
+      </a>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-tools">
+    <div class="s-head"><span class="s-num">04</span><h2 id="h-tools">Tools</h2></div>
+    <div class="cards">
+      <a class="card" href="https://blkphx-ph3.pages.dev/" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">PH3 Combat Tracker</span><span class="status live">Live</span></div>
+        <p class="card-body">A training app (installable PWA) for a 13-week strength program with concurrent conditioning, tuned for martial-arts strength targets.</p>
+        <p class="card-skills">PWA · Cloudflare Pages · Google Sheets sync</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <a class="footer-brand" href="https://blkphxlabs.com/">BLK PHX LABS © 2026</a>
+    <span class="footer-tagline">rise from the ash · build the thing</span>
+  </footer>
+
+</div>
+</body>
+</html>

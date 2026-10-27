@@ -1,0 +1,149 @@
+{
+ "EPX040": [
+  {
+   "protein": "BDNF",
+   "missing": 70.0,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "CNTF",
+   "missing": 30.0,
+   "step": "tested",
+   "transformation": null,
+   "normal_p": null,
+   "test": "non-parametric (Kruskal-Wallis)"
+  },
+  {
+   "protein": "GDNF",
+   "missing": 100.0,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "NGFbeta",
+   "missing": 94.3,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "GFAP",
+   "missing": 0.0,
+   "step": "tested",
+   "transformation": "raw",
+   "normal_p": 0.7249858745552894,
+   "test": "parametric (ANOVA / linear model)"
+  },
+  {
+   "protein": "NF_H",
+   "missing": 15.7,
+   "step": "tested",
+   "transformation": "raw",
+   "normal_p": 0.06896385596922543,
+   "test": "parametric (ANOVA / linear model)"
+  },
+  {
+   "protein": "S100B",
+   "missing": 95.7,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "UCHL1",
+   "missing": 4.3,
+   "step": "tested",
+   "transformation": "log",
+   "normal_p": 0.14599206544204413,
+   "test": "parametric (ANOVA / linear model)"
+  }
+ ],
+ "EPX110": [
+  {
+   "protein": "BDNF",
+   "missing": 91.4,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "EGF",
+   "missing": 27.1,
+   "step": "tested",
+   "transformation": null,
+   "normal_p": null,
+   "test": "non-parametric (Kruskal-Wallis)"
+  },
+  {
+   "protein": "FGF_2",
+   "missing": 0.0,
+   "step": "tested",
+   "transformation": "log",
+   "normal_p": 0.5633879971829088,
+   "test": "parametric (ANOVA / linear model)"
+  },
+  {
+   "protein": "HGF",
+   "missing": 0.0,
+   "step": "tested",
+   "transformation": null,
+   "normal_p": null,
+   "test": "non-parametric (Kruskal-Wallis)"
+  },
+  {
+   "protein": "LIF",
+   "missing": 92.9,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "NGFbeta",
+   "missing": 17.1,
+   "step": "tested",
+   "transformation": null,
+   "normal_p": null,
+   "test": "non-parametric (Kruskal-Wallis)"
+  },
+  {
+   "protein": "PDGF_BB",
+   "missing": 100.0,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "PlGF_1",
+   "missing": 97.1,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  },
+  {
+   "protein": "SCF",
+   "missing": 1.4,
+   "step": "tested",
+   "transformation": null,
+   "normal_p": null,
+   "test": "non-parametric (Kruskal-Wallis)"
+  },
+  {
+   "protein": "VEGF_A",
+   "missing": 0.0,
+   "step": "tested",
+   "transformation": "log",
+   "normal_p": 0.14715181657610643,
+   "test": "parametric (ANOVA / linear model)"
+  },
+  {
+   "protein": "VEGF_D",
+   "missing": 84.3,
+   "step": "excluded",
+   "transformation": null,
+   "test": null
+  }
+ ]
+}
