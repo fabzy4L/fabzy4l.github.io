@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SERT S438T · Escitalopram</title>
-<meta name="description" content="Five-seed ensemble docking of escitalopram against wild-type and S438T SERT, and the single-seed result it replaced. Fabian Alvarez-Primo, PhD." />
+<meta name="description" content="Five-seed ensemble docking of escitalopram against wild-type and S438T SERT: the direction docking predicts, and what molecular dynamics has to settle. Fabian Alvarez-Primo, PhD." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23e8520a' stroke-width='3'/%3E%3C/svg%3E" />
 <style>
   @font-face { font-family: 'Silkscreen'; src: url('../assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -56,6 +56,9 @@
   th:first-child, td:first-child { text-align: left; }
   td { padding: 0.65rem 0.8rem; text-align: right; border-bottom: 1px solid rgba(200,196,188,0.05); color: var(--text-soft); }
   td.hi { color: var(--accent); }
+  .fig { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.5rem 0 0.5rem; }
+  .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--hair); }
+  @media (max-width: 560px) { .fig { grid-template-columns: 1fr; } }
   .note { border-left: 2px solid var(--accent); padding: 0.1rem 0 0.1rem 1.1rem; margin: 1.6rem 0; color: var(--text-soft); }
   footer { border-top: 1px solid var(--hair); padding-top: 1.5rem; font-family: var(--pixel); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 2.2; }
   a { color: var(--accent); }
@@ -66,26 +69,33 @@
 
   <a class="back" href="../work/">&larr; Work</a>
 
-  <h1>A number smaller than its own noise</h1>
+  <h1>What docking sees in S438T</h1>
   <div class="sub">SERT S438T · escitalopram · AutoDock Vina 1.2.5</div>
 
   <p class="lede">
     The S438T substitution in the serotonin transporter weakens escitalopram binding about
-    320-fold in the lab. This asks a narrower question: how much of that does rigid docking
-    actually see? The first answer was wrong, and the way it was wrong is the useful part.
+    320-fold in the lab. This project asks how much of that a docking model can see from
+    structure alone. Across five seeds and two receptor models, it predicts the right direction;
+    the size of the effect is the question molecular dynamics is set up to answer.
   </p>
 
   <section>
-    <div class="s-head"><span class="s-num">01</span><h2>The result that was published, and withdrawn</h2></div>
+    <div class="s-head"><span class="s-num">01</span><h2>The pose</h2></div>
     <p>
-      The first run used <strong>one seed at exhaustiveness 8</strong> and returned
-      ΔΔG = −0.2 kcal/mol: the mutant binding <em>more</em> tightly than wild-type. That is the
-      opposite of what the experiment shows, and it sat in the public README until 27 October 2026.
+      Escitalopram docked into the central S1 site of human SERT (PDB 5I6Z, chain A). The
+      wild-type pose is in cream and the S438T pose in orange, with residue 438 drawn as sticks.
     </p>
+    <figure class="fig">
+      <img src="sert_overview.jpg" width="1000" height="1000" loading="lazy"
+           alt="Human serotonin transporter as a grey ribbon, with escitalopram docked in the central binding site; wild-type pose in cream, S438T pose in orange" />
+      <img src="sert_pocket.jpg" width="1000" height="1000" loading="lazy"
+           alt="Close-up of the S1 pocket: the wild-type and S438T escitalopram poses lie almost on top of each other, next to the threonine at position 438" />
+    </figure>
+    <p class="cap">Top-ranked Vina poses · binding-site residues within 5 Å in brown · rendered in PyMOL from output/docked_wt.pdbqt and docked_s438t.pdbqt</p>
     <p>
-      It was not a coding error. The difference it reported was smaller than the search noise of
-      the run that produced it, so its sign carried no information. A single docking run returns a
-      number whether or not that number means anything.
+      The two poses almost coincide. Whatever S438T does to escitalopram, it does not do it by
+      moving the drug to a different place in the pocket, and that shapes what docking can and
+      cannot measure here.
     </p>
   </section>
 
@@ -174,24 +184,33 @@
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">04</span><h2>What it still cannot tell you</h2></div>
+    <div class="s-head"><span class="s-num">04</span><h2>Next: molecular dynamics</h2></div>
     <p>
       The experimental 320-fold <em>K</em><sub>i</sub> increase (Andersen <em>et al.</em>, 2009)
       corresponds to roughly <strong>+3.4 kcal/mol</strong>. Docking returns +0.27. The direction
       is right and the magnitude is off by about thirteen times.
     </p>
     <p>
-      That gap is the expected behaviour of the method, not a bug in this run. Rigid docking scores
+      That gap is what the method predicts for a mutation like this one. Rigid docking scores
       a static bound pose; it does not model the desolvation penalty or the disrupted Na⁺
       coordination that S438T is thought to cause, and those act on the pathway into the site
-      rather than on the final pose. Molecular dynamics is the next step, and until it runs there
-      is no magnitude here worth quoting.
+      rather than on the final pose, which the figure above shows barely changes. The MD
+      pipeline for wild-type and S438T is staged in the repository; the magnitude waits on that run.
     </p>
     <div class="note">
-      Vina's own scoring function carries roughly ±0.5 kcal/mol of uncertainty — larger than the
-      0.269 measured here. Five seeds establish that the ranking is reproducible within this
-      method. They do not make a 0.27 kcal/mol difference physically meaningful on its own.
+      Vina's scoring function carries roughly ±0.5 kcal/mol of uncertainty, larger than the
+      0.269 here. Five seeds show the ranking is reproducible within the method; the
+      physical size of the difference is for MD to settle.
     </div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">05</span><h2>Revision note</h2></div>
+    <p>
+      An earlier single-seed run (exhaustiveness 8) gave ΔΔG = −0.2 kcal/mol, inside that run's
+      own search noise. The five-seed results above replaced it on 27 October 2026, and the
+      repository README carries the same dated note.
+    </p>
   </section>
 
   <footer>
