@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Psilocin · 5-HT2A</title>
-<meta name="description" content="Comparative docking of psilocin, psilocybin and related tryptamines against 5-HT2A, and the result that does not fit the pharmacology. Fabian Alvarez-Primo, PhD." />
+<meta name="description" content="Comparative docking of psilocin, psilocybin and related tryptamines against 5-HT2A: a validated protocol, six ligands, and the solvent question it points to. Fabian Alvarez-Primo, PhD." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23e8520a' stroke-width='3'/%3E%3C/svg%3E" />
 <style>
   @font-face { font-family: 'Silkscreen'; src: url('../assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -40,6 +40,8 @@
   th:first-child, td:first-child { text-align: left; }
   td { padding: 0.65rem 0.8rem; text-align: right; border-bottom: 1px solid rgba(200,196,188,0.05); color: var(--text-soft); }
   td.hi { color: var(--accent); }
+  .fig { margin: 1.5rem 0 0.5rem; max-width: 520px; }
+  .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--hair); }
   .note { border-left: 2px solid var(--accent); padding: 0.1rem 0 0.1rem 1.1rem; margin: 1.6rem 0; color: var(--text-soft); }
   footer { border-top: 1px solid var(--hair); padding-top: 1.5rem; font-family: var(--pixel); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 2.2; }
   a { color: var(--accent); }
@@ -50,14 +52,14 @@
 
   <a class="back" href="../work/">&larr; Work</a>
 
-  <h1>The docking ranks the wrong molecule first</h1>
+  <h1>Psilocin at 5-HT2A, in silico</h1>
   <div class="sub">Psilocin · 5-HT2A · AutoDock Vina · PDB 6WGT</div>
 
   <p class="lede">
     Psilocybin is a prodrug. The body strips its phosphate group to give psilocin, and psilocin is
-    what reaches the receptor. Dock both against 5-HT2A and the screen puts psilocybin a clear
-    0.9 kcal/mol ahead — the wrong way round, reproducibly, in a protocol that passes its own
-    validation gate.
+    what reaches the receptor. Docked against 5-HT2A in a validated protocol, psilocybin scores
+    0.9 kcal/mol ahead, reproducibly. That reversal of the pharmacology points at what a docking
+    score leaves out, and sets up the next experiment: the same pair in explicit water.
   </p>
 
   <section>
@@ -72,29 +74,15 @@
       affinity lands at −10.073 kcal/mol against the −10.1 the same ligand scores in the blind
       screen. Box, receptor preparation and scoring are doing what they should.
     </p>
+    <figure class="fig">
+      <img src="psi_redock.jpg" width="1000" height="1000" loading="lazy"
+           alt="LSD in the 5-HT2A binding pocket: the crystal pose in cream and the redocked pose in orange lying almost on top of each other" />
+    </figure>
+    <p class="cap">LSD crystal pose (cream) and redocked top pose (orange) · binding-site residues within 5 Å in brown · PyMOL, from visualization/poses</p>
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">02</span><h2>The gate said FAIL first</h2></div>
-    <p>
-      The first run of that check reported <strong>RMSD 5.107 Å — a failure</strong>. It wasn't.
-      The RMSD routine was reading the last pose out of the results file instead of the first, so
-      it compared the crystal structure against pose 10, the worst of the ten, rather than pose 1.
-    </p>
-    <p>
-      Fixing the parser turned 5.107 Å into 0.780 Å with <strong>no re-docking at all</strong> —
-      the correct pose had been in the file the whole time. The same bug was quietly failing the
-      gate in the SERT project, which passes at 1.515 Å once the fix is carried across.
-    </p>
-    <div class="note">
-      A validation gate is only as trustworthy as the code that reads its output. This one was
-      rejecting good results for two projects, and nothing about the number 5.107 looked wrong
-      enough to question on its own.
-    </div>
-  </section>
-
-  <section>
-    <div class="s-head"><span class="s-num">03</span><h2>Six ligands, two receptor models, five seeds</h2></div>
+    <div class="s-head"><span class="s-num">02</span><h2>Six ligands, two receptor models, five seeds</h2></div>
     <p>
       Psilocin, psilocybin, serotonin, DMT, 5-MeO-DMT and LSD, each docked five times in a rigid
       receptor and again with flexible binding-site side chains. Points are means, bars are the
@@ -178,12 +166,18 @@
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">04</span><h2>The result that does not fit the pharmacology</h2></div>
+    <div class="s-head"><span class="s-num">03</span><h2>Prodrug against active drug</h2></div>
     <p>
       Psilocybin outscores psilocin by <strong>0.900 kcal/mol</strong> in the rigid model and
       0.881 in the flexible one, against a combined seed-to-seed spread of about 0.175. That is
-      roughly five times the noise, in both models, so it is not a sampling artifact.
+      roughly five times the noise, in both models, so it is a stable property of the scoring
+      rather than a sampling artifact.
     </p>
+    <figure class="fig">
+      <img src="psi_pair.jpg" width="1000" height="1000" loading="lazy"
+           alt="Psilocybin in orange, carrying its phosphate group, and psilocin in cream, docked side by side in the same 5-HT2A pocket" />
+    </figure>
+    <p class="cap">Top-ranked poses · psilocybin (orange, phosphate at right) · psilocin (cream)</p>
     <div class="scroller">
       <table>
         <thead><tr><th>Ligand</th><th>Rigid</th><th>Flexible</th></tr></thead>
@@ -212,17 +206,26 @@
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">05</span><h2>What is not being claimed</h2></div>
+    <div class="s-head"><span class="s-num">04</span><h2>Scope</h2></div>
     <p>
       Psilocin and 5-MeO-DMT swap places between the two models. The gap is 0.137 kcal/mol,
-      comfortably inside the spread, so <strong>that ordering is not a finding</strong> and is not
-      reported as one.
+      comfortably inside the spread, so that ordering is not reported as a finding.
     </p>
     <p>
       Nothing here measures binding. These are predicted affinities for a static pose from one
       scoring function, in a protocol validated against exactly one known structure. The useful
       output is a specific, falsifiable question for the next phase: does explicit solvent reverse
       the psilocybin–psilocin ordering?
+    </p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">05</span><h2>Revision note</h2></div>
+    <p>
+      An early run of the redocking check reported RMSD 5.107 Å because the parser read the last
+      pose in the results file instead of the first. With the parser fixed and no re-docking,
+      the same file gives 0.780 Å. The fix also applies to the SERT project, whose redock check
+      passes at 1.515 Å.
     </p>
   </section>
 
