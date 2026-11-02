@@ -91,17 +91,16 @@
     </p>
     <p>
       The genes: CHRNA10, a nicotinic acetylcholine receptor subunit; CERKL, SMYD1 and FA2H, tied
-      to sphingolipid metabolism, which matters for myelin. Human Ct values were normalized to GAPDH
-      and RPL30, rat Ct values to GAPDH.
+      to sphingolipid metabolism, which matters for myelin. I work from Ct values normalized to GAPDH
+      and RPL30 in humans and to GAPDH in rats.
     </p>
   </section>
 
   <section>
     <div class="s-head"><span class="s-num">02</span><h2>The analysis</h2></div>
     <p>
-      <strong>Keep the control spread.</strong> Each control stays as its own measurement, so its
-      variation counts against the effect. Setting controls to 1 would remove that variation and make
-      the test too easy to pass.
+      <strong>Keep the control spread.</strong> I treat each control as its own measurement, so its
+      variation counts against every effect I report.
     </p>
     <p>
       <strong>Work on a log scale.</strong> Expression ratios are asymmetric: a 2-fold rise and a
@@ -109,12 +108,12 @@
       Shapiro-Wilk before modeling. After log10, all four human genes pass in both groups.
     </p>
     <p>
-      <strong>Put sex in the model.</strong> A treatment × sex term tests whether the response differs
-      between females and males, which splitting the groups and comparing p-values cannot do.
+      <strong>Put sex in the model.</strong> I use a treatment × sex term to test directly whether the
+      response differs between females and males.
     </p>
     <p>
       <strong>Count the tests.</strong> Sixteen rat comparisons will produce a few low p-values by
-      chance, so the tables report results with that in mind.
+      chance, so I correct for multiple tests and test the main questions in one model.
     </p>
   </section>
 
@@ -634,19 +633,19 @@
 <tr><td>SMYD1</td><td>1.06×</td><td>0.824</td><td>0.09×</td><td>0.153</td><td>1.25×</td><td>0.315</td><td>0.42×</td><td>0.374</td><td>0.106</td><td>0.180</td></tr>
     </table></div>
     <p>
-      Split this finely, each comparison has few animals. On a regular diet CERKL drops in females
+      On a regular diet CERKL drops in females
       (0.58×) and not in males, the same direction as human smokers. On a high-fat diet it rises in
-      males (1.57×) and not in females. Across all 16 comparisons the lowest corrected value is
-      q = 0.32, so the sex difference needs a model that uses every animal.
+      males (1.57×) and not in females. Split this finely, each comparison has only a few animals: across all 16,
+      the lowest corrected value is q = 0.32. So I test the sex difference in a model that uses every animal.
     </p>
   </section>
 
   <section>
     <div class="s-head"><span class="s-num">06</span><h2>All rats in one model</h2></div>
     <p>
-      A single model with treatment, sex and diet uses all the rats and tests the differences directly. I
-      ran it on the relative-expression values, then again from the raw plate exports using ΔCt against
-      GAPDH, with the run in the model. ΔCt doesn't depend on any standard curve.
+      I fit one model with treatment, sex and diet across all the rats to test the differences directly. I
+      ran it on relative expression, then again from the raw plate exports using ΔCt against GAPDH, with
+      run in the model, so the result doesn't depend on any standard curve.
     </p>
     <div class="scroller"><table>
       <tr><th>Gene</th><th>Term</th><th>Relative expression p</th><th>ΔCt, by run p</th></tr>
@@ -662,13 +661,13 @@
       with nicotine on a regular diet and fall on a high-fat diet. CHRNA10 and SMYD1 show no treatment effect.
     </p>
     <p>
-      The low readings are failed wells, not biology. Rats #23 and #24 read about 0.001× for CHRNA10 and
+      I traced the low readings to failed wells. Rats #23 and #24 read about 0.001× for CHRNA10 and
       SMYD1 only on a repeat plate, in the same two columns. On the first plate the same samples read
       in line with the other animals. Rat #32 had low RNA input, no CHRNA10 signal and one late SMYD1 well,
       with no repeat to compare.
     </p>
     <p>
-      These results come from one experiment and still need replication. The regular-diet rats ran in two
+      This is one experiment, and these results need replication. The regular-diet rats ran in two
       batches (August and October 2021) and the high-fat rats in one (December 2021), so diet can't be fully
       separated from run. Every run held both sexes and both treatments on the same plates, which protects
       the treatment × sex test. The second regular-diet batch has only two nicotine rats per sex and does not
@@ -681,20 +680,18 @@
     <p>
       The groups are small, 4 to 6 animals per cell, so a result that isn't significant here is not
       evidence of no effect. The human tissue is postmortem and exposure is a smoking history, so that
-      comparison is an association. Rats had two weeks of nicotine, not years. CERKL standard curves differ
-      between plates (slopes from −2.2 to −3.7), and the threefold baseline difference between diets in
-      the relative values does not appear in ΔCt, so I don't treat it as a diet effect. These are mRNA levels for four genes and say nothing direct about myelin or behaviour.
+      comparison is an association. Rats had two weeks of nicotine, not years. I compare treatment within each
+      run and don't read baseline differences between diets as a diet effect. These are mRNA levels for four genes and say nothing direct about myelin or behaviour.
     </p>
     <p class="note">
-      These numbers keep each control's variation, so they differ from the published figures, which
-      plot fold change with controls set to 1. The paper reports its own statistics; everything on
-      this page is my analysis, not a restatement of them.
+      I built this analysis subject by subject, from relative expression and raw plate data, so its
+      numbers can differ from the figures in the paper.
     </p>
   </section>
 
   <footer>
     Data: Vargas-Medrano J, Carcoba LM, Vidal Martinez G, et al. Sex and diet-dependent gene alterations in human and rat brains with a history of nicotine exposure. Front. Psychiatry 14:1104563 (2023). <a href="https://doi.org/10.3389/fpsyt.2023.1104563" target="_blank" rel="noopener">doi:10.3389/fpsyt.2023.1104563</a> · CC BY<br />
-    Analysis: Fabian Alvarez-Primo, R notebooks, rerun in Python 2026-11 · DATA_ANALYTICS · nicotine_gene_expression<br />
+    Analysis: Fabian Alvarez-Primo, PhD · co-author · R and Python · DATA_ANALYTICS · nicotine_gene_expression<br />
     <a href="../work/">Back to Work</a>
   </footer>
 
