@@ -451,7 +451,7 @@
 <text x="776.2" y="280" text-anchor="middle" class="ax">M</text>
 <text x="776.2" y="296" text-anchor="middle" class="ax">n=6</text>
 </svg></div>
-    <p class="cap">Two males read about 0.001× for CHRNA10 and SMYD1 and are shown as recorded</p>
+    <p class="cap">Two males read about 0.001× for CHRNA10 and SMYD1 from a repeat plate, shown as recorded · both read normally on the first plate (section 06)</p>
   </section>
 
   <section>
@@ -644,31 +644,35 @@
   <section>
     <div class="s-head"><span class="s-num">06</span><h2>All rats in one model</h2></div>
     <p>
-      A treatment × sex × diet model on log10 expression uses all 47 rats and tests the differences
-      directly.
+      A single model with treatment, sex and diet uses all the rats and tests the differences directly. I
+      ran it on the relative-expression values, then again from the raw plate exports using ΔCt against
+      GAPDH, with the run in the model. ΔCt doesn't depend on any standard curve.
     </p>
     <div class="scroller"><table>
-      <tr><th>Gene</th><th>Term</th><th>Without blocks p</th><th>With blocks p</th></tr>
-      <tr><td>CERKL</td><td>Treatment × sex</td><td class="hi">0.0047</td><td class="hi">0.0087</td></tr>
-      <tr><td>CERKL</td><td>Treatment × diet</td><td class="hi">0.024</td><td>not tested</td></tr>
-      <tr><td>FA2H</td><td>Treatment × diet</td><td class="hi">0.036</td><td class="hi">0.0072</td></tr>
-      <tr><td>CHRNA10</td><td>Treatment</td><td>0.87</td><td>0.97</td></tr>
-      <tr><td>SMYD1</td><td>Treatment</td><td>0.35</td><td>0.25</td></tr>
+      <tr><th>Gene</th><th>Term</th><th>Relative expression p</th><th>ΔCt, by run p</th></tr>
+      <tr><td>CERKL</td><td>Treatment × sex</td><td class="hi">0.0047</td><td class="hi">0.0016</td></tr>
+      <tr><td>CERKL</td><td>Treatment × diet</td><td class="hi">0.024</td><td class="hi">0.022</td></tr>
+      <tr><td>FA2H</td><td>Treatment × diet</td><td class="hi">0.036</td><td class="hi">0.0095</td></tr>
+      <tr><td>CHRNA10</td><td>Treatment</td><td>0.87</td><td>0.77</td></tr>
+      <tr><td>SMYD1</td><td>Treatment</td><td>0.35</td><td>0.64</td></tr>
     </table></div>
-    <p class="cap">Blocks inferred from animal numbering, not plate records · CHRNA10 and SMYD1 exclude animals with low readings · CERKL without blocks: full three-way model in R · other values: main effects plus the listed term</p>
+    <p class="cap">n = 46 to 47 · relative CHRNA10 and SMYD1 exclude animals with low readings · ΔCt CHRNA10 and SMYD1 use first-plate values for rats #13 to #24</p>
     <p>
-      The CERKL response differs by sex, and it stays that way when processing blocks are added. FA2H rises
-      with nicotine on a regular diet and falls on a high-fat diet. CHRNA10 and SMYD1 show no
-      treatment effect once the low readings are set aside. Rats #23 and #24 read about 300-fold below
-      every other animal for those two genes, and #32 reads over 20-fold below for SMYD1 with no CHRNA10
-      value. CERKL and FA2H read normally in all three, which points to the reactions, though all three are
-      nicotine-treated males, so I would confirm it from their Ct traces.
+      The CERKL response differs by sex and FA2H differs by diet under both methods. FA2H tends to rise
+      with nicotine on a regular diet and fall on a high-fat diet. CHRNA10 and SMYD1 show no treatment effect.
     </p>
     <p>
-      These are strong leads, not replicated effects. High-fat females and males fall in separate
-      blocks, so sex and block can't be fully separated on that diet. Of the two regular-diet blocks,
-      one shows the CERKL sex difference and the other does not. Plate records would settle
-      how much of this is run to run.
+      The low readings are failed wells, not biology. Rats #23 and #24 read about 0.001× for CHRNA10 and
+      SMYD1 only on a repeat plate, in the same two columns. On the first plate the same samples read
+      in line with the other animals. Rat #32 had low RNA input, no CHRNA10 signal and one late SMYD1 well,
+      with no repeat to compare.
+    </p>
+    <p>
+      These results come from one experiment and still need replication. The regular-diet rats ran in two
+      batches (August and October 2021) and the high-fat rats in one (December 2021), so diet can't be fully
+      separated from run. Every run held both sexes and both treatments on the same plates, which protects
+      the treatment × sex test. The second regular-diet batch has only two nicotine rats per sex and does not
+      show the CERKL sex difference.
     </p>
   </section>
 
@@ -677,9 +681,9 @@
     <p>
       The groups are small, 4 to 6 animals per cell, so a result that isn't significant here is not
       evidence of no effect. The human tissue is postmortem and exposure is a smoking history, so that
-      comparison is an association. Rats had two weeks of nicotine, not years. Baseline CERKL differs about
-      threefold between diets, which may be diet or may be separate runs, so I don't read the raw
-      difference as a diet effect. These are mRNA levels for four genes and say nothing direct about myelin or behaviour.
+      comparison is an association. Rats had two weeks of nicotine, not years. CERKL standard curves differ
+      between plates (slopes from −2.2 to −3.7), and the threefold baseline difference between diets in
+      the relative values does not appear in ΔCt, so I don't treat it as a diet effect. These are mRNA levels for four genes and say nothing direct about myelin or behaviour.
     </p>
     <p class="note">
       These numbers keep each control's variation, so they differ from the published figures, which
