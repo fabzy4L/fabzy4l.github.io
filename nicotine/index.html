@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nicotine · CERKL, CHRNA10, FA2H, SMYD1</title>
-<meta name="description" content="qPCR data from Vargas-Medrano et al., Front. Psychiatry 2023: four genes in human smokers and nicotine-treated rats, by sex and diet. Fabian Alvarez-Primo, PhD." />
+<title>Nicotine · per-subject qPCR analysis</title>
+<meta name="description" content="Per-subject analysis of qPCR data on nicotine exposure in human and rat brain: log10 models, control spread kept, sex in the model. Fabian Alvarez-Primo, PhD." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23e8520a' stroke-width='3'/%3E%3C/svg%3E" />
 <style>
   @font-face { font-family: 'Silkscreen'; src: url('../assets/silkscreen-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -70,324 +70,600 @@
 
   <a class="back" href="../work/">&larr; Work</a>
 
-  <h1>Nicotine and four brain genes, in humans and rats</h1>
-  <div class="sub">qPCR · human dlPFC BA9 · rat frontal lobe · Front. Psychiatry 2023</div>
+  <h1>Nicotine and four brain genes, analyzed per subject</h1>
+  <div class="sub">qPCR · log10 linear models · sex × treatment · human dlPFC BA9 · rat frontal lobe</div>
 
   <p class="lede">
-    Long-term nicotine exposure changes gene expression in the brain, but how sex and diet shape
-    that change was largely unexplored. This study measured four genes in postmortem human
-    prefrontal cortex from smokers and non-smokers, and in rats given nicotine on a regular or
-    high-fat diet, to see whether the rat model moves the same way the human brain does.
+    This is my analysis of the qPCR data from a study I co-authored on nicotine exposure in
+    postmortem human prefrontal cortex and in rats. I kept every subject's own value, controls
+    included, worked on a log scale and put sex in the model. That leaves two clear human changes,
+    CERKL down and FA2H up, and a CERKL response in rats that depends on sex.
   </p>
 
   <section>
     <div class="s-head"><span class="s-num">01</span><h2>The design</h2></div>
     <p>
       <strong>Humans:</strong> dorsolateral prefrontal cortex (BA9) from 12 smokers and 12
-      non-smokers, female and male. <strong>Rats:</strong> frontal lobe from female and male rats
-      on a regular diet (RD) or a high-fat diet (HFD), given nicotine for 14 days by osmotic
-      mini-pump; controls had a sham surgery.
+      non-smokers. <strong>Rats:</strong> frontal lobe from female and male rats on a regular or
+      high-fat diet, given nicotine for 14 days by osmotic mini-pump, with sham surgery as the
+      control.
     </p>
     <p>
       The genes: CHRNA10, a nicotinic acetylcholine receptor subunit; CERKL, SMYD1 and FA2H, tied
-      to sphingolipid metabolism, which matters for myelin. RNA from each sample was reverse
-      transcribed and measured by qPCR.
+      to sphingolipid metabolism, which matters for myelin. Human Ct values were normalized to GAPDH
+      and RPL30, rat Ct values to GAPDH.
     </p>
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">02</span><h2>Smokers and non-smokers</h2></div>
+    <div class="s-head"><span class="s-num">02</span><h2>The analysis</h2></div>
     <p>
-      Each dot is one smoker, as fold change against the non-smoker average; the dashed line at 1
-      is the non-smoker level and the solid line is the smokers' geometric mean. The axis is
-      logarithmic, so equal distances mean equal fold changes up or down.
+      <strong>Keep the control spread.</strong> Each control stays as its own measurement, so its
+      variation counts against the effect. Setting controls to 1 would remove that variation and make
+      the test too easy to pass.
     </p>
-    <div class="scroller"><svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" class="plot" role="img" aria-label="Fold change in smokers relative to non-smokers for CERKL, CHRNA10, FA2H and SMYD1, one dot per subject; dashed line is the control level">
-<text x="95.0" y="16" text-anchor="middle" class="ttl">CERKL</text>
-<line x1="34" y1="224.0" x2="184" y2="224.0" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="228.0" text-anchor="end" class="ax">0.1</text>
-<line x1="34" y1="193.9" x2="184" y2="193.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="197.9" text-anchor="end" class="ax">0.2</text>
-<line x1="34" y1="154.2" x2="184" y2="154.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="158.2" text-anchor="end" class="ax">0.5</text>
-<line x1="34" y1="124.1" x2="184" y2="124.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="128.1" text-anchor="end" class="ax">1</text>
-<line x1="34" y1="94.1" x2="184" y2="94.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="98.1" text-anchor="end" class="ax">2</text>
-<line x1="34" y1="54.4" x2="184" y2="54.4" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="58.4" text-anchor="end" class="ax">5</text>
-<line x1="34" y1="124.1" x2="184" y2="124.1" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="100.0" cy="171.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.335× control</title></circle>
-<circle cx="106.0" cy="96.1" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 1.910× control</title></circle>
-<circle cx="112.0" cy="188.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.228× control</title></circle>
-<circle cx="118.0" cy="178.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.287× control</title></circle>
-<circle cx="124.0" cy="137.1" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.741× control</title></circle>
-<circle cx="130.0" cy="145.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.611× control</title></circle>
-<circle cx="100.0" cy="183.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.255× control</title></circle>
-<circle cx="106.0" cy="137.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.737× control</title></circle>
-<circle cx="112.0" cy="132.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.826× control</title></circle>
-<circle cx="118.0" cy="179.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.280× control</title></circle>
-<circle cx="124.0" cy="168.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.359× control</title></circle>
-<circle cx="130.0" cy="135.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKERS n=12 — 0.770× control</title></circle>
-<line x1="70.0" y1="154.4" x2="160.0" y2="154.4" stroke="#e8520a" stroke-width="2"/>
-<text x="115.0" y="274" text-anchor="middle" class="col" fill="#e8520a">SMOKERS</text>
-<text x="115.0" y="290" text-anchor="middle" class="ax">n=12</text>
-<text x="285.0" y="16" text-anchor="middle" class="ttl">CHRNA10</text>
-<line x1="224" y1="224.0" x2="374" y2="224.0" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="228.0" text-anchor="end" class="ax">0.1</text>
-<line x1="224" y1="193.9" x2="374" y2="193.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="197.9" text-anchor="end" class="ax">0.2</text>
-<line x1="224" y1="154.2" x2="374" y2="154.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="158.2" text-anchor="end" class="ax">0.5</text>
-<line x1="224" y1="124.1" x2="374" y2="124.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="128.1" text-anchor="end" class="ax">1</text>
-<line x1="224" y1="94.1" x2="374" y2="94.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="98.1" text-anchor="end" class="ax">2</text>
-<line x1="224" y1="54.4" x2="374" y2="54.4" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="58.4" text-anchor="end" class="ax">5</text>
-<line x1="224" y1="124.1" x2="374" y2="124.1" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="290.0" cy="149.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.564× control</title></circle>
-<circle cx="296.0" cy="146.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.593× control</title></circle>
-<circle cx="302.0" cy="130.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.867× control</title></circle>
-<circle cx="308.0" cy="130.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.858× control</title></circle>
-<circle cx="314.0" cy="136.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.752× control</title></circle>
-<circle cx="320.0" cy="122.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 1.038× control</title></circle>
-<circle cx="290.0" cy="135.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.773× control</title></circle>
-<circle cx="296.0" cy="113.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 1.273× control</title></circle>
-<circle cx="302.0" cy="152.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.515× control</title></circle>
-<circle cx="308.0" cy="168.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.356× control</title></circle>
-<circle cx="314.0" cy="150.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.546× control</title></circle>
-<circle cx="320.0" cy="132.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKERS n=12 — 0.828× control</title></circle>
-<line x1="260.0" y1="139.1" x2="350.0" y2="139.1" stroke="#e8520a" stroke-width="2"/>
-<text x="305.0" y="274" text-anchor="middle" class="col" fill="#e8520a">SMOKERS</text>
-<text x="305.0" y="290" text-anchor="middle" class="ax">n=12</text>
-<text x="475.0" y="16" text-anchor="middle" class="ttl">FA2H</text>
-<line x1="414" y1="224.0" x2="564" y2="224.0" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="228.0" text-anchor="end" class="ax">0.1</text>
-<line x1="414" y1="193.9" x2="564" y2="193.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="197.9" text-anchor="end" class="ax">0.2</text>
-<line x1="414" y1="154.2" x2="564" y2="154.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="158.2" text-anchor="end" class="ax">0.5</text>
-<line x1="414" y1="124.1" x2="564" y2="124.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="128.1" text-anchor="end" class="ax">1</text>
-<line x1="414" y1="94.1" x2="564" y2="94.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="98.1" text-anchor="end" class="ax">2</text>
-<line x1="414" y1="54.4" x2="564" y2="54.4" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="58.4" text-anchor="end" class="ax">5</text>
-<line x1="414" y1="124.1" x2="564" y2="124.1" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="480.0" cy="108.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 1.444× control</title></circle>
-<circle cx="486.0" cy="101.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 1.704× control</title></circle>
-<circle cx="492.0" cy="131.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 0.853× control</title></circle>
-<circle cx="498.0" cy="63.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 4.035× control</title></circle>
-<circle cx="504.0" cy="83.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 2.569× control</title></circle>
-<circle cx="510.0" cy="57.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 4.702× control</title></circle>
-<circle cx="480.0" cy="64.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 3.986× control</title></circle>
-<circle cx="486.0" cy="89.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 2.211× control</title></circle>
-<circle cx="492.0" cy="116.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 1.197× control</title></circle>
-<circle cx="498.0" cy="139.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 0.698× control</title></circle>
-<circle cx="504.0" cy="135.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 0.765× control</title></circle>
-<circle cx="510.0" cy="144.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKERS n=12 — 0.623× control</title></circle>
-<line x1="450.0" y1="102.9" x2="540.0" y2="102.9" stroke="#e8520a" stroke-width="2"/>
-<text x="495.0" y="274" text-anchor="middle" class="col" fill="#e8520a">SMOKERS</text>
-<text x="495.0" y="290" text-anchor="middle" class="ax">n=12</text>
-<text x="665.0" y="16" text-anchor="middle" class="ttl">SMYD1</text>
-<line x1="604" y1="224.0" x2="754" y2="224.0" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="228.0" text-anchor="end" class="ax">0.1</text>
-<line x1="604" y1="193.9" x2="754" y2="193.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="197.9" text-anchor="end" class="ax">0.2</text>
-<line x1="604" y1="154.2" x2="754" y2="154.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="158.2" text-anchor="end" class="ax">0.5</text>
-<line x1="604" y1="124.1" x2="754" y2="124.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="128.1" text-anchor="end" class="ax">1</text>
-<line x1="604" y1="94.1" x2="754" y2="94.1" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="98.1" text-anchor="end" class="ax">2</text>
-<line x1="604" y1="54.4" x2="754" y2="54.4" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="58.4" text-anchor="end" class="ax">5</text>
-<line x1="604" y1="124.1" x2="754" y2="124.1" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="670.0" cy="213.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.129× control</title></circle>
-<circle cx="676.0" cy="148.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.574× control</title></circle>
-<circle cx="682.0" cy="138.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.722× control</title></circle>
-<circle cx="688.0" cy="158.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.450× control</title></circle>
-<circle cx="694.0" cy="154.1" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.501× control</title></circle>
-<circle cx="700.0" cy="129.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.881× control</title></circle>
-<circle cx="670.0" cy="113.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 1.278× control</title></circle>
-<circle cx="676.0" cy="184.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.251× control</title></circle>
-<circle cx="682.0" cy="239.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.070× control</title></circle>
-<circle cx="688.0" cy="121.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 1.075× control</title></circle>
-<circle cx="694.0" cy="198.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.179× control</title></circle>
-<circle cx="700.0" cy="222.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKERS n=12 — 0.104× control</title></circle>
-<line x1="640.0" y1="168.4" x2="730.0" y2="168.4" stroke="#e8520a" stroke-width="2"/>
-<text x="685.0" y="274" text-anchor="middle" class="col" fill="#e8520a">SMOKERS</text>
-<text x="685.0" y="290" text-anchor="middle" class="ax">n=12</text>
+    <p>
+      <strong>Work on a log scale.</strong> Expression ratios are asymmetric: a 2-fold rise and a
+      2-fold drop sit at different distances from 1 until they are logged. I checked normality with
+      Shapiro-Wilk before modeling. After log10, all four human genes pass in both groups.
+    </p>
+    <p>
+      <strong>Put sex in the model.</strong> A treatment × sex term tests whether the response differs
+      between females and males, which splitting the groups and comparing p-values cannot do.
+    </p>
+    <p>
+      <strong>Count the tests.</strong> Sixteen rat comparisons will produce a few low p-values by
+      chance, so the tables report results with that in mind.
+    </p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">03</span><h2>Smokers and non-smokers</h2></div>
+    <p>
+      Each dot is one person, relative to the non-smoker geometric mean. Solid lines are group
+      geometric means. The axis is logarithmic, so equal distances mean equal fold changes.
+    </p>
+<div class="scroller"><svg viewBox="0 0 806 306" xmlns="http://www.w3.org/2000/svg" class="plot" role="img" aria-label="Relative expression in smokers and non-smokers for four genes, one dot per person">
+<line x1="46" y1="208.0" x2="806" y2="208.0" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="212.0" text-anchor="end" class="ax">0.1×</text>
+<line x1="46" y1="135.3" x2="806" y2="135.3" stroke="rgba(200,196,188,0.28)" stroke-dasharray="4 4"/>
+<text x="40" y="139.3" text-anchor="end" class="ax">1×</text>
+<line x1="46" y1="62.7" x2="806" y2="62.7" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="66.7" text-anchor="end" class="ax">10×</text>
+<text x="141.0" y="16" text-anchor="middle" class="ttl">CERKL</text>
+<circle cx="88.5" cy="159.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 0.472× control</title></circle>
+<circle cx="94.5" cy="152.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 0.578× control</title></circle>
+<circle cx="100.5" cy="149.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 0.632× control</title></circle>
+<circle cx="106.5" cy="141.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 0.822× control</title></circle>
+<circle cx="88.5" cy="140.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 0.845× control</title></circle>
+<circle cx="94.5" cy="139.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 0.869× control</title></circle>
+<circle cx="100.5" cy="132.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 1.080× control</title></circle>
+<circle cx="106.5" cy="131.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 1.139× control</title></circle>
+<circle cx="88.5" cy="130.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 1.186× control</title></circle>
+<circle cx="94.5" cy="124.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 1.411× control</title></circle>
+<circle cx="100.5" cy="113.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 2.013× control</title></circle>
+<circle cx="106.5" cy="108.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · NON-SMOKER n=12: 2.318× control</title></circle>
+<line x1="64.4" y1="135.3" x2="130.6" y2="135.3" stroke="#948f87" stroke-width="2"/>
+<text x="97.5" y="264" text-anchor="middle" class="col" fill="#948f87">NON-SMOKER</text>
+<text x="97.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<circle cx="175.5" cy="178.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.254× control</title></circle>
+<circle cx="181.5" cy="175.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.284× control</title></circle>
+<circle cx="187.5" cy="172.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.312× control</title></circle>
+<circle cx="193.5" cy="171.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.319× control</title></circle>
+<circle cx="175.5" cy="166.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.373× control</title></circle>
+<circle cx="181.5" cy="164.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.399× control</title></circle>
+<circle cx="187.5" cy="147.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.680× control</title></circle>
+<circle cx="193.5" cy="141.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.821× control</title></circle>
+<circle cx="175.5" cy="141.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.826× control</title></circle>
+<circle cx="181.5" cy="140.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.857× control</title></circle>
+<circle cx="187.5" cy="138.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 0.920× control</title></circle>
+<circle cx="193.5" cy="111.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · SMOKER n=12: 2.127× control</title></circle>
+<line x1="151.4" y1="154.0" x2="217.6" y2="154.0" stroke="#e8520a" stroke-width="2"/>
+<text x="184.5" y="264" text-anchor="middle" class="col" fill="#e8520a">SMOKER</text>
+<text x="184.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<text x="331.0" y="16" text-anchor="middle" class="ttl">CHRNA10</text>
+<circle cx="278.5" cy="171.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 0.319× control</title></circle>
+<circle cx="284.5" cy="163.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 0.407× control</title></circle>
+<circle cx="290.5" cy="160.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 0.455× control</title></circle>
+<circle cx="296.5" cy="159.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 0.470× control</title></circle>
+<circle cx="278.5" cy="148.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 0.659× control</title></circle>
+<circle cx="284.5" cy="128.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 1.257× control</title></circle>
+<circle cx="290.5" cy="123.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 1.480× control</title></circle>
+<circle cx="296.5" cy="122.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 1.523× control</title></circle>
+<circle cx="278.5" cy="121.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 1.548× control</title></circle>
+<circle cx="284.5" cy="119.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 1.646× control</title></circle>
+<circle cx="290.5" cy="105.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 2.550× control</title></circle>
+<circle cx="296.5" cy="101.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · NON-SMOKER n=12: 2.969× control</title></circle>
+<line x1="254.4" y1="135.3" x2="320.6" y2="135.3" stroke="#948f87" stroke-width="2"/>
+<text x="287.5" y="264" text-anchor="middle" class="col" fill="#948f87">NON-SMOKER</text>
+<text x="287.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<circle cx="365.5" cy="160.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.454× control</title></circle>
+<circle cx="371.5" cy="148.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.656× control</title></circle>
+<circle cx="377.5" cy="146.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.695× control</title></circle>
+<circle cx="383.5" cy="145.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.719× control</title></circle>
+<circle cx="365.5" cy="144.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.755× control</title></circle>
+<circle cx="371.5" cy="136.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.958× control</title></circle>
+<circle cx="377.5" cy="135.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 0.984× control</title></circle>
+<circle cx="383.5" cy="133.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 1.054× control</title></circle>
+<circle cx="365.5" cy="132.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 1.093× control</title></circle>
+<circle cx="371.5" cy="132.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 1.104× control</title></circle>
+<circle cx="377.5" cy="126.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 1.322× control</title></circle>
+<circle cx="383.5" cy="120.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · SMOKER n=12: 1.621× control</title></circle>
+<line x1="341.4" y1="138.6" x2="407.6" y2="138.6" stroke="#e8520a" stroke-width="2"/>
+<text x="374.5" y="264" text-anchor="middle" class="col" fill="#e8520a">SMOKER</text>
+<text x="374.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<text x="521.0" y="16" text-anchor="middle" class="ttl">FA2H</text>
+<circle cx="468.5" cy="192.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 0.165× control</title></circle>
+<circle cx="474.5" cy="182.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 0.225× control</title></circle>
+<circle cx="480.5" cy="176.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 0.270× control</title></circle>
+<circle cx="486.5" cy="144.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 0.743× control</title></circle>
+<circle cx="468.5" cy="132.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 1.103× control</title></circle>
+<circle cx="474.5" cy="130.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 1.163× control</title></circle>
+<circle cx="480.5" cy="123.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 1.448× control</title></circle>
+<circle cx="486.5" cy="122.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 1.508× control</title></circle>
+<circle cx="468.5" cy="120.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 1.591× control</title></circle>
+<circle cx="474.5" cy="116.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 1.793× control</title></circle>
+<circle cx="480.5" cy="108.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 2.326× control</title></circle>
+<circle cx="486.5" cy="73.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · NON-SMOKER n=12: 7.218× control</title></circle>
+<line x1="444.4" y1="135.3" x2="510.6" y2="135.3" stroke="#948f87" stroke-width="2"/>
+<text x="477.5" y="264" text-anchor="middle" class="col" fill="#948f87">NON-SMOKER</text>
+<text x="477.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<circle cx="555.5" cy="134.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 1.013× control</title></circle>
+<circle cx="561.5" cy="131.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 1.140× control</title></circle>
+<circle cx="567.5" cy="128.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 1.246× control</title></circle>
+<circle cx="573.5" cy="125.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 1.388× control</title></circle>
+<circle cx="555.5" cy="114.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 1.951× control</title></circle>
+<circle cx="561.5" cy="108.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 2.356× control</title></circle>
+<circle cx="567.5" cy="103.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 2.776× control</title></circle>
+<circle cx="573.5" cy="94.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 3.601× control</title></circle>
+<circle cx="555.5" cy="90.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 4.187× control</title></circle>
+<circle cx="561.5" cy="76.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 6.490× control</title></circle>
+<circle cx="567.5" cy="75.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 6.573× control</title></circle>
+<circle cx="573.5" cy="71.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · SMOKER n=12: 7.661× control</title></circle>
+<line x1="531.4" y1="104.5" x2="597.6" y2="104.5" stroke="#e8520a" stroke-width="2"/>
+<text x="564.5" y="264" text-anchor="middle" class="col" fill="#e8520a">SMOKER</text>
+<text x="564.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<text x="711.0" y="16" text-anchor="middle" class="ttl">SMYD1</text>
+<circle cx="658.5" cy="204.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.112× control</title></circle>
+<circle cx="664.5" cy="162.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.417× control</title></circle>
+<circle cx="670.5" cy="159.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.464× control</title></circle>
+<circle cx="676.5" cy="157.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.498× control</title></circle>
+<circle cx="658.5" cy="155.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.528× control</title></circle>
+<circle cx="664.5" cy="154.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.551× control</title></circle>
+<circle cx="670.5" cy="144.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 0.748× control</title></circle>
+<circle cx="676.5" cy="133.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 1.054× control</title></circle>
+<circle cx="658.5" cy="100.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 3.068× control</title></circle>
+<circle cx="664.5" cy="87.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 4.496× control</title></circle>
+<circle cx="670.5" cy="86.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 4.710× control</title></circle>
+<circle cx="676.5" cy="77.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · NON-SMOKER n=12: 6.204× control</title></circle>
+<line x1="634.4" y1="135.3" x2="700.6" y2="135.3" stroke="#948f87" stroke-width="2"/>
+<text x="667.5" y="264" text-anchor="middle" class="col" fill="#948f87">NON-SMOKER</text>
+<text x="667.5" y="280" text-anchor="middle" class="ax">n=12</text>
+<circle cx="745.5" cy="198.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.134× control</title></circle>
+<circle cx="751.5" cy="186.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.197× control</title></circle>
+<circle cx="757.5" cy="179.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.245× control</title></circle>
+<circle cx="763.5" cy="169.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.340× control</title></circle>
+<circle cx="745.5" cy="158.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.478× control</title></circle>
+<circle cx="751.5" cy="140.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.857× control</title></circle>
+<circle cx="757.5" cy="136.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 0.954× control</title></circle>
+<circle cx="763.5" cy="132.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 1.092× control</title></circle>
+<circle cx="745.5" cy="125.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 1.374× control</title></circle>
+<circle cx="751.5" cy="119.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 1.675× control</title></circle>
+<circle cx="757.5" cy="112.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 2.045× control</title></circle>
+<circle cx="763.5" cy="107.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · SMOKER n=12: 2.431× control</title></circle>
+<line x1="721.4" y1="147.3" x2="787.6" y2="147.3" stroke="#e8520a" stroke-width="2"/>
+<text x="754.5" y="264" text-anchor="middle" class="col" fill="#e8520a">SMOKER</text>
+<text x="754.5" y="280" text-anchor="middle" class="ax">n=12</text>
 </svg></div>
-    <p class="cap">Fold change vs non-smokers · human Ct normalized to GAPDH and RPL30 · hover a dot for its value · p-values as reported in the paper (SAS GLM)</p>
+    <p class="cap">Relative expression vs non-smoker geometric mean · hover a dot for its value</p>
+    <div class="scroller"><table>
+      <tr><th>Gene</th><th>Smokers vs non-smokers</th><th>p (Welch, log10)</th><th>BH q</th><th>Treatment × sex p</th></tr>
+<tr><td>CERKL</td><td>0.55×</td><td class="hi">0.019</td><td>0.038</td><td>0.546</td></tr>
+<tr><td>CHRNA10</td><td>0.90×</td><td>0.674</td><td>0.674</td><td>0.521</td></tr>
+<tr><td>FA2H</td><td>2.66×</td><td class="hi">0.017</td><td>0.038</td><td>0.058</td></tr>
+<tr><td>SMYD1</td><td>0.69×</td><td>0.414</td><td>0.551</td><td>0.687</td></tr>
+    </table></div>
     <p>
-      Smokers had lower CERKL (p ≤ 0.0001), CHRNA10 (p = 0.0005) and SMYD1 (p = 0.0005), and
-      higher FA2H (p = 0.0097). FA2H protein, stained in the same tissue, was also higher in
-      smokers (p = 0.001).
+      CERKL is lower and FA2H higher in smokers, and both hold after correcting for four tests.
+      CHRNA10 and SMYD1 lean lower, but their spread is too wide to call. For FA2H the rise is mostly in
+      men (4.3× vs 1.05× in women), though the interaction falls just short at p = 0.058 with only 10
+      women.
     </p>
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">03</span><h2>Rats, by sex and diet</h2></div>
+    <div class="s-head"><span class="s-num">04</span><h2>Rats on a regular diet</h2></div>
+    <p>Each dot is one animal, relative to the sham geometric mean of the same sex.</p>
+<div class="scroller"><svg viewBox="0 0 806 306" xmlns="http://www.w3.org/2000/svg" class="plot" role="img" aria-label="Relative expression in rats on a regular diet by sex and treatment, one dot per animal">
+<line x1="46" y1="230.7" x2="806" y2="230.7" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="234.7" text-anchor="end" class="ax">0.001×</text>
+<line x1="46" y1="180.1" x2="806" y2="180.1" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="184.1" text-anchor="end" class="ax">0.01×</text>
+<line x1="46" y1="129.4" x2="806" y2="129.4" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="133.4" text-anchor="end" class="ax">0.1×</text>
+<line x1="46" y1="78.7" x2="806" y2="78.7" stroke="rgba(200,196,188,0.28)" stroke-dasharray="4 4"/>
+<text x="40" y="82.7" text-anchor="end" class="ax">1×</text>
+<line x1="46" y1="28.0" x2="806" y2="28.0" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="32.0" text-anchor="end" class="ax">10×</text>
+<text x="141.0" y="16" text-anchor="middle" class="ttl">CERKL</text>
+<circle cx="66.8" cy="84.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.784× control</title></circle>
+<circle cx="72.8" cy="82.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.860× control</title></circle>
+<circle cx="78.8" cy="82.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.862× control</title></circle>
+<circle cx="84.8" cy="79.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.962× control</title></circle>
+<circle cx="66.8" cy="76.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 1.101× control</title></circle>
+<circle cx="72.8" cy="68.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 1.624× control</title></circle>
+<line x1="59.2" y1="78.7" x2="92.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="75.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="75.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="75.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="110.2" cy="110.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.233× control</title></circle>
+<circle cx="116.2" cy="93.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.521× control</title></circle>
+<circle cx="122.2" cy="88.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.629× control</title></circle>
+<circle cx="128.2" cy="85.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.751× control</title></circle>
+<circle cx="110.2" cy="84.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.774× control</title></circle>
+<circle cx="116.2" cy="82.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.843× control</title></circle>
+<line x1="102.7" y1="90.7" x2="135.8" y2="90.7" stroke="#e8520a" stroke-width="2"/>
+<text x="119.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="119.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="119.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="153.8" cy="88.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 0.638× control</title></circle>
+<circle cx="159.8" cy="82.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 0.833× control</title></circle>
+<circle cx="165.8" cy="81.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 0.883× control</title></circle>
+<circle cx="171.8" cy="75.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 1.144× control</title></circle>
+<circle cx="153.8" cy="72.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 1.353× control</title></circle>
+<circle cx="159.8" cy="71.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 1.377× control</title></circle>
+<line x1="146.2" y1="78.7" x2="179.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="162.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="162.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="162.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="197.2" cy="91.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=6: 0.557× control</title></circle>
+<circle cx="203.2" cy="83.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=6: 0.808× control</title></circle>
+<circle cx="209.2" cy="75.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=6: 1.183× control</title></circle>
+<circle cx="215.2" cy="74.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=6: 1.188× control</title></circle>
+<circle cx="197.2" cy="71.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=6: 1.416× control</title></circle>
+<circle cx="203.2" cy="70.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=6: 1.461× control</title></circle>
+<line x1="189.7" y1="77.7" x2="222.8" y2="77.7" stroke="#e8520a" stroke-width="2"/>
+<text x="206.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="206.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="206.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<text x="331.0" y="16" text-anchor="middle" class="ttl">CHRNA10</text>
+<circle cx="256.8" cy="96.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 0.443× control</title></circle>
+<circle cx="262.8" cy="87.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 0.668× control</title></circle>
+<circle cx="268.8" cy="84.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 0.776× control</title></circle>
+<circle cx="274.8" cy="74.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 1.223× control</title></circle>
+<circle cx="256.8" cy="67.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 1.677× control</title></circle>
+<circle cx="262.8" cy="62.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 2.125× control</title></circle>
+<line x1="249.2" y1="78.7" x2="282.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="265.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="265.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="265.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="300.2" cy="99.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 0.396× control</title></circle>
+<circle cx="306.2" cy="91.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 0.566× control</title></circle>
+<circle cx="312.2" cy="74.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 1.185× control</title></circle>
+<circle cx="318.2" cy="65.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 1.815× control</title></circle>
+<circle cx="300.2" cy="64.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 1.889× control</title></circle>
+<circle cx="306.2" cy="59.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 2.376× control</title></circle>
+<line x1="292.7" y1="75.9" x2="325.8" y2="75.9" stroke="#e8520a" stroke-width="2"/>
+<text x="309.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="309.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="309.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="343.8" cy="91.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.552× control</title></circle>
+<circle cx="349.8" cy="88.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.654× control</title></circle>
+<circle cx="355.8" cy="85.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.729× control</title></circle>
+<circle cx="361.8" cy="81.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.880× control</title></circle>
+<circle cx="343.8" cy="64.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 1.930× control</title></circle>
+<circle cx="349.8" cy="61.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 2.237× control</title></circle>
+<line x1="336.2" y1="78.7" x2="369.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="352.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="352.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="352.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="387.2" cy="230.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=6: 0.001× control</title></circle>
+<circle cx="393.2" cy="225.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=6: 0.001× control</title></circle>
+<circle cx="399.2" cy="85.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=6: 0.752× control</title></circle>
+<circle cx="405.2" cy="79.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=6: 0.976× control</title></circle>
+<circle cx="387.2" cy="76.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=6: 1.113× control</title></circle>
+<circle cx="393.2" cy="70.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=6: 1.479× control</title></circle>
+<line x1="379.7" y1="127.7" x2="412.8" y2="127.7" stroke="#e8520a" stroke-width="2"/>
+<text x="396.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="396.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="396.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<text x="521.0" y="16" text-anchor="middle" class="ttl">FA2H</text>
+<circle cx="446.8" cy="88.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 0.654× control</title></circle>
+<circle cx="452.8" cy="82.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 0.840× control</title></circle>
+<circle cx="458.8" cy="81.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 0.865× control</title></circle>
+<circle cx="464.8" cy="74.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.195× control</title></circle>
+<circle cx="446.8" cy="72.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.310× control</title></circle>
+<circle cx="452.8" cy="72.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.343× control</title></circle>
+<line x1="439.2" y1="78.7" x2="472.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="455.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="455.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="455.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="490.2" cy="82.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 0.825× control</title></circle>
+<circle cx="496.2" cy="76.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.114× control</title></circle>
+<circle cx="502.2" cy="75.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.163× control</title></circle>
+<circle cx="508.2" cy="74.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.194× control</title></circle>
+<circle cx="490.2" cy="74.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.197× control</title></circle>
+<circle cx="496.2" cy="74.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.236× control</title></circle>
+<line x1="482.7" y1="76.4" x2="515.8" y2="76.4" stroke="#e8520a" stroke-width="2"/>
+<text x="499.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="499.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="499.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="533.8" cy="89.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 0.601× control</title></circle>
+<circle cx="539.8" cy="79.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 0.972× control</title></circle>
+<circle cx="545.8" cy="77.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.047× control</title></circle>
+<circle cx="551.8" cy="77.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.073× control</title></circle>
+<circle cx="533.8" cy="77.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.078× control</title></circle>
+<circle cx="539.8" cy="71.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.413× control</title></circle>
+<line x1="526.2" y1="78.7" x2="559.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="542.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="542.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="542.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="577.2" cy="80.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=6: 0.940× control</title></circle>
+<circle cx="583.2" cy="79.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=6: 0.945× control</title></circle>
+<circle cx="589.2" cy="74.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=6: 1.222× control</title></circle>
+<circle cx="595.2" cy="71.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=6: 1.370× control</title></circle>
+<circle cx="577.2" cy="69.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=6: 1.551× control</title></circle>
+<circle cx="583.2" cy="64.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=6: 1.929× control</title></circle>
+<line x1="569.7" y1="73.2" x2="602.8" y2="73.2" stroke="#e8520a" stroke-width="2"/>
+<text x="586.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="586.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="586.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<text x="711.0" y="16" text-anchor="middle" class="ttl">SMYD1</text>
+<circle cx="636.8" cy="99.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 0.390× control</title></circle>
+<circle cx="642.8" cy="80.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 0.903× control</title></circle>
+<circle cx="648.8" cy="80.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 0.915× control</title></circle>
+<circle cx="654.8" cy="70.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 1.437× control</title></circle>
+<circle cx="636.8" cy="70.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 1.462× control</title></circle>
+<circle cx="642.8" cy="70.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 1.475× control</title></circle>
+<line x1="629.2" y1="78.7" x2="662.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="645.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="645.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="645.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="680.2" cy="85.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 0.731× control</title></circle>
+<circle cx="686.2" cy="81.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 0.878× control</title></circle>
+<circle cx="692.2" cy="80.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 0.905× control</title></circle>
+<circle cx="698.2" cy="74.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.221× control</title></circle>
+<circle cx="680.2" cy="71.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.391× control</title></circle>
+<circle cx="686.2" cy="71.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.407× control</title></circle>
+<line x1="672.7" y1="77.5" x2="705.8" y2="77.5" stroke="#e8520a" stroke-width="2"/>
+<text x="689.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="689.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="689.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="723.8" cy="86.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 0.704× control</title></circle>
+<circle cx="729.8" cy="86.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 0.713× control</title></circle>
+<circle cx="735.8" cy="82.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 0.829× control</title></circle>
+<circle cx="741.8" cy="77.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.046× control</title></circle>
+<circle cx="723.8" cy="71.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.372× control</title></circle>
+<circle cx="729.8" cy="67.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.675× control</title></circle>
+<line x1="716.2" y1="78.7" x2="749.3" y2="78.7" stroke="#948f87" stroke-width="2"/>
+<text x="732.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="732.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="732.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="767.2" cy="231.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=6: 0.001× control</title></circle>
+<circle cx="773.2" cy="229.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=6: 0.001× control</title></circle>
+<circle cx="779.2" cy="92.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=6: 0.530× control</title></circle>
+<circle cx="785.2" cy="83.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=6: 0.821× control</title></circle>
+<circle cx="767.2" cy="77.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=6: 1.082× control</title></circle>
+<circle cx="773.2" cy="76.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=6: 1.128× control</title></circle>
+<line x1="759.7" y1="131.6" x2="792.8" y2="131.6" stroke="#e8520a" stroke-width="2"/>
+<text x="776.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="776.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="776.2" y="296" text-anchor="middle" class="ax">n=6</text>
+</svg></div>
+    <p class="cap">Two males read about 0.001× for CHRNA10 and SMYD1 and are shown as recorded</p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">05</span><h2>Rats on a high-fat diet</h2></div>
+<div class="scroller"><svg viewBox="0 0 806 306" xmlns="http://www.w3.org/2000/svg" class="plot" role="img" aria-label="Relative expression in rats on a high-fat diet by sex and treatment, one dot per animal">
+<line x1="46" y1="226.1" x2="806" y2="226.1" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="230.1" text-anchor="end" class="ax">0.01×</text>
+<line x1="46" y1="160.1" x2="806" y2="160.1" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="164.1" text-anchor="end" class="ax">0.1×</text>
+<line x1="46" y1="94.0" x2="806" y2="94.0" stroke="rgba(200,196,188,0.28)" stroke-dasharray="4 4"/>
+<text x="40" y="98.0" text-anchor="end" class="ax">1×</text>
+<line x1="46" y1="28.0" x2="806" y2="28.0" stroke="rgba(200,196,188,0.08)"/>
+<text x="40" y="32.0" text-anchor="end" class="ax">10×</text>
+<text x="141.0" y="16" text-anchor="middle" class="ttl">CERKL</text>
+<circle cx="66.8" cy="99.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.842× control</title></circle>
+<circle cx="72.8" cy="97.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.891× control</title></circle>
+<circle cx="78.8" cy="97.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.902× control</title></circle>
+<circle cx="84.8" cy="95.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 0.938× control</title></circle>
+<circle cx="66.8" cy="93.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 1.019× control</title></circle>
+<circle cx="72.8" cy="81.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · F SHAM n=6: 1.545× control</title></circle>
+<line x1="59.2" y1="94.0" x2="92.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="75.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="75.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="75.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="110.2" cy="106.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.639× control</title></circle>
+<circle cx="116.2" cy="100.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.809× control</title></circle>
+<circle cx="122.2" cy="99.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.838× control</title></circle>
+<circle cx="128.2" cy="98.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 0.870× control</title></circle>
+<circle cx="110.2" cy="93.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 1.023× control</title></circle>
+<circle cx="116.2" cy="77.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · F NIC n=6: 1.756× control</title></circle>
+<line x1="102.7" y1="95.9" x2="135.8" y2="95.9" stroke="#e8520a" stroke-width="2"/>
+<text x="119.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="119.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="119.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="153.8" cy="101.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 0.762× control</title></circle>
+<circle cx="159.8" cy="96.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 0.917× control</title></circle>
+<circle cx="165.8" cy="95.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 0.961× control</title></circle>
+<circle cx="171.8" cy="92.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 1.065× control</title></circle>
+<circle cx="153.8" cy="89.4" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 1.176× control</title></circle>
+<circle cx="159.8" cy="89.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CERKL · M SHAM n=6: 1.188× control</title></circle>
+<line x1="146.2" y1="94.0" x2="179.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="162.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="162.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="162.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="197.2" cy="95.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=5: 0.949× control</title></circle>
+<circle cx="203.2" cy="82.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=5: 1.515× control</title></circle>
+<circle cx="209.2" cy="77.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=5: 1.808× control</title></circle>
+<circle cx="215.2" cy="76.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=5: 1.822× control</title></circle>
+<circle cx="197.2" cy="74.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · M NIC n=5: 1.991× control</title></circle>
+<line x1="189.7" y1="81.2" x2="222.8" y2="81.2" stroke="#e8520a" stroke-width="2"/>
+<text x="206.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="206.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="206.2" y="296" text-anchor="middle" class="ax">n=5</text>
+<text x="331.0" y="16" text-anchor="middle" class="ttl">CHRNA10</text>
+<circle cx="256.8" cy="110.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 0.556× control</title></circle>
+<circle cx="262.8" cy="96.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 0.935× control</title></circle>
+<circle cx="268.8" cy="95.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 0.961× control</title></circle>
+<circle cx="274.8" cy="90.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 1.116× control</title></circle>
+<circle cx="256.8" cy="90.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 1.119× control</title></circle>
+<circle cx="262.8" cy="80.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · F SHAM n=6: 1.602× control</title></circle>
+<line x1="249.2" y1="94.0" x2="282.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="265.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="265.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="265.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="300.2" cy="113.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 0.516× control</title></circle>
+<circle cx="306.2" cy="110.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 0.566× control</title></circle>
+<circle cx="312.2" cy="104.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 0.696× control</title></circle>
+<circle cx="318.2" cy="96.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 0.906× control</title></circle>
+<circle cx="300.2" cy="87.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 1.241× control</title></circle>
+<circle cx="306.2" cy="84.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · F NIC n=6: 1.377× control</title></circle>
+<line x1="292.7" y1="99.6" x2="325.8" y2="99.6" stroke="#e8520a" stroke-width="2"/>
+<text x="309.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="309.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="309.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="343.8" cy="101.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.782× control</title></circle>
+<circle cx="349.8" cy="100.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.813× control</title></circle>
+<circle cx="355.8" cy="98.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 0.851× control</title></circle>
+<circle cx="361.8" cy="92.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 1.067× control</title></circle>
+<circle cx="343.8" cy="89.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 1.170× control</title></circle>
+<circle cx="349.8" cy="82.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>CHRNA10 · M SHAM n=6: 1.481× control</title></circle>
+<line x1="336.2" y1="94.0" x2="369.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="352.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="352.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="352.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="387.2" cy="98.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=4: 0.856× control</title></circle>
+<circle cx="393.2" cy="91.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=4: 1.103× control</title></circle>
+<circle cx="399.2" cy="90.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=4: 1.125× control</title></circle>
+<circle cx="405.2" cy="89.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · M NIC n=4: 1.191× control</title></circle>
+<line x1="379.7" y1="92.4" x2="412.8" y2="92.4" stroke="#e8520a" stroke-width="2"/>
+<text x="396.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="396.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="396.2" y="296" text-anchor="middle" class="ax">n=4</text>
+<text x="521.0" y="16" text-anchor="middle" class="ttl">FA2H</text>
+<circle cx="446.8" cy="118.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 0.420× control</title></circle>
+<circle cx="452.8" cy="102.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 0.742× control</title></circle>
+<circle cx="458.8" cy="91.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.094× control</title></circle>
+<circle cx="464.8" cy="90.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.145× control</title></circle>
+<circle cx="446.8" cy="86.9" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.283× control</title></circle>
+<circle cx="452.8" cy="74.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · F SHAM n=6: 1.998× control</title></circle>
+<line x1="439.2" y1="94.0" x2="472.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="455.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="455.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="455.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="490.2" cy="111.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 0.548× control</title></circle>
+<circle cx="496.2" cy="104.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 0.684× control</title></circle>
+<circle cx="502.2" cy="104.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 0.693× control</title></circle>
+<circle cx="508.2" cy="97.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 0.901× control</title></circle>
+<circle cx="490.2" cy="91.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.085× control</title></circle>
+<circle cx="496.2" cy="91.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · F NIC n=6: 1.099× control</title></circle>
+<line x1="482.7" y1="100.1" x2="515.8" y2="100.1" stroke="#e8520a" stroke-width="2"/>
+<text x="499.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="499.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="499.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="533.8" cy="103.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 0.711× control</title></circle>
+<circle cx="539.8" cy="101.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 0.763× control</title></circle>
+<circle cx="545.8" cy="92.3" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.062× control</title></circle>
+<circle cx="551.8" cy="92.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.075× control</title></circle>
+<circle cx="533.8" cy="89.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.157× control</title></circle>
+<circle cx="539.8" cy="84.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>FA2H · M SHAM n=6: 1.396× control</title></circle>
+<line x1="526.2" y1="94.0" x2="559.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="542.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="542.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="542.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="577.2" cy="109.5" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=5: 0.582× control</title></circle>
+<circle cx="583.2" cy="101.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=5: 0.766× control</title></circle>
+<circle cx="589.2" cy="96.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=5: 0.910× control</title></circle>
+<circle cx="595.2" cy="96.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=5: 0.924× control</title></circle>
+<circle cx="577.2" cy="92.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · M NIC n=5: 1.064× control</title></circle>
+<line x1="569.7" y1="99.3" x2="602.8" y2="99.3" stroke="#e8520a" stroke-width="2"/>
+<text x="586.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="586.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="586.2" y="296" text-anchor="middle" class="ax">n=5</text>
+<text x="711.0" y="16" text-anchor="middle" class="ttl">SMYD1</text>
+<circle cx="636.8" cy="117.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 0.449× control</title></circle>
+<circle cx="642.8" cy="96.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 0.919× control</title></circle>
+<circle cx="648.8" cy="95.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 0.965× control</title></circle>
+<circle cx="654.8" cy="92.6" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 1.052× control</title></circle>
+<circle cx="636.8" cy="85.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 1.368× control</title></circle>
+<circle cx="642.8" cy="78.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · F SHAM n=6: 1.744× control</title></circle>
+<line x1="629.2" y1="94.0" x2="662.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="645.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="645.8" y="280" text-anchor="middle" class="ax">F</text>
+<text x="645.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="680.2" cy="95.7" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 0.943× control</title></circle>
+<circle cx="686.2" cy="91.3" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.101× control</title></circle>
+<circle cx="692.2" cy="89.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.183× control</title></circle>
+<circle cx="698.2" cy="88.6" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.209× control</title></circle>
+<circle cx="680.2" cy="83.4" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.447× control</title></circle>
+<circle cx="686.2" cy="77.1" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · F NIC n=6: 1.805× control</title></circle>
+<line x1="672.7" y1="87.6" x2="705.8" y2="87.6" stroke="#e8520a" stroke-width="2"/>
+<text x="689.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="689.2" y="280" text-anchor="middle" class="ax">F</text>
+<text x="689.2" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="723.8" cy="111.7" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 0.540× control</title></circle>
+<circle cx="729.8" cy="97.8" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 0.879× control</title></circle>
+<circle cx="735.8" cy="92.1" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.070× control</title></circle>
+<circle cx="741.8" cy="91.5" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.092× control</title></circle>
+<circle cx="723.8" cy="90.0" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.152× control</title></circle>
+<circle cx="729.8" cy="81.2" r="3.6" fill="#948f87" fill-opacity="0.25" stroke="#948f87" stroke-width="1.1"><title>SMYD1 · M SHAM n=6: 1.565× control</title></circle>
+<line x1="716.2" y1="94.0" x2="749.3" y2="94.0" stroke="#948f87" stroke-width="2"/>
+<text x="732.8" y="264" text-anchor="middle" class="col" fill="#948f87">SHAM</text>
+<text x="732.8" y="280" text-anchor="middle" class="ax">M</text>
+<text x="732.8" y="296" text-anchor="middle" class="ax">n=6</text>
+<circle cx="767.2" cy="216.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=5: 0.014× control</title></circle>
+<circle cx="773.2" cy="102.9" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=5: 0.734× control</title></circle>
+<circle cx="779.2" cy="97.8" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=5: 0.877× control</title></circle>
+<circle cx="785.2" cy="95.0" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=5: 0.968× control</title></circle>
+<circle cx="767.2" cy="82.2" r="3.6" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · M NIC n=5: 1.510× control</title></circle>
+<line x1="759.7" y1="118.9" x2="792.8" y2="118.9" stroke="#e8520a" stroke-width="2"/>
+<text x="776.2" y="264" text-anchor="middle" class="col" fill="#e8520a">NIC</text>
+<text x="776.2" y="280" text-anchor="middle" class="ax">M</text>
+<text x="776.2" y="296" text-anchor="middle" class="ax">n=5</text>
+</svg></div>
+    <p class="cap">Relative expression vs same-sex sham geometric mean · one male has no CHRNA10 value · one reads 0.015× for SMYD1</p>
+    <div class="scroller"><table>
+      <tr><th>Gene</th><th>Regular F</th><th>p</th><th>Regular M</th><th>p</th><th>High-fat F</th><th>p</th><th>High-fat M</th><th>p</th><th>Regular × sex p</th><th>High-fat × sex p</th></tr>
+<tr><td>CERKL</td><td>0.58×</td><td class="hi">0.040</td><td>1.05×</td><td>0.825</td><td>0.94×</td><td>0.706</td><td>1.57×</td><td class="hi">0.024</td><td>0.060</td><td>0.032</td></tr>
+<tr><td>CHRNA10</td><td>1.14×</td><td>0.744</td><td>0.11×</td><td>0.185</td><td>0.82×</td><td>0.398</td><td>1.06×</td><td>0.652</td><td>0.135</td><td>0.371</td></tr>
+<tr><td>FA2H</td><td>1.11×</td><td>0.453</td><td>1.28×</td><td>0.156</td><td>0.81×</td><td>0.412</td><td>0.83×</td><td>0.244</td><td>0.504</td><td>0.923</td></tr>
+<tr><td>SMYD1</td><td>1.06×</td><td>0.824</td><td>0.09×</td><td>0.153</td><td>1.25×</td><td>0.315</td><td>0.42×</td><td>0.374</td><td>0.106</td><td>0.180</td></tr>
+    </table></div>
     <p>
-      Rats on the regular diet, nicotine against sham controls, split by sex. Pooling the sexes
-      hides the main result.
+      CERKL is the gene to watch. On a regular diet it drops in females (0.58×) and not in males. On a
+      high-fat diet it rises in males (1.57×) and not in females, with a treatment × sex interaction
+      of p = 0.032. Females on a regular diet move the same way as human smokers.
     </p>
-    <div class="scroller"><svg viewBox="0 0 776 300" xmlns="http://www.w3.org/2000/svg" class="plot" role="img" aria-label="Fold change in nicotine-treated rats on a regular diet relative to sham controls, by sex, one dot per animal; dashed line is the control level"><g transform="translate(16,0)">
-<text x="95.0" y="16" text-anchor="middle" class="ttl">CERKL</text>
-<line x1="34" y1="238.2" x2="184" y2="238.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="242.2" text-anchor="end" class="ax">0.001</text>
-<line x1="34" y1="185.9" x2="184" y2="185.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="189.9" text-anchor="end" class="ax">0.01</text>
-<line x1="34" y1="133.6" x2="184" y2="133.6" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="137.6" text-anchor="end" class="ax">0.1</text>
-<line x1="34" y1="81.3" x2="184" y2="81.3" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="85.3" text-anchor="end" class="ax">1</text>
-<line x1="34" y1="44.7" x2="184" y2="44.7" stroke="rgba(200,196,188,0.07)"/>
-<text x="30" y="48.7" text-anchor="end" class="ax">5</text>
-<line x1="34" y1="81.3" x2="184" y2="81.3" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="62.5" cy="93.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · FEMALE n=6 — 0.578× control</title></circle>
-<circle cx="68.5" cy="89.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · FEMALE n=6 — 0.689× control</title></circle>
-<circle cx="74.5" cy="116.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · FEMALE n=6 — 0.214× control</title></circle>
-<circle cx="80.5" cy="98.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · FEMALE n=6 — 0.479× control</title></circle>
-<circle cx="86.5" cy="92.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · FEMALE n=6 — 0.607× control</title></circle>
-<circle cx="92.5" cy="90.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · FEMALE n=6 — 0.661× control</title></circle>
-<line x1="55.0" y1="96.8" x2="100.0" y2="96.8" stroke="#e8520a" stroke-width="2"/>
-<text x="77.5" y="274" text-anchor="middle" class="col" fill="#e8520a">FEMALE</text>
-<text x="77.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<circle cx="137.5" cy="80.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · MALE n=6 — 1.018× control</title></circle>
-<circle cx="143.5" cy="84.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · MALE n=6 — 0.851× control</title></circle>
-<circle cx="149.5" cy="80.1" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · MALE n=6 — 1.051× control</title></circle>
-<circle cx="155.5" cy="84.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · MALE n=6 — 0.854× control</title></circle>
-<circle cx="161.5" cy="94.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · MALE n=6 — 0.561× control</title></circle>
-<circle cx="167.5" cy="85.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CERKL · MALE n=6 — 0.814× control</title></circle>
-<line x1="130.0" y1="85.2" x2="175.0" y2="85.2" stroke="#e8520a" stroke-width="2"/>
-<text x="152.5" y="274" text-anchor="middle" class="col" fill="#e8520a">MALE</text>
-<text x="152.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<text x="285.0" y="16" text-anchor="middle" class="ttl">CHRNA10</text>
-<line x1="224" y1="238.2" x2="374" y2="238.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="242.2" text-anchor="end" class="ax">0.001</text>
-<line x1="224" y1="185.9" x2="374" y2="185.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="189.9" text-anchor="end" class="ax">0.01</text>
-<line x1="224" y1="133.6" x2="374" y2="133.6" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="137.6" text-anchor="end" class="ax">0.1</text>
-<line x1="224" y1="81.3" x2="374" y2="81.3" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="85.3" text-anchor="end" class="ax">1</text>
-<line x1="224" y1="44.7" x2="374" y2="44.7" stroke="rgba(200,196,188,0.07)"/>
-<text x="220" y="48.7" text-anchor="end" class="ax">5</text>
-<line x1="224" y1="81.3" x2="374" y2="81.3" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="252.5" cy="101.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · FEMALE n=6 — 0.404× control</title></circle>
-<circle cx="258.5" cy="75.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · FEMALE n=6 — 1.297× control</title></circle>
-<circle cx="264.5" cy="109.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · FEMALE n=6 — 0.283× control</title></circle>
-<circle cx="270.5" cy="85.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · FEMALE n=6 — 0.847× control</title></circle>
-<circle cx="276.5" cy="68.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · FEMALE n=6 — 1.747× control</title></circle>
-<circle cx="282.5" cy="63.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · FEMALE n=6 — 2.197× control</title></circle>
-<line x1="245.0" y1="84.0" x2="290.0" y2="84.0" stroke="#e8520a" stroke-width="2"/>
-<text x="267.5" y="274" text-anchor="middle" class="col" fill="#e8520a">FEMALE</text>
-<text x="267.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<circle cx="327.5" cy="88.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · MALE n=6 — 0.733× control</title></circle>
-<circle cx="333.5" cy="85.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · MALE n=6 — 0.836× control</title></circle>
-<circle cx="339.5" cy="94.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · MALE n=6 — 0.565× control</title></circle>
-<circle cx="345.5" cy="78.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · MALE n=6 — 1.111× control</title></circle>
-<circle cx="351.5" cy="232.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · MALE n=6 — 0.001× control</title></circle>
-<circle cx="357.5" cy="236.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>CHRNA10 · MALE n=6 — 0.001× control</title></circle>
-<line x1="320.0" y1="135.9" x2="365.0" y2="135.9" stroke="#e8520a" stroke-width="2"/>
-<text x="342.5" y="274" text-anchor="middle" class="col" fill="#e8520a">MALE</text>
-<text x="342.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<text x="475.0" y="16" text-anchor="middle" class="ttl">FA2H</text>
-<line x1="414" y1="238.2" x2="564" y2="238.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="242.2" text-anchor="end" class="ax">0.001</text>
-<line x1="414" y1="185.9" x2="564" y2="185.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="189.9" text-anchor="end" class="ax">0.01</text>
-<line x1="414" y1="133.6" x2="564" y2="133.6" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="137.6" text-anchor="end" class="ax">0.1</text>
-<line x1="414" y1="81.3" x2="564" y2="81.3" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="85.3" text-anchor="end" class="ax">1</text>
-<line x1="414" y1="44.7" x2="564" y2="44.7" stroke="rgba(200,196,188,0.07)"/>
-<text x="410" y="48.7" text-anchor="end" class="ax">5</text>
-<line x1="414" y1="81.3" x2="564" y2="81.3" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="442.5" cy="72.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · FEMALE n=6 — 1.505× control</title></circle>
-<circle cx="448.5" cy="71.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · FEMALE n=6 — 1.553× control</title></circle>
-<circle cx="454.5" cy="72.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · FEMALE n=6 — 1.501× control</title></circle>
-<circle cx="460.5" cy="80.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · FEMALE n=6 — 1.037× control</title></circle>
-<circle cx="466.5" cy="82.5" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · FEMALE n=6 — 0.945× control</title></circle>
-<circle cx="472.5" cy="81.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · FEMALE n=6 — 0.987× control</title></circle>
-<line x1="435.0" y1="76.6" x2="480.0" y2="76.6" stroke="#e8520a" stroke-width="2"/>
-<text x="457.5" y="274" text-anchor="middle" class="col" fill="#e8520a">FEMALE</text>
-<text x="457.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<circle cx="517.5" cy="68.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · MALE n=6 — 1.730× control</title></circle>
-<circle cx="523.5" cy="77.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · MALE n=6 — 1.187× control</title></circle>
-<circle cx="529.5" cy="77.2" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · MALE n=6 — 1.193× control</title></circle>
-<circle cx="535.5" cy="71.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · MALE n=6 — 1.543× control</title></circle>
-<circle cx="541.5" cy="73.9" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · MALE n=6 — 1.381× control</title></circle>
-<circle cx="547.5" cy="69.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>FA2H · MALE n=6 — 1.718× control</title></circle>
-<line x1="510.0" y1="72.9" x2="555.0" y2="72.9" stroke="#e8520a" stroke-width="2"/>
-<text x="532.5" y="274" text-anchor="middle" class="col" fill="#e8520a">MALE</text>
-<text x="532.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<text x="665.0" y="16" text-anchor="middle" class="ttl">SMYD1</text>
-<line x1="604" y1="238.2" x2="754" y2="238.2" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="242.2" text-anchor="end" class="ax">0.001</text>
-<line x1="604" y1="185.9" x2="754" y2="185.9" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="189.9" text-anchor="end" class="ax">0.01</text>
-<line x1="604" y1="133.6" x2="754" y2="133.6" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="137.6" text-anchor="end" class="ax">0.1</text>
-<line x1="604" y1="81.3" x2="754" y2="81.3" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="85.3" text-anchor="end" class="ax">1</text>
-<line x1="604" y1="44.7" x2="754" y2="44.7" stroke="rgba(200,196,188,0.07)"/>
-<text x="600" y="48.7" text-anchor="end" class="ax">5</text>
-<line x1="604" y1="81.3" x2="754" y2="81.3" stroke="#c8c4bc" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
-<circle cx="632.5" cy="88.1" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · FEMALE n=6 — 0.739× control</title></circle>
-<circle cx="638.5" cy="92.3" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · FEMALE n=6 — 0.615× control</title></circle>
-<circle cx="644.5" cy="80.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · FEMALE n=6 — 1.027× control</title></circle>
-<circle cx="650.5" cy="87.4" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · FEMALE n=6 — 0.762× control</title></circle>
-<circle cx="656.5" cy="77.0" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · FEMALE n=6 — 1.208× control</title></circle>
-<circle cx="662.5" cy="76.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · FEMALE n=6 — 1.222× control</title></circle>
-<line x1="625.0" y1="83.7" x2="670.0" y2="83.7" stroke="#e8520a" stroke-width="2"/>
-<text x="647.5" y="274" text-anchor="middle" class="col" fill="#e8520a">FEMALE</text>
-<text x="647.5" y="290" text-anchor="middle" class="ax">n=6</text>
-<circle cx="707.5" cy="79.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · MALE n=6 — 1.074× control</title></circle>
-<circle cx="713.5" cy="80.6" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · MALE n=6 — 1.030× control</title></circle>
-<circle cx="719.5" cy="96.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · MALE n=6 — 0.505× control</title></circle>
-<circle cx="725.5" cy="86.8" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · MALE n=6 — 0.782× control</title></circle>
-<circle cx="731.5" cy="239.7" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · MALE n=6 — 0.001× control</title></circle>
-<circle cx="737.5" cy="237.1" r="3.8" fill="#e8520a" fill-opacity="0.25" stroke="#e8520a" stroke-width="1.1"><title>SMYD1 · MALE n=6 — 0.001× control</title></circle>
-<line x1="700.0" y1="136.8" x2="745.0" y2="136.8" stroke="#e8520a" stroke-width="2"/>
-<text x="722.5" y="274" text-anchor="middle" class="col" fill="#e8520a">MALE</text>
-<text x="722.5" y="290" text-anchor="middle" class="ax">n=6</text>
-</g></svg></div>
-    <p class="cap">Fold change vs sham controls of the same sex · rat Ct normalized to GAPDH · one dot per animal · two males read about 0.001× for CHRNA10 and SMYD1, shown as recorded</p>
     <p>
-      CERKL depends on sex. Nicotine lowered it in female rats, matching the human direction, with
-      no clear change in males on this diet; the sex difference was significant. On the high-fat
-      diet the paper reports the same drop in females and a rise in males.
-    </p>
-    <p>
-      Diet changes FA2H: among nicotine-treated rats, the paper reports lower FA2H on the high-fat
-      diet than on the regular one. CHRNA10 and SMYD1 moved up or down by sex without a
-      significant sex effect.
+      These are leads, not settled effects. Across all 16 comparisons, the lowest corrected value is
+      q = 0.32. Without the two low-reading males, CHRNA10 and SMYD1 show no treatment effect at
+      all (p = 0.87 and 0.51), which is why I would check those wells before reading anything into them.
     </p>
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">04</span><h2>What it shows, and its limits</h2></div>
+    <div class="s-head"><span class="s-num">06</span><h2>Limits</h2></div>
     <p>
-      In both species, nicotine exposure goes with changes in the same sphingolipid and
-      nicotinic-receptor genes, which supports using the rat model for this question. In rats,
-      sex and diet change the size and sometimes the direction of the effect.
+      The groups are small, 4 to 6 animals per cell, so a result that isn't significant here is not
+      evidence of no effect. The human tissue is postmortem and exposure is a smoking history, so that
+      comparison is an association. Rats had two weeks of nicotine, not years. High-fat and regular
+      samples may have run separately, so I do not compare expression across diets here. These are
+      mRNA levels for four genes and say nothing direct about myelin or behaviour.
     </p>
-    <p>
-      The human tissue is postmortem and the exposure is a smoking history, not a controlled dose,
-      so the human comparison is an association. Groups are small (12 people per group, six rats per sex and treatment on the regular diet),
-      and the rats had two weeks of nicotine, not years. These are mRNA levels for four genes; the
-      study does not show what they do to myelin or behaviour.
+    <p class="note">
+      These numbers keep each control's variation, so they differ from the published figures, which
+      plot fold change with controls set to 1. The paper reports its own statistics; everything on
+      this page is my analysis, not a restatement of them.
     </p>
   </section>
 
   <footer>
-    Vargas-Medrano J, Carcoba LM, Vidal Martinez G, et al. Sex and diet-dependent gene alterations in human and rat brains with a history of nicotine exposure. Front. Psychiatry 14:1104563 (2023). <a href="https://doi.org/10.3389/fpsyt.2023.1104563" target="_blank" rel="noopener">doi:10.3389/fpsyt.2023.1104563</a> · CC BY<br />
-    Plots drawn from the fold-change data the paper analyzed (DATA_ANALYTICS · nicotine_gene_expression · Copy of FOLD CHANGE.csv)<br />
-    Fabian Alvarez-Primo, PhD · co-author
+    Data: Vargas-Medrano J, Carcoba LM, Vidal Martinez G, et al. Sex and diet-dependent gene alterations in human and rat brains with a history of nicotine exposure. Front. Psychiatry 14:1104563 (2023). <a href="https://doi.org/10.3389/fpsyt.2023.1104563" target="_blank" rel="noopener">doi:10.3389/fpsyt.2023.1104563</a> · CC BY<br />
+    Analysis: Fabian Alvarez-Primo, R notebooks, rerun in Python 2026-11 · DATA_ANALYTICS · nicotine_gene_expression<br />
+    <a href="../work/">Back to Work</a>
   </footer>
 
 </div>
