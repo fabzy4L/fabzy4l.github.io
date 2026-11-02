@@ -77,7 +77,8 @@
     This is my analysis of the qPCR data from a study I co-authored on nicotine exposure in
     postmortem human prefrontal cortex and in rats. I kept every subject's own value, controls
     included, worked on a log scale and put sex in the model. That leaves two clear human changes,
-    CERKL down and FA2H up, and a CERKL response in rats that depends on sex.
+    CERKL down and FA2H up. In rats, the CERKL response differs by sex and the FA2H response differs
+    by diet.
   </p>
 
   <section>
@@ -633,25 +634,52 @@
 <tr><td>SMYD1</td><td>1.06×</td><td>0.824</td><td>0.09×</td><td>0.153</td><td>1.25×</td><td>0.315</td><td>0.42×</td><td>0.374</td><td>0.106</td><td>0.180</td></tr>
     </table></div>
     <p>
-      CERKL is the gene to watch. On a regular diet it drops in females (0.58×) and not in males. On a
-      high-fat diet it rises in males (1.57×) and not in females, with a treatment × sex interaction
-      of p = 0.032. Females on a regular diet move the same way as human smokers.
-    </p>
-    <p>
-      These are leads, not settled effects. Across all 16 comparisons, the lowest corrected value is
-      q = 0.32. Without the two low-reading males, CHRNA10 and SMYD1 show no treatment effect at
-      all (p = 0.87 and 0.51), which is why I would check those wells before reading anything into them.
+      Split this finely, each comparison has few animals. On a regular diet CERKL drops in females
+      (0.58×) and not in males, the same direction as human smokers. On a high-fat diet it rises in
+      males (1.57×) and not in females. Across all 16 comparisons the lowest corrected value is
+      q = 0.32, so the sex difference needs a model that uses every animal.
     </p>
   </section>
 
   <section>
-    <div class="s-head"><span class="s-num">06</span><h2>Limits</h2></div>
+    <div class="s-head"><span class="s-num">06</span><h2>All rats in one model</h2></div>
+    <p>
+      A treatment × sex × diet model on log10 expression uses all 47 rats and tests the differences
+      directly.
+    </p>
+    <div class="scroller"><table>
+      <tr><th>Gene</th><th>Term</th><th>Without blocks p</th><th>With blocks p</th></tr>
+      <tr><td>CERKL</td><td>Treatment × sex</td><td class="hi">0.0047</td><td class="hi">0.0087</td></tr>
+      <tr><td>CERKL</td><td>Treatment × diet</td><td class="hi">0.024</td><td>not tested</td></tr>
+      <tr><td>FA2H</td><td>Treatment × diet</td><td class="hi">0.036</td><td class="hi">0.0072</td></tr>
+      <tr><td>CHRNA10</td><td>Treatment</td><td>0.87</td><td>0.97</td></tr>
+      <tr><td>SMYD1</td><td>Treatment</td><td>0.35</td><td>0.25</td></tr>
+    </table></div>
+    <p class="cap">Blocks inferred from animal numbering, not plate records · CHRNA10 and SMYD1 exclude animals with low readings · CERKL without blocks: full three-way model in R · other values: main effects plus the listed term</p>
+    <p>
+      The CERKL response differs by sex, and it stays that way when processing blocks are added. FA2H rises
+      with nicotine on a regular diet and falls on a high-fat diet. CHRNA10 and SMYD1 show no
+      treatment effect once the low readings are set aside. Rats #23 and #24 read about 300-fold below
+      every other animal for those two genes, and #32 reads over 20-fold below for SMYD1 with no CHRNA10
+      value. CERKL and FA2H read normally in all three, which points to the reactions, though all three are
+      nicotine-treated males, so I would confirm it from their Ct traces.
+    </p>
+    <p>
+      These are strong leads, not replicated effects. High-fat females and males fall in separate
+      blocks, so sex and block can't be fully separated on that diet. Of the two regular-diet blocks,
+      one shows the CERKL sex difference and the other does not. Plate records would settle
+      how much of this is run to run.
+    </p>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">07</span><h2>Limits</h2></div>
     <p>
       The groups are small, 4 to 6 animals per cell, so a result that isn't significant here is not
       evidence of no effect. The human tissue is postmortem and exposure is a smoking history, so that
-      comparison is an association. Rats had two weeks of nicotine, not years. High-fat and regular
-      samples may have run separately, so I do not compare expression across diets here. These are
-      mRNA levels for four genes and say nothing direct about myelin or behaviour.
+      comparison is an association. Rats had two weeks of nicotine, not years. Baseline CERKL differs about
+      threefold between diets, which may be diet or may be separate runs, so I don't read the raw
+      difference as a diet effect. These are mRNA levels for four genes and say nothing direct about myelin or behaviour.
     </p>
     <p class="note">
       These numbers keep each control's variation, so they differ from the published figures, which
